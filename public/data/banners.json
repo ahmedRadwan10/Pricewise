@@ -1,0 +1,20 @@
+{
+    "banners": [
+        {
+            "imgURL": "/assets/imgs/calc.jpg",
+            "routeURL": ""
+        },
+        {
+            "imgURL": "/assets/imgs/watch.jpg",
+            "routeURL": ""
+        },
+        {
+            "imgURL": "/assets/imgs/noon.jpg",
+            "routeURL": ""
+        },
+        {
+            "imgURL": "/assets/imgs/leon.jpg",
+            "routeURL": ""
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+
+.main_container {
+    position: relative;
+    height: calc(15vw + 3em);
+}
+
+.banners {
+    width: 100%;
+    height: calc(15vw + 3em);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow02);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: scroll;
+}
+
+.banners::-webkit-scrollbar {
+    display: none;
+  }
+
+.banner_img {
+    width: 100%;
+    height: calc(15vw + 3em);
+    object-fit: cover;
+}
+
+.btns {
+    
+}
+
+.btns button {
+    outline: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color02);
+    color: var(--color01);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.right_btn {
+    right: 2em;
+}
+.left_btn {
+    left: 2em;
+}

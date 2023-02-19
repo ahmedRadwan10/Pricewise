@@ -53,7 +53,6 @@ body {
   background-color: var(--white);
   padding-bottom: 6em;
   overflow-x: hidden;
-  min-height: 400em;
 }
 
 input {
@@ -77,7 +76,7 @@ a {
 
 span.column_divider {
     display: inline-block;
-    width: 2px;
+    width: 1px;
     height: 10px;
     border-radius: var(--radius-sm);
     background-color: var(--color03);

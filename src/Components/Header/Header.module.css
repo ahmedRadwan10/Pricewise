@@ -11,12 +11,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    /* backdrop-filter:  blur(10px); */
+    z-index: 9999;
 }
 
 .logo p {
     font-weight: 400;
     font-size: 2em;
     font-family: var(--logo-font);
+    transform: translateY(-5px);
 }
 
 .categories {
