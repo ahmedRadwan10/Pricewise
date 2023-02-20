@@ -18,11 +18,9 @@ const Header = () => {
                 <nav>
                     <span className={styles.ar}>العربية</span>
                     <span className='column_divider'></span>
+                    <span className={styles.profile}><i className="fa-regular fa-user"></i> Ahmed</span>
+                    <span className='column_divider'></span>
                     <span className={styles.bell}><i className="fa-regular fa-bell"></i></span>
-                    <span className='column_divider'></span>
-                    <span className={styles.star}><i className="fa-regular fa-star"></i></span>
-                    <span className='column_divider'></span>
-                    <span><i className="fa-regular fa-user"></i></span>
                 </nav>
             </div>
         </header>
