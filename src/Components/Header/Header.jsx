@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styles from './Header.module.css';
 import Categories from './SubComponents/Categories/Categories';
 
-const Header = () => {
+const Header = (props) => {
+    const { handleProfileClick } = props;
     const [categoriesVisible, setCategoriesVisible] = useState(false);
 
     const handleCategoriesClick = () => {
@@ -25,7 +26,7 @@ const Header = () => {
                 <nav>
                     <span className={styles.ar}>العربية</span>
                     <span className='column_divider'></span>
-                    <span className={styles.profile}><i className="fa-regular fa-user"></i> Ahmed</span>
+                    <span className={styles.profile} onClick={handleProfileClick}><i className="fa-regular fa-user"></i> Ahmed</span>
                     <span className='column_divider'></span>
                     <span className={styles.bell}><i className="fa-regular fa-bell"></i></span>
                 </nav>
