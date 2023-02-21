@@ -2,20 +2,20 @@
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 /* ...global... */
 
 /* ...fonts... */
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Righteous&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Righteous&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 /* ...fonts... */
 
 :root {
-    --color01: #222831;
-    --color02: #dddddd;
-    --color03: #a3a7ac;
+  --color01: #222831;
+  --color02: #dddddd;
+  --color03: #a3a7ac;
   /* ...main-colors... */
   --black: #000000;
   --white: #ffffff;
@@ -35,9 +35,9 @@
   /* ...other variables... */
   --radius-sm: 5px;
   --radius-md: 10px;
-  --ar-font: 'Cairo', sans-serif;
-  --en-font: 'Ubuntu', sans-serif;
-  --logo-font: 'Righteous', cursive;
+  --ar-font: "Cairo", sans-serif;
+  --en-font: "Ubuntu", sans-serif;
+  --logo-font: "Righteous", cursive;
   --shadow01: rgba(0, 0, 0, 0.16) 0px 0px 2px;
   --shadow02: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -56,13 +56,13 @@ body {
 }
 
 input {
-    width: 40em;
-    outline: none;
-    border: none;
-    background-color: var(--color02);
-    color: var(--color01);
-    border-radius: var(--radius-sm);
-    padding: 1em 2em;
+  width: 40em;
+  outline: none;
+  border: none;
+  background-color: var(--color02);
+  color: var(--color01);
+  border-radius: var(--radius-sm);
+  padding: 1em 2em;
 }
 
 p {
@@ -75,21 +75,21 @@ a {
 }
 
 span.column_divider {
-    display: inline-block;
-    width: 1px;
-    height: 10px;
-    border-radius: var(--radius-sm);
-    background-color: var(--color03);
-    opacity: 0.2;
+  display: inline-block;
+  width: 1px;
+  height: 10px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color03);
+  opacity: 0.2;
 }
 
 span.dot_divider {
-    display: inline-block;
-    width: 2px;
-    height: 2px;
-    border-radius: 50%;
-    background-color: var(--color03);
-    opacity: 0.7;
+  display: inline-block;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: var(--color03);
+  opacity: 0.7;
 }
 
 /* .................................................. */
@@ -99,24 +99,21 @@ span.dot_divider {
 /* .................................................. */
 /* Small Screen  */
 @media screen and (max-width: 768px) {
-    html {
-      font-size: 12px;
-    }
+  html {
+    font-size: 12px;
+  }
 }
 /* .................................................. */
 /* Medium Screen  */
 @media (min-width: 769px) and (max-width: 992px) {
-    html {
-      font-size: 14px;
-    } 
+  html {
+    font-size: 14px;
+  }
 }
 /* .................................................. */
 /* Large Screen  */
 @media (min-width: 993px) {
-    html {
-      font-size: 16px;
-    }
+  html {
+    font-size: 16px;
+  }
 }
-
-
-
