@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styles from './Header.module.css';
 import Categories from './SubComponents/Categories/Categories';
+import Login from '../Auth/Auth';
 
-const Header = (props) => {
-    const { handleProfileClick } = props;
+const Header = () => {
     const [categoriesVisible, setCategoriesVisible] = useState(false);
+    const [authVisible, setAuthVisible] = useState(false);
 
     const handleCategoriesClick = () => {
         setCategoriesVisible(prev => !prev);
@@ -26,12 +27,13 @@ const Header = (props) => {
                 <nav>
                     <span className={styles.ar}>العربية</span>
                     <span className='column_divider'></span>
-                    <span className={styles.profile} onClick={handleProfileClick}><i className="fa-regular fa-user"></i> Ahmed</span>
+                    <span className={styles.profile} onClick={() => setAuthVisible(true)}><i className="fa-regular fa-user"></i> Sign in</span>
                     <span className='column_divider'></span>
                     <span className={styles.bell}><i className="fa-regular fa-bell"></i></span>
                 </nav>
             </div>
             <Categories visible={categoriesVisible} setCategoriesVisible={setCategoriesVisible} />
+            <Login visible={authVisible} setVisible={setAuthVisible}/>
         </header>
     );
 }

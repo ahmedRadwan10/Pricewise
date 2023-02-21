@@ -1,0 +1,14 @@
+.overlay {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--overlay);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+}
+.overlay_hidden {
+  display: none;
+}

@@ -1,15 +1,7 @@
 
-.main_container {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background-color: var(--overlay);
-    z-index: 99999;
-}
 
 .modal_container {
+    display: block;
     width: 50vw;
     height: 60vh;
     padding: 3em;
@@ -20,8 +12,11 @@
     background-color: var(--white);
     color: var(--color01);
     border-radius: var(--radius-md);
-    transition: 0.3s all ease;
     z-index: 999999;
+}
+
+.modal_container_hidden {
+    display: none;
 }
 
 .modal_container .header {

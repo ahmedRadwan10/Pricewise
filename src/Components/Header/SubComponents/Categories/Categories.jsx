@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from "react-dom";
 import styles from './Categories.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../../../../APIs/categories';
+import Overlay from '../../../Collection/Overlay/Overlay';
 
 const Categories = ({ visible, setCategoriesVisible }) => {
   const categories = useSelector(({ categoriesState }) => categoriesState.categories);
@@ -33,14 +34,9 @@ const Categories = ({ visible, setCategoriesVisible }) => {
 
   return ReactDOM.createPortal(
     <>
+      <Overlay visible={visible} setVisible={setCategoriesVisible} />
       <div
-        style={visible ? { display: "block" } : { display: "none" }}
-        className={styles.main_container}
-        onClick={() => setCategoriesVisible(false)}>
-      </div>
-      <div
-        style={visible ? { top: "50%" } : { top: "-100%" }}
-        className={styles.modal_container}
+        className={ visible ? styles.modal_container : styles.modal_container_hidden }
       >
         <div className={styles.header}>
           <div>

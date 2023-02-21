@@ -1,0 +1,30 @@
+/* MODAL WINDOW */
+
+.auth_modal {
+  display: block;
+  max-width: 35em;
+  max-height: 50em;
+  padding: 3rem 4rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  color: var(--color01);
+  z-index: 100000;
+}
+
+.btn_close_modal {
+  color: inherit;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.auth_modal_hidden {
+  display: none;
+}
+

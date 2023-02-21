@@ -1,0 +1,72 @@
+
+.modal__header {
+    text-align: center;
+    line-height: 1.5;
+  }
+  
+  .modal__header p {
+    color: inherit;
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+  
+  .modal__header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .modal__header h3 {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+  
+  .modal__header h3 span {
+    color: var(--blue);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .modal__form {
+    margin-top: 4em;
+  }
+
+  .modal__form .form_field {
+    margin-bottom: 1.5em;
+  }
+  
+  .modal__form .form_field label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.5em;
+    color: inherit;
+    font-weight: 400;
+  }
+
+  .modal__form .form_field input {
+    font-size: 1rem;
+  }
+  
+  .modal__form .forget {
+    display: inline-block;
+    margin: 1em 0 2.5em 0;
+    color: var(--color01);
+    width: 100%;
+    text-align: center;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .modal__form .sign_in {
+    width: 100%;
+    padding: 1em 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color01);
+    color: var(--white);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+  }
+  

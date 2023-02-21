@@ -57,6 +57,7 @@ body {
 
 input {
   width: 40em;
+  max-width: 100%;
   outline: none;
   border: none;
   background-color: var(--color02);
