@@ -11,11 +11,12 @@
   box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
   border-radius: 1rem;
   z-index: 100000;
-  transition: all 0.5s;
+  transition: opacity 1s;
 }
 .hidden {
   visibility: hidden;
   opacity: 0;
+  transition: opacity 1s;
 }
 .modal__header {
   text-align: center;
@@ -63,6 +64,9 @@
   width: 100%;
   text-align: center;
   cursor: pointer;
+}
+.modal__form .or {
+  color: black;
 }
 .modal__form .or:before {
   content: "";

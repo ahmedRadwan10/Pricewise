@@ -7,9 +7,10 @@
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   z-index: 10000;
-  transition: all 0.5s;
+  transition: opacity 1s;
 }
 .hidden {
   visibility: hidden;
   opacity: 0;
+  transition: opacity 1s;
 }

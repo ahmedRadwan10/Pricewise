@@ -5,9 +5,9 @@ function Overlay(props) {
   return (
     <>
       {
-        <div className={`${showOverlay ? null : styles.hidden}`}>
-          <div className={styles.overlay}></div>
-        </div>
+        <div
+          className={`${showOverlay ? styles.overlay : styles.hidden}`}
+        ></div>
       }
     </>
   );
