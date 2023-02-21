@@ -1,0 +1,93 @@
+
+.main_container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: var(--overlay);
+    z-index: 99999;
+}
+
+.modal_container {
+    width: 50vw;
+    height: 60vh;
+    padding: 3em;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white);
+    color: var(--color01);
+    border-radius: var(--radius-md);
+    transition: 0.3s all ease;
+    z-index: 999999;
+}
+
+.modal_container .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid var(--color02);
+}
+
+.modal_container .header span {
+    display: inline-block;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.modal_container .header p {
+    font-size: 0.9rem;
+}
+
+.modal_container .categories {
+    width: 50%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.modal_container .categories .cat_title {
+    margin-bottom: 1em;
+    font-weight: 500;
+    transition: 0.2s all ease;
+    cursor: pointer;
+}
+
+.modal_container .categories .cat_title:hover {
+    text-decoration: underline;
+}
+
+.modal_container .categories .cat_subCats {
+
+}
+
+.modal_container .categories .cat_subCats div {
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    font-size: 0.9rem;
+    transition: 0.2s all ease;
+    cursor: pointer;
+}
+
+.modal_container .categories .cat_subCats div:hover {
+    text-decoration: underline;
+}
+
+.modal_container .container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.modal_container .cat_img img {
+    width: 15em;
+    height: 15em;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--radius-sm);
+}

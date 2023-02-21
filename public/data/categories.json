@@ -1,0 +1,22 @@
+{
+    "categories": [
+        {
+            "title": "Electronics",
+            "subcats": [
+                "Mobiles",
+                "Headsets",
+                "Smart Watches",
+                "Tablets"
+            ]
+        },
+        {
+            "title": "Computer Components",
+            "subcats": [
+                "Laptops",
+                "Monitors",
+                "Data Storage",
+                "TVs"
+            ]
+        }
+    ]
+}

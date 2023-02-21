@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Header.module.css';
+import Categories from './SubComponents/Categories/Categories';
 
 const Header = () => {
+    const [categoriesVisible, setCategoriesVisible] = useState(false);
+
+    const handleCategoriesClick = () => {
+        setCategoriesVisible(prev => !prev);
+    }
+
     return (
         <header className={styles.main_container}>
             <div className={styles.logo}>
                 <p>Pricewise</p>
             </div>
-            <div className={styles.categories}>
+            <div className={styles.categories} onClick={handleCategoriesClick}>
                 <i className="fa-solid fa-bars"></i>
                 Categories
             </div>
@@ -23,6 +30,7 @@ const Header = () => {
                     <span className={styles.bell}><i className="fa-regular fa-bell"></i></span>
                 </nav>
             </div>
+            <Categories visible={categoriesVisible} setCategoriesVisible={setCategoriesVisible} />
         </header>
     );
 }

@@ -1,19 +1,19 @@
 {
     "banners": [
         {
-            "imgURL": "/assets/imgs/47fecc11-490d-4039-a1ca-8b8962640ea4.png",
+            "imgURL": "/assets/imgs/banners/47fecc11-490d-4039-a1ca-8b8962640ea4.png",
             "routeURL": ""
         },
         {
-            "imgURL": "/assets/imgs/en_banner-01.png",
+            "imgURL": "/assets/imgs/banners/en_banner-01.png",
             "routeURL": ""
         },
         {
-            "imgURL": "/assets/imgs/en_dk_eg-hero-banner-01 (1).png",
+            "imgURL": "/assets/imgs/banners/en_dk_eg-hero-banner-01 (1).png",
             "routeURL": ""
         },
         {
-            "imgURL": "/assets/imgs/en_dk_eg-slider-01.png",
+            "imgURL": "/assets/imgs/banners/en_dk_eg-slider-01.png",
             "routeURL": ""
         }
     ]

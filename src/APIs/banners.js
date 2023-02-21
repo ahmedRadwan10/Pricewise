@@ -1,4 +1,4 @@
-import { fetchBanners } from "../redux/redux/slices/bannerSlice";
+import { fetchBanners } from "../redux/slices/bannerSlice";
 
 
 export async function getBanners(dispatch) {
