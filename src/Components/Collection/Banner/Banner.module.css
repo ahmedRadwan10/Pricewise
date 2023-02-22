@@ -1,6 +1,7 @@
 .main_container {
   position: relative;
-  height: calc(17vw + 3em);
+  height: calc(18vw + 3em);
+  padding-top: 2em;
 }
 
 .banners {
@@ -51,7 +52,7 @@
   opacity: 0.5;
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: calc(50% + 1.5em);
   transform: translateY(-50%);
 }
 
