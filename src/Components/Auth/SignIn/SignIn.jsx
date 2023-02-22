@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './SignIn.module.css';
 
-const SignIn = () => {
+const SignIn = ({ setAuthMethod }) => {
     return (
     <div>
         <div className={styles.modal__header}>
           <p>Welcome back!</p>
           <h1>Sign in to your account</h1>
           <h3>
-            Don't have an account? <span>Sign Up</span>
+            Don't have an account? <span onClick={() => setAuthMethod("sign-up")}>Sign Up</span>
           </h3>
         </div>
         <form className={styles.modal__form}>

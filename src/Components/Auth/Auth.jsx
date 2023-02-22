@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDom from "react-dom";
 import styles from "./Auth.module.css";
 import Overlay from "../Collection/Overlay/Overlay";
 import SignIn from "./SignIn/SignIn";
+import SignUp from "./SignUp/SignUp";
 
 const Auth = ({ visible, setVisible }) => {
-
+  const [authMethod, setAuthMethod] = useState("sign-in");
   return ReactDom.createPortal(
     <>
       <Overlay visible={visible} setVisible={setVisible} />
@@ -13,7 +14,7 @@ const Auth = ({ visible, setVisible }) => {
           <span className={styles.btn_close_modal} onClick={() => setVisible(false)}>
             <i className="fa-solid fa-xmark"></i>
           </span>
-          <SignIn />
+          { authMethod === "sign-in" ? <SignIn setAuthMethod={setAuthMethod} /> : <SignUp setAuthMethod={setAuthMethod} />}
         </div>
     </>,
     document.getElementById("auth")
