@@ -9,9 +9,10 @@ import ProductsOverview from "../../Components/Collection/ProductsOverview/Produ
 const Home = () => {
   const banners = useSelector(({ bannerState }) => bannerState.banners);
   const products = useSelector(({ productsState }) => productsState.products);
+  const wishlist = useSelector(({ productsState }) => productsState.wishlist);
   const dispatch = useDispatch();
 
-    useEffect(() => {
+  useEffect(() => {
       document.title = "Pricewise | Home";
       getBanners(dispatch);
       getProducts(dispatch);
@@ -20,9 +21,7 @@ const Home = () => {
   return (
     <div className={styles.main_container}>
       <Banner banners={banners} />
-      <ProductsOverview data={{ title: "New Arrivals", products: products }} />
-      <ProductsOverview data={{ title: "Mobile Phones", products: products }} />
-      <ProductsOverview data={{ title: "All Tablets", products: products }} />
+      <ProductsOverview title="New Arrivals" products={products} />
     </div>
   );
 };
