@@ -1,11 +1,13 @@
 import React, { useRef, useState } from 'react';
 import styles from '../ProductsOverview.module.css';
 import Image from '../../Image';
-import { addProductToWishlist, sendProductToWishlist } from '../../../../APIs/products';
+import { sendProductToWishlist } from '../../../../APIs/products';
 import { useDispatch } from 'react-redux';
+import { setAlarmDetails, showAlarm } from '../../../../redux/slices/alarmSlice';
 
 const ProductCard = ({ product, products }) => {
   const [favBtnActive, setFavBtnActive] = useState(false);
+  const [productHovered, setProductHovered] = useState(false);
   const [productContainerHidden, setContainerHidden] = useState(false);
   const productElement = useRef();
   const dispatch = useDispatch();
@@ -35,12 +37,12 @@ const renderProductFooter = (product) => {
   }
 
   const handleFavBtnClick = (productID) => {
-    // productElement.current.style.marginRight = "4em";
     setContainerHidden(true);
-    setTimeout(() => {
-      // productElement.current.style.marginRight = "0";
-    }, 600)
     sendProductToWishlist(dispatch, products, productID);
+    const alarmTitle = `${product.title} added to your wishlist successfully!`;
+    const alarmDesc = ``;
+    dispatch(setAlarmDetails({ title: alarmTitle, description: alarmDesc }));
+    dispatch(showAlarm());
   }
 
   if (product["img-src"]) {
@@ -48,6 +50,8 @@ const renderProductFooter = (product) => {
             ref={productElement}
             className={ productContainerHidden ? styles.product_container_hidden : styles.product_container }
             onClick={() => handleProductOnClick(product)}
+            onMouseOver={() => setProductHovered(true)}
+            onMouseLeave={() => setProductHovered(false)}
             >
             <button onMouseOver={() => setFavBtnActive(true)} onMouseLeave={() => setFavBtnActive(false)} onClick={() => handleFavBtnClick(product.id)} className={styles.fav_btn}>{ !favBtnActive ? <img src="/assets/imgs/icons/heart.svg" alt="Heart Icon" /> : <img src="/assets/imgs/icons/heart_red.svg" alt="Heart Icon" /> }</button>
             <div className={styles.product_img_container}>
@@ -59,7 +63,7 @@ const renderProductFooter = (product) => {
                     <span>{product.new_price.toFixed(2)}</span>
                     <span>EGP</span>
                 </div>
-                {product.old_price > product.new_price ? <div className={styles.price_change}>{Math.floor(100 - (product.new_price / product.old_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-down fa-beat-fade"></i></div> : <div className={styles.price_change_negative}>{Math.floor(100 - (product.old_price / product.new_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
+        {product.old_price > product.new_price ? <div className={styles.price_change}>{Math.floor(100 - (product.new_price / product.old_price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down ${productHovered ? "fa-beat-fade" : ""}`}></i></div> : <div className={styles.price_change_negative}>{Math.floor(100 - (product.old_price / product.new_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
             </div>
             {product.old_price ? renderProductOldPrice(product) : ""}
             <div className={styles.product_footer}>
