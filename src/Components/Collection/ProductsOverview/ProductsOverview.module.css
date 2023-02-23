@@ -71,7 +71,7 @@
 }
 
 .main_container .products_container {
-    height: 21em;
+    height: 23em;
     display: flex;
     gap: 1em;
     overflow-x: scroll;
@@ -83,12 +83,44 @@
 }
 
 .main_container .product_container {
-    width: 15em;
+    width: calc((100% - 4em) / 5);
     position: relative;
     padding: 0 1em 0.5em;
     background-color: #dddddd36;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.main_container .product_container .price_container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.price_change,
+.price_change_negative {
+    transform: translateY(calc(50% - 0.2em));
+    border-radius: var(--radius-sm);
+    padding: 0.5em 1em;
+    background-color: var(--light-green);
+    color: var(--green);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.price_change_negative {
+    color: var(--red);
+    background-color: var(--light-red);
+}
+
+.price_change_negative span {
+    font-size: 0.6rem;
+    margin-right: 0.5em;
+}
+
+.price_change span {
+    font-size: 0.6rem;
+    margin-right: 0.5em;
 }
 
 .main_container .product_container .product_img_container {
@@ -115,7 +147,6 @@
 }
 
 .new_price_container {
-    margin-top: 10px;
     font-size: 1.2rem;
     font-weight: 300;
 }
@@ -166,34 +197,26 @@
     transform: translateY(-1.8px);
 }
 
-.main_container .product_container .product_footer .rating_container i, 
-.main_container .product_container .product_footer .rating_container span:first-of-type {
-    /* font-size: 1rem; */
-}
-
-.main_container .product_container .product_footer .price_change,
-.price_change_negative {
+.fav_btn {
+    width: 1.8em;
+    height: 1.8em;
+    /* margin-top: 3em; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    border: none;
     border-radius: var(--radius-sm);
-    padding: 0.5em 1em;
-    background-color: #37ae0439;
-    color: var(--green);
-    font-weight: bold;
-    font-size: 1rem;
+    background-color: var(--color01);
+    color: var(--color02);
+    font-size: 1.3rem;
+    transition: 0.2s all ease;
+    opacity: 0.7;
+    cursor: pointer;
 }
 
-.price_change_negative {
-    color: var(--red);
-    background-color: #de0b0b39;
-}
-
-.price_change_negative span {
-    font-size: 0.6rem;
-    margin-right: 0.5em;
-}
-
-.main_container .product_container .product_footer .price_change span {
-    font-size: 0.6rem;
-    margin-right: 0.5em;
+.fav_btn:hover {
+    opacity: 1;
 }
 
 /* ......................................... */
