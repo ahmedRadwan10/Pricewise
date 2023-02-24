@@ -1,0 +1,82 @@
+import React, { useEffect, useState } from 'react';
+import styles from './Footer.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories } from '../../APIs/categories';
+
+const Footer = () => {
+    const categories = useSelector(({ categoriesState }) => categoriesState.categories);
+    const [currentYear, setCurrentYear] = useState("");
+    const dispatch = useDispatch(); 
+
+    const renderSubCategories = (category) => {
+        return category.subcats.map(sub =>
+          <div key={sub}>
+            {sub}
+          </div>
+        )
+    }
+
+    const renderCategories = () => {
+        if (categories) return categories.map(cat =>
+          <div key={cat.title}>
+            <h4 className={styles.cat_title}>{cat.title}</h4>
+            <div className={styles.cat_subCats}>
+              { renderSubCategories(cat) }
+            </div>
+          </div>
+        );
+    }
+    
+    const getCurrentYear = () => {
+        const date = new Date();
+        setCurrentYear(date.getFullYear());
+    }
+
+    useEffect(() => {
+        if (!categories) getCategories(dispatch);
+        getCurrentYear();
+      }, [dispatch, categories]);
+
+    return (
+        <div className={styles.main_container}>
+            <div className={styles.categories}>
+                {renderCategories()}
+                <div className={styles.contact}>
+                    <h4>Contact</h4>
+                    <div>
+                        <h5>Email</h5>
+                        <p>contact@pricewise.com</p>
+                    </div>
+                    <div>
+                        <h5>Telephone</h5>
+                        <p>658-630-652</p>
+                    </div>
+                </div>
+            </div>
+            {/* <div className={styles.about}>
+                <h4>About</h4>
+                <div>
+                    Pricewise is a platform which
+                    aims to provide a full prices
+                    tracking, 
+                    Pricewise is a platform which
+                    aims to provide a full prices
+                    tracking, 
+                    Pricewise is a platform which
+                    aims to provide a full prices
+                    tracking, 
+                </div>
+            </div> */}
+            <div className={styles.copyright_container}>
+                <div className={styles.logo}>
+                    <p>Pricewise</p>
+                </div>
+                <div className={styles.copyright}>
+                    <p>All rights reserved <i className="fa-regular fa-copyright"></i> Pricewise {currentYear }</p>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default Footer;

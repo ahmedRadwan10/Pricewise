@@ -52,7 +52,6 @@ html {
 body {
   font-family: var(--en-font);
   background-color: var(--white);
-  padding-bottom: 6em;
   overflow-x: hidden;
 }
 

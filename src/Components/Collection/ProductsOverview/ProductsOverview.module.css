@@ -54,7 +54,7 @@
 .main_container .header h2 {
     font-size: 1.4rem;
     width: 75%;
-    color: var(--color01);
+    color: var(--dark-gray);
 }
 
 .main_container .header button {
