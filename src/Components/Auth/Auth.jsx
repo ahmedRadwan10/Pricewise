@@ -10,10 +10,6 @@ const Auth = ({ visible, setVisible }) => {
   const [authMethod, setAuthMethod] = useState("sign-in");
   const success = useSelector(({ authState }) => authState.signUpSuccess);
 
-  useEffect(() => {
-    console.log(success);
-    setVisible(!success);
-  }, [success]);
   return ReactDom.createPortal(
     <>
       <Overlay visible={visible} setVisible={setVisible} />

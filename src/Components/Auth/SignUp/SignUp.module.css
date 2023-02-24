@@ -70,3 +70,7 @@
   border: none;
   cursor: pointer;
 }
+
+.modal__form .sign_up i {
+  font-size: 1.2rem;
+}

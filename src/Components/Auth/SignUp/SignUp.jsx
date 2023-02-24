@@ -18,10 +18,12 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
   const test = (e) => {
     console.log(firstName, lastName, email, password, confirmPassword);
   };
+
   const changeSubmitBtn = () => {
     refSignUp.current.disabled = loading;
-    loading ? setSignUp("plaese wait ...") : setSignUp("Sign up");
+    loading ? setSignUp(<i class="fa-solid fa-circle-notch fa-spin"></i>) : setSignUp("Sign up");
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     signUpUser(dispatch, {
@@ -32,6 +34,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
       confirmPassword,
     });
   };
+
   useEffect(() => {
     changeSubmitBtn();
   }, [loading]);
@@ -48,7 +51,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
       <form className={styles.modal__form} onSubmit={handleSubmit}>
         <div className={styles.name_field}>
           <div>
-            <label>First Name</label>
+            <label className="required">First Name</label>
             <input
               type="text"
               onChange={(e) => setFirstName(e.target.value)}
@@ -56,7 +59,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
             />
           </div>
           <div>
-            <label>Last Name</label>
+            <label className="required">Last Name</label>
             <input
               type="text"
               onChange={(e) => setLastName(e.target.value)}
@@ -65,7 +68,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
           </div>
         </div>
         <div className={styles.form_field}>
-          <label>Email</label>
+          <label className="required">Email</label>
           <input
             type="email"
             placeholder="example@mail.com"
@@ -74,7 +77,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
           />
         </div>
         <div className={styles.form_field}>
-          <label>Password</label>
+          <label className="required">Password</label>
           <input
             type="password"
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
@@ -84,7 +87,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
           />
         </div>
         <div className={styles.form_field}>
-          <label>Confirm Password</label>
+          <label className="required">Confirm Password</label>
           <input
             type="password"
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"

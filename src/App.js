@@ -3,10 +3,6 @@ import "./App.css";
 import Header from "./Components/Header/Header";
 import Home from "./Routes/Home/Home";
 import Alarm from "./Components/Collection/Alarm/Alarm";
-import { useSelector } from "react-redux";
-
-import Success from "./Components/Auth/SignUp/Success/Success";
-
 import Footer from "./Components/Footer/Footer";
 
 function App() {
@@ -14,9 +10,6 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
-        {/* for test */}
-        <Success />
-        {/* for test */}
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>

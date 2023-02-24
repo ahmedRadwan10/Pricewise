@@ -66,6 +66,19 @@ input {
   padding: 1em 2em;
 }
 
+label.required {
+  position: relative;
+  width: fit-content;
+}
+
+label.required::before {
+  content: "*";
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  color: var(--red);
+}
+
 p {
   max-width: 100%;
 }
