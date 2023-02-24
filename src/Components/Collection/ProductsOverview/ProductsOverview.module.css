@@ -146,6 +146,9 @@
     color: var(--green);
     font-weight: bold;
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .price_change_negative {
@@ -153,12 +156,23 @@
     background-color: var(--light-red);
 }
 
-.price_change_negative span {
+.price_change_negative span:first-of-type {
+    font-size: 0.8rem;
+    margin-right: 0.2em;
+}
+
+.price_change_negative span:nth-of-type(2) {
     font-size: 0.6rem;
     margin-right: 0.5em;
 }
 
-.price_change span {
+
+.price_change span:first-of-type {
+    font-size: 0.8rem;
+    margin-right: 0.2em;
+}
+
+.price_change span:nth-of-type(2) {
     font-size: 0.6rem;
     margin-right: 0.5em;
 }
