@@ -31,7 +31,7 @@ const renderProductFooter = (product) => {
             { product.rating ? <div className={styles.rating_container}>
                 <i className="fa-solid fa-star fa-sm"></i>
                 <span>{product.rating}</span>
-            </div> : <div className={styles.rating_container}> <i className="fa-solid fa-star fa-sm"></i> 0.0</div>}
+            </div> : <div className={styles.rating_container}> <i className="fa-solid fa-star fa-sm"></i> <span>0.0</span></div>}
         </>
     );
   }
@@ -39,8 +39,8 @@ const renderProductFooter = (product) => {
   const handleFavBtnClick = (productID) => {
     setContainerHidden(true);
     sendProductToWishlist(dispatch, products, productID);
-    const alarmTitle = `${product.title} added to your wishlist successfully!`;
-    const alarmDesc = ``;
+    const alarmTitle = `Well done!`;
+    const alarmDesc = `${product.title} added to your wishlist successfully.`;
     dispatch(setAlarmDetails({ title: alarmTitle, description: alarmDesc }));
     dispatch(showAlarm());
   }
@@ -63,7 +63,7 @@ const renderProductFooter = (product) => {
                     <span>{product.new_price.toFixed(2)}</span>
                     <span>EGP</span>
                 </div>
-        {product.old_price > product.new_price ? <div className={styles.price_change}>{Math.floor(100 - (product.new_price / product.old_price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down ${productHovered ? "fa-beat-fade" : ""}`}></i></div> : <div className={styles.price_change_negative}>{Math.floor(100 - (product.old_price / product.new_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
+                {product.old_price > product.new_price ? <div className={styles.price_change}><span>-</span>{Math.floor(100 - (product.new_price / product.old_price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down ${productHovered ? "fa-beat-fade" : ""}`}></i></div> : <div className={styles.price_change_negative}><span>+</span>{Math.floor(100 - (product.old_price / product.new_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
             </div>
             {product.old_price ? renderProductOldPrice(product) : ""}
             <div className={styles.product_footer}>

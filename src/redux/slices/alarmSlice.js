@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    alarmShown: false,
-    alarmTitle: "",
-    alarmDescription: "",
+    shown: false,
+    title: "",
+    description: "",
 };
 
 export const alarmSlice = createSlice({
@@ -11,14 +11,14 @@ export const alarmSlice = createSlice({
   initialState,
   reducers: {
     showAlarm: (state) => {
-      state.alarmShown = true;
+      state.shown = true;
     },
     hideAlarm: (state) => {
-      state.alarmShown = false;
+      state.shown = false;
     },
     setAlarmDetails: (state, action) => {
-      state.alarmTitle = action.payload.title;
-      state.alarmDescription = action.payload.description;
+      state.title = action.payload.title;
+      state.description = action.payload.description;
     }
   }
 });

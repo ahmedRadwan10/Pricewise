@@ -6,9 +6,9 @@ import { hideAlarm } from '../../../redux/slices/alarmSlice';
 import Overlay from '../Overlay/Overlay';
 
 const Alarm = () => {
-    const shown = useSelector(({ alarmState }) => alarmState.alarmShown);
-    const title = useSelector(({ alarmState }) => alarmState.alarmTitle);
-    const description = useSelector(({ alarmState }) => alarmState.alarmDescription);
+    const shown = useSelector(({ alarmState }) => alarmState.shown);
+    const title = useSelector(({ alarmState }) => alarmState.title);
+    const description = useSelector(({ alarmState }) => alarmState.description);
     const dispatch = useDispatch();
 
     return ReactDOM.createPortal(
@@ -22,7 +22,7 @@ const Alarm = () => {
                 <p>{description}</p>
                 <div className={styles.btns}>
                     <button onClick={() => dispatch(hideAlarm())}>Dismiss</button>
-                    <button>Check your wishlist</button>
+                    {/* <button>Check your wishlist</button> */}
                 </div>
             </div>
         </>,
