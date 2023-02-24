@@ -4,18 +4,19 @@ import Header from "./Components/Header/Header";
 import Home from "./Routes/Home/Home";
 import Alarm from "./Components/Collection/Alarm/Alarm";
 import { useSelector } from "react-redux";
-<<<<<<< HEAD
+
 import Success from "./Components/Auth/SignUp/Success/Success";
-=======
+
 import Footer from "./Components/Footer/Footer";
->>>>>>> fd124551922ae4dddf3aeda52fc4da305738f3c1
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Header />
+        {/* for test */}
         <Success />
+        {/* for test */}
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
