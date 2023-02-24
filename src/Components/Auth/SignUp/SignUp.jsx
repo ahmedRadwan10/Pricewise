@@ -31,7 +31,6 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
       password,
       confirmPassword,
     });
-    changeSubmitBtn();
   };
   useEffect(() => {
     changeSubmitBtn();
