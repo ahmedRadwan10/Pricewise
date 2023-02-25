@@ -4,35 +4,62 @@ import { signUpUser } from "../../../APIs/postUser";
 import styles from "./SignUp.module.css";
 
 const SignUp = ({ setAuthMethod, setVisible }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [formInput, setFormInput] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [formError, setFormError] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   const [signUp, setSignUp] = useState("Sign up");
   const dispatch = useDispatch();
   const refSignUp = useRef();
 
   const loading = useSelector(({ authState }) => authState.loading);
 
-  const test = (e) => {
-    console.log(firstName, lastName, email, password, confirmPassword);
+  const handleUserInput = (name, value) => {
+    setFormInput({
+      ...formInput,
+      [name]: value,
+    });
+  };
+  const validateFormInput = (e) => {
+    const initErr = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    };
+    if (formInput.confirmPassword !== formInput.password) {
+      setFormError({
+        ...formError,
+        confirmPassword: "Password and confirm password should be same",
+      });
+      return;
+    }
+    setFormError({ initErr });
+    signUpUser(dispatch, formInput);
   };
 
   const changeSubmitBtn = () => {
     refSignUp.current.disabled = loading;
-    loading ? setSignUp(<i class="fa-solid fa-circle-notch fa-spin"></i>) : setSignUp("Sign up");
+    loading
+      ? setSignUp(<i class="fa-solid fa-circle-notch fa-spin"></i>)
+      : setSignUp("Sign up");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signUpUser(dispatch, {
-      firstName,
-      lastName,
-      email,
-      password,
-      confirmPassword,
-    });
+    validateFormInput();
   };
 
   useEffect(() => {
@@ -54,7 +81,10 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
             <label className="required">First Name</label>
             <input
               type="text"
-              onChange={(e) => setFirstName(e.target.value)}
+              name="firstName"
+              onChange={({ target }) => {
+                handleUserInput(target.name, target.value);
+              }}
               required
             />
           </div>
@@ -62,7 +92,10 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
             <label className="required">Last Name</label>
             <input
               type="text"
-              onChange={(e) => setLastName(e.target.value)}
+              name="lastName"
+              onChange={({ target }) => {
+                handleUserInput(target.name, target.value);
+              }}
               required
             />
           </div>
@@ -71,8 +104,11 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
           <label className="required">Email</label>
           <input
             type="email"
+            name="email"
             placeholder="example@mail.com"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={({ target }) => {
+              handleUserInput(target.name, target.value);
+            }}
             required
           />
         </div>
@@ -80,9 +116,10 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
           <label className="required">Password</label>
           <input
             type="password"
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            onChange={({ target }) => {
+              handleUserInput(target.name, target.value);
+            }}
             required
           />
         </div>
@@ -90,11 +127,13 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
           <label className="required">Confirm Password</label>
           <input
             type="password"
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            name="confirmPassword"
+            onChange={({ target }) => {
+              handleUserInput(target.name, target.value);
+            }}
             required
           />
+          <p className={styles.error_message}>{formError.confirmPassword}</p>
         </div>
         <button ref={refSignUp} className={styles.sign_up}>
           {signUp}

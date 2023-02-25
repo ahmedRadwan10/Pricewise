@@ -8,7 +8,7 @@ import {
 export async function signUpUser(dispatch, data) {
   dispatch(startPostUser());
   try {
-    const respose = await fetch("https://fakestoreapi.com/users", {
+    const respose = await fetch("http://localhost:9000/users", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
