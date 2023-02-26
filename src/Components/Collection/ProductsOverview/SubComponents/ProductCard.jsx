@@ -1,19 +1,22 @@
 import React, { useRef, useState } from 'react';
 import styles from '../ProductsOverview.module.css';
 import Image from '../../Image';
-import { sendProductToWishlist } from '../../../../APIs/products';
+import { getProduct, sendProductToWishlist } from '../../../../APIs/products';
 import { useDispatch } from 'react-redux';
 import { setAlarmDetails, showAlarm } from '../../../../redux/slices/alarmSlice';
+import { useNavigate } from 'react-router';
+import { fetchProduct } from '../../../../redux/slices/productsSlice';
 
 const ProductCard = ({ product, products }) => {
   const [favBtnActive, setFavBtnActive] = useState(false);
   const [productHovered, setProductHovered] = useState(false);
   const [productContainerHidden, setContainerHidden] = useState(false);
   const productElement = useRef();
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
   const handleProductOnClick = (product) => {
-    // navigate(`/${product.category.title}/${product.subCategory.id}/${product.id}`)
+      navigate(`/electronics/${product.title}/${product.id}`);
   }
 
 

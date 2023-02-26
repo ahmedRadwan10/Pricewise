@@ -1,0 +1,278 @@
+
+.main_container {
+    margin-top: 7.5em;
+    padding: 0 10%;
+}
+
+.nav_container {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.nav_container span {
+    font-size: 0.6rem;
+}
+
+.nav_container a {
+    display: inline-block;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--dark-gray);
+    transition: 0.3s all ease;
+}
+
+.nav_container a:first-of-type {
+    text-transform: capitalize;
+}
+
+.nav_container a:last-of-type {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nav_container a:hover {
+    text-decoration: underline;
+}
+
+.flex_container {
+    padding: 1.5em 1.5em 1.5em 0;
+    margin: 1% 0 2% 0;
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 4em;
+    background-color: var(--white);
+}
+
+.product_img_container {
+    align-self: stretch;
+    width: 40%;
+    padding: 0 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dddddd36;
+    border-radius: var(--radius-md);
+    /* transform: translate(20%, -30%);  */
+}
+
+.product_img_container img {
+    width: 100%;
+}
+
+.all_data_container {
+    color: var(--dark-gray);
+    width: 60%;
+}
+
+.all_data_container .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.all_data_container h4:first-of-type {
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+.all_data_container h3:first-of-type {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.rating_container {
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--color01);
+}
+
+.all_data_container .buy_now {
+    flex-direction: row-reverse;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2em;
+    margin: 2em 0 2.5em;
+}
+
+
+.all_data_container .buy_now button {
+    outline: none;
+    border: none;
+    border-radius: var(--radius-sm);
+    width: 50%;
+    padding: 1em ;
+    color: var(--white);
+    background-color: var(--dark-gray);
+    border: 1px solid var(--dark-gray);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    cursor: pointer;
+}
+
+.all_data_container .buy_now button span:first-of-type {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.all_data_container .buy_now button span:last-of-type i {
+    font-size: 1.6rem;
+}
+
+.all_data_container .buy_now button:nth-of-type(1) {
+    background-color: transparent;
+    color: var(--dark-gray);
+    align-self: stretch;
+}
+
+.prices {
+    margin: 2em 0 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5em;
+    background-color: #dddddd36;
+    border-radius: var(--radius-md);
+    padding: 2em;
+}
+
+.prices span.div {
+    width: 4em;
+    height: 1px;
+    background-color: var(--dark-gray);
+    opacity: 0.3;
+    animation-name: ani-width;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes ani-width {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 4em;
+    }
+}
+
+.old_price , .new_price, .price_change {
+    margin: 1em 0;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    position: relative;
+}
+
+.old_price div, .new_price div {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5em;
+}
+
+.old_price div span:first-of-type,
+.new_price div span:first-of-type {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.old_price div span:nth-of-type(2),
+.new_price div span:nth-of-type(2) {
+    transform: translateY(-8px);
+    opacity: 0.5;
+ }
+
+.old_price div span:first-of-type {
+    text-decoration: line-through;
+    font-weight: 500;
+}
+
+.price_change div {
+    /* margin-top: 0.12em; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    gap: 0.1em;
+    font-weight: bold;
+}
+
+.price_change div div span:first-of-type {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.price_change div div span:nth-of-type(2) {
+    font-size: 1rem;
+    margin-right: 1em;
+    font-weight: 500;
+}
+
+.price_change div .increasing {
+    color: var(--red);
+    opacity: 0.9
+}
+
+.price_change div .decreasing {
+    color: var(--green);
+    opacity: 0.9
+}
+
+.price_change div .increasing i {
+    font-size: 1.4rem;
+    color: var(--red);
+}
+
+.price_change div .decreasing i {
+    font-size: 1.4rem;
+    color: var(--green);
+}
+
+
+.chart_container {
+    /* margin-bottom: 4em; */
+    background-color: #dddddd36;
+    padding: 1.5em;
+    border-radius: var(--radius-md);
+}
+
+
+
+/* ...Media Queries... */
+
+/* .................................................. */
+/* Small Screen  */
+@media screen and (max-width: 1366px) {
+    .nav_container {
+        margin: 15px 0;
+    }
+    .product_img_container {
+        align-self: center;
+    }
+    .flex_container {
+        padding: 0 8%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5em;
+    }
+    .all_data_container {
+        width: 100%;
+    }
+}
+
+

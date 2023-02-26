@@ -41,7 +41,7 @@
   --en-font: "Ubuntu", sans-serif;
   --logo-font: "Righteous", cursive;
   --shadow01: rgba(0, 0, 0, 0.16) 0px 0px 2px;
-  --shadow02: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  --shadow02: rgba(99, 99, 99, 0.2) 0px 2px 5px 0px;
 }
 
 html {
@@ -63,7 +63,7 @@ input {
   background-color: var(--color02);
   color: var(--color01);
   border-radius: var(--radius-sm);
-  padding: 1em 2em;
+  padding: 1em 1.5em;
 }
 
 label.required {
@@ -93,8 +93,8 @@ span.column_divider {
   width: 1px;
   height: 10px;
   border-radius: var(--radius-sm);
-  background-color: var(--color03);
-  opacity: 0.2;
+  background-color: var(--color02);
+  opacity: 0.5;
 }
 
 span.dot_divider {

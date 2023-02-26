@@ -16,7 +16,7 @@ const Home = () => {
       document.title = "Pricewise | Home";
       getBanners(dispatch);
       getProducts(dispatch);
-    }, [dispatch])
+    }, [dispatch]);
 
   return (
     <div className={styles.main_container}>
