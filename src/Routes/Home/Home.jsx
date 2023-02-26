@@ -13,7 +13,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-      document.title = "Pricewise | Home";
+      document.title = "Pricewise - Home";
       getBanners(dispatch);
       getProducts(dispatch);
     }, [dispatch]);

@@ -34,6 +34,7 @@
   --bg02: #fcfbf4;
   --bg03: #f7f7fa;
   --bg04: #fcf8e0;
+  --boxbg: #dddddd36;
   /* ...other variables... */
   --radius-sm: 5px;
   --radius-md: 10px;
@@ -60,7 +61,7 @@ input {
   max-width: 100%;
   outline: none;
   border: none;
-  background-color: var(--color02);
+  background-color: var(--boxbg);
   color: var(--color01);
   border-radius: var(--radius-sm);
   padding: 1em 1.5em;

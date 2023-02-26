@@ -62,7 +62,7 @@
     padding: 0.8em 1em;
     font-size: 1rem;
     border: none;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     background-color: var(--color01);
     color: var(--color02);
     font-family: inherit;

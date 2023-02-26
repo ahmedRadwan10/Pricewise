@@ -48,8 +48,12 @@ const Product = () => {
             />
           </div>
                 <ProductData product={product} />
+        </div>
+            <div className={styles.description}>
+              <h3>Overview</h3>
+              <p><i className="fa-solid fa-circle-info"></i> Typically weighing less than 5 lbs and notebooks keep their supreme lightweight portability advantage over laptops, Laptops are used in a variety of settings such as at work in education for playing games web browsing for personal multimedia and for general home computer use, The main advantage of a laptop as compared with a stationary computer is its mobility, A laptop notebook computer is a small portable personal computer with a screen and alphanumeric keyboard, Laptop Notebook are used in a variety of settings such as at work in education for playing games web browsing for personal multimedia and for general home computer use.</p>
             </div>
-            <ProductsOverview title="New Arrivals" products={products} />
+            <ProductsOverview title="Same Products" products={products} />
             <ProductsOverview title="New Arrivals" products={products} />
       </div>
     );

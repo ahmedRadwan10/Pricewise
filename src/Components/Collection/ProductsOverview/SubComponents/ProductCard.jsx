@@ -16,7 +16,7 @@ const ProductCard = ({ product, products }) => {
     const navigate = useNavigate();
 
   const handleProductOnClick = (product) => {
-      navigate(`/electronics/${product.title}/${product.id}`);
+      if (!favBtnActive) navigate(`/electronics/${product.title}/${product.id}`);
   }
 
 
