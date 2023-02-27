@@ -21,7 +21,12 @@ const Categories = ({ visible, setCategoriesVisible }) => {
       return categories.map((cat) => (
         <div key={cat.title}>
           <h4 className={styles.cat_title}>
-            <Link to={`/${cat.title}`}>{cat.title}</Link>
+            <Link
+              to={`/${cat.title}`}
+              onClick={() => setCategoriesVisible(false)}
+            >
+              {cat.title}
+            </Link>
           </h4>
           <div className={styles.cat_subCats}>{renderSubCategories(cat)}</div>
         </div>
