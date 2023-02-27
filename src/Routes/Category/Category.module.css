@@ -25,3 +25,13 @@
 .side_bar .category_list li {
   padding: 0.8rem 0;
 }
+
+/* ...Media Queries... */
+@media screen and (max-width: 1366px) {
+  .side_bar {
+    display: none;
+  }
+  .main_section {
+    width: 100%;
+  }
+}
