@@ -236,6 +236,7 @@
 }
 
 .price_change div i {
+    font-size: 1rem;
     animation-name: ani-size;
     animation-duration: 1.5s;
     animation-timing-function: ease-in-out;
@@ -254,12 +255,10 @@
 
 
 .price_change div .increasing i {
-    font-size: 1.4rem;
     color: var(--red);
 }
 
 .price_change div .decreasing i {
-    font-size: 1.4rem;
     color: var(--green);
 }
 

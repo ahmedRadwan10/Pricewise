@@ -26,12 +26,12 @@
 }
 
 .logo img {
-    width: 2.5em;
+    width: 1.6em;
     transform: translateY(-5px);
 }
 
 .logo p {
-    font-size: 2em;
+    font-size: 1.6em;
     font-family: var(--logo-font);
     transform: translateY(-5px);
 }
