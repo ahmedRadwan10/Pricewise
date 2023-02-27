@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import styles from './Header.module.css';
 import Categories from './SubComponents/Categories/Categories';
 import Login from '../Auth/Auth';
+import { useNavigate } from 'react-router';
 
 const Header = () => {
     const [categoriesVisible, setCategoriesVisible] = useState(false);
     const [authVisible, setAuthVisible] = useState(false);
+    const navigate = useNavigate();
 
     const handleCategoriesClick = () => {
         setCategoriesVisible(prev => !prev);
@@ -13,7 +15,8 @@ const Header = () => {
 
     return (
         <header className={styles.main_container}>
-            <div className={styles.logo}>
+            <div className={styles.logo} onClick={() => navigate("/")}>
+                <img src="/assets/imgs/logo_img.svg" alt="Logo" />
                 <p>Pricewise</p>
             </div>
             <div className={styles.categories} onClick={handleCategoriesClick}>

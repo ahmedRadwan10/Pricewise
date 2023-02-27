@@ -17,6 +17,19 @@
     z-index: 9999;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    cursor: pointer;
+}
+
+.logo img {
+    width: 2.5em;
+    transform: translateY(-5px);
+}
+
 .logo p {
     font-size: 2em;
     font-family: var(--logo-font);
