@@ -53,7 +53,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
   const changeSubmitBtn = () => {
     refSignUp.current.disabled = loading;
     loading
-      ? setSignUp(<i class="fa-solid fa-circle-notch fa-spin"></i>)
+      ? setSignUp(<i className="fa-solid fa-circle-notch fa-spin"></i>)
       : setSignUp("Sign up");
   };
 
