@@ -2,27 +2,58 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: {},
   signUpSuccess: false,
+  signInSuccess: false,
   loading: false,
   error: false,
+  token: "",
+  msg: "",
 };
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    startPostUser: (state) => {
+    ///SignUp//////
+    startSignUpUser: (state) => {
       state.signUpSuccess = false;
       state.loading = true;
     },
-    successPostUser: (state, action) => {
+    successSignUpUser: (state, action) => {
       state.signUpSuccess = action.payload;
       state.loading = false;
     },
-    errorPostUser: (state) => {
+    errorSignUpUser: (state) => {
+      state.loading = false;
+      state.error = true;
+    },
+    ////SignIn////////
+    startSignInUser: (state) => {
+      state.msg = "";
+      state.signInSuccess = false;
+      state.loading = true;
+    },
+    successSignInUser: (state, action) => {
+      state.msg = "";
+      state.loading = false;
+      state.signInSuccess = true;
+      state.token = action.payload.token;
+      state.user = action.payload;
+
+      localStorage.setItem("user", JSON.stringify(action.payload));
+      localStorage.setItem("token", action.payload.token);
+    },
+    errorSignUpUser: (state, action) => {
+      state.msg = action.payload;
       state.loading = false;
       state.error = true;
     },
   },
 });
-export const { startPostUser, successPostUser, errorPostUser } =
-  authSlice.actions;
+export const {
+  startSignUpUser,
+  successSignUpUser,
+  errorSignUpUser,
+  startSignInUser,
+  successSignInUser,
+  errorSignInUser,
+} = authSlice.actions;
 export default authSlice.reducer;
