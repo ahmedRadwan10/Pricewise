@@ -56,7 +56,10 @@ const renderProductFooter = (product) => {
             onMouseOver={() => setProductHovered(true)}
             onMouseLeave={() => setProductHovered(false)}
             >
-            <button onMouseOver={() => setFavBtnActive(true)} onMouseLeave={() => setFavBtnActive(false)} onClick={() => handleFavBtnClick(product.id)} className={styles.fav_btn}>{ !favBtnActive ? <img src="/assets/imgs/icons/heart.svg" alt="Heart Icon" /> : <img src="/assets/imgs/icons/heart_red.svg" alt="Heart Icon" /> }</button>
+            <button onMouseOver={() => setFavBtnActive(true)} onMouseLeave={() => setFavBtnActive(false)} onClick={() => handleFavBtnClick(product.id)} className={styles.fav_btn}>
+                <i className="fa-regular fa-bell"></i>
+                <i class="fa-solid fa-circle-plus"></i>
+            </button>
             <div className={styles.product_img_container}>
                 <Image imgSrc={`/assets/imgs/products/product.png`} imgAlt={product.title} />
             </div>
