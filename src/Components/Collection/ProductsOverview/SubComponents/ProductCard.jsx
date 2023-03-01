@@ -1,11 +1,10 @@
 import React, { useRef, useState } from 'react';
 import styles from '../ProductsOverview.module.css';
 import Image from '../../Image';
-import { getProduct, sendProductToWishlist } from '../../../../APIs/products';
+import { sendProductToWishlist } from '../../../../APIs/products';
 import { useDispatch } from 'react-redux';
 import { setAlarmDetails, showAlarm } from '../../../../redux/slices/alarmSlice';
 import { useNavigate } from 'react-router';
-import { fetchProduct } from '../../../../redux/slices/productsSlice';
 
 const ProductCard = ({ product, products }) => {
   const [favBtnActive, setFavBtnActive] = useState(false);
@@ -58,7 +57,7 @@ const renderProductFooter = (product) => {
             >
             <button onMouseOver={() => setFavBtnActive(true)} onMouseLeave={() => setFavBtnActive(false)} onClick={() => handleFavBtnClick(product.id)} className={styles.fav_btn}>
                 <i className="fa-regular fa-bell"></i>
-                <i class="fa-solid fa-circle-plus"></i>
+                <i className="fa-solid fa-circle-plus"></i>
             </button>
             <div className={styles.product_img_container}>
                 <Image imgSrc={`/assets/imgs/products/product.png`} imgAlt={product.title} />

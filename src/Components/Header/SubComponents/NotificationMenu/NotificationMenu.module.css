@@ -1,0 +1,186 @@
+.overlay {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: var(--boxbg);
+  /* backdrop-filter: blur(2px); */
+  z-index: 99;
+}
+
+.overlay_hidden {
+  display: none;
+}
+
+.main_container {
+  display: block;
+  width: 30em;
+  height: 30em;
+  padding: 2em;
+  position: absolute;
+  top: 4em;
+  right: 9%;
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow02);
+  overflow: hidden;
+  z-index: 999;
+}
+
+.main_container_hidden {
+  display: none;
+}
+
+.main_container .header {
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--boxbg);
+}
+
+.main_container .header .filters {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.main_container .header .filters button {
+  padding: 0.5em 1em;
+  color: var(--dark-gray);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.main_container .header .filters .btn_active {
+  background-color: var(--boxbg);
+}
+
+.main_container .notifications {
+  overflow-y: scroll;
+  height: 20em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.main_container .notifications::-webkit-scrollbar {
+  width: 5px;
+}
+
+.main_container .notifications::-webkit-scrollbar-track {
+  background: var(--boxbg);
+  border-radius: 3px;
+}
+
+.main_container .notifications::-webkit-scrollbar-thumb {
+  background-color: var(--light-gray);
+  border-radius: 3px;
+}
+
+.main_container .notifications .notification {
+  display: flex;
+  align-items: flex-start;
+  gap: 1em;
+  border-bottom: 1px solid var(--boxbg);
+  padding-bottom: 1em;
+  margin-right: 2em;
+  position: relative;
+}
+
+.main_container .notifications .notification:last-of-type {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.main_container .notifications .notification .dot {
+  display: inline-block;
+  width: 0.3em;
+  height: 0.3em;
+  background-color: var(--red);
+  border-radius: 50%;
+  align-self: center;
+}
+
+.main_container .notifications .notification img {
+  width: 4em;
+  background-color: var(--boxbg);
+  padding: 0.2em 0.5em;
+  border-radius: var(--radius-sm);
+}
+
+.main_container .notifications .notification .info h5 {
+  width: 17em;
+  margin-bottom: 0.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prices {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main_container .notifications .info .new_price {
+  font-weight: bold;
+}
+
+.main_container .notifications .info .new_price span:nth-of-type(2) {
+  font-size: 0.6rem;
+  font-weight: 400;
+  margin-left: 0.5em;
+}
+
+.main_container .notifications .info .old_price span:nth-of-type(1) {
+  font-size: 0.9rem;
+  text-decoration: line-through;
+  font-weight: 300;
+}
+
+.price_change,
+.price_change_negative {
+    color: var(--green);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.price_change_negative {
+    color: var(--red);
+}
+
+.price_change_negative span:first-of-type {
+    font-size: 0.8rem;
+    margin-right: 0.2em;
+}
+
+.price_change_negative span:nth-of-type(2) {
+    font-size: 0.6rem;
+    margin-right: 0.5em;
+}
+
+
+.price_change span:first-of-type {
+    font-size: 0.8rem;
+    margin-right: 0.2em;
+}
+
+.price_change span:nth-of-type(2) {
+    font-size: 0.6rem;
+    margin-right: 0.5em;
+}
+
+.main_container .notifications .notification button {
+    background-color: transparent;
+    color: var(--dark-gray);
+    align-self: center;
+    position: absolute;
+    right: 0;
+    transform: translateY(5px);
+    cursor: pointer;
+}
+

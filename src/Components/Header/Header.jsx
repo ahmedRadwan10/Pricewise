@@ -3,10 +3,12 @@ import styles from './Header.module.css';
 import Categories from './SubComponents/Categories/Categories';
 import Login from '../Auth/Auth';
 import { useNavigate } from 'react-router';
+import NotificationMenu from './SubComponents/NotificationMenu/NotificationMenu';
 
 const Header = () => {
     const [categoriesVisible, setCategoriesVisible] = useState(false);
     const [authVisible, setAuthVisible] = useState(false);
+    const [notificationsVisible, setNotificationsVisible] = useState(false);
     const navigate = useNavigate();
 
     const handleCategoriesClick = () => {
@@ -16,7 +18,6 @@ const Header = () => {
     return (
         <header className={styles.main_container}>
             <div className={styles.logo} onClick={() => navigate("/")}>
-                <img src="/assets/imgs/logo_img.svg" alt="Logo" />
                 <p>Pricewise</p>
             </div>
             <div className={styles.categories} onClick={handleCategoriesClick}>
@@ -32,11 +33,12 @@ const Header = () => {
                     <span className='column_divider'></span>
                     <span className={styles.profile} onClick={() => setAuthVisible(true)}><i className="fa-regular fa-user"></i> Sign in</span>
                     <span className='column_divider'></span>
-                    <span className={styles.bell}><i className="fa-regular fa-bell"></i></span>
+                    <span className={styles.bell} onClick={() => setNotificationsVisible(true)}><i className="fa-regular fa-bell"></i></span>
                 </nav>
             </div>
             <Categories visible={categoriesVisible} setCategoriesVisible={setCategoriesVisible} />
             <Login visible={authVisible} setVisible={setAuthVisible}/>
+            <NotificationMenu visible={notificationsVisible} setVisible={setNotificationsVisible} />
         </header>
     );
 }

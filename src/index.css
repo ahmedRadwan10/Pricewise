@@ -88,6 +88,14 @@ p {
 a {
   display: flex;
   align-items: center;
+  text-decoration: none;
+  color: var(--color01);
+}
+
+button {
+  outline: none;
+  border: none;
+  border-radius: var(--radius-sm);
 }
 
 span.column_divider {
