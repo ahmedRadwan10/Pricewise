@@ -1,0 +1,52 @@
+.modal_container {
+  display: flex;
+  justify-content: space-between;
+  width: 50vw;
+  height: 60vh;
+  padding: 3em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  color: var(--color01);
+  border-radius: var(--radius-md);
+  z-index: 999999;
+}
+
+.modal_container_hidden {
+  display: none;
+}
+
+.modal_container .header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  margin-bottom: 0.5em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid var(--color02);
+}
+
+.modal_container .header span {
+  display: inline-block;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.modal_container .header p {
+  font-size: 0.9rem;
+}
+.modal_container .main_section {
+  width: 80%;
+}
+.modal_container .sidebar {
+  width: 15%;
+}
+.modal_container .sidebar ul {
+  list-style-type: none;
+}
+.modal_container .sidebar ul li {
+  padding: 1rem 0;
+  cursor: pointer;
+}

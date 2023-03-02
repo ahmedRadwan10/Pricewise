@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signInUser } from "../../../APIs/postUser";
+import { addUser } from "../../../redux/slices/authSlice";
 import styles from "./SignIn.module.css";
 
-const SignIn = ({ setAuthMethod }) => {
+const SignIn = ({ setAuthMethod, setVisible }) => {
   const [username, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signIn, setSignIn] = useState("Sign in");
@@ -12,6 +13,7 @@ const SignIn = ({ setAuthMethod }) => {
   const refSignIn = useRef();
   const loading = useSelector(({ authState }) => authState.loading);
   const msg = useSelector(({ authState }) => authState.msg);
+  const success = useSelector(({ authState }) => authState.signInSuccess);
 
   const changeSubmitBtn = () => {
     refSignIn.current.disabled = loading;
@@ -26,7 +28,9 @@ const SignIn = ({ setAuthMethod }) => {
   };
 
   useEffect(() => {
+    dispatch(addUser());
     changeSubmitBtn();
+    setVisible(!success);
   }, [loading]);
 
   return (

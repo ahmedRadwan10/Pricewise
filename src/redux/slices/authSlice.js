@@ -12,6 +12,21 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    addUser: (state) => {
+      const userStr = localStorage.getItem("user");
+      state.token = localStorage.getItem("token");
+      state.user = JSON.parse(userStr);
+
+      if (state.user) {
+        state.signInSuccess = true;
+      } else state.user = "";
+      state.token = "";
+    },
+    logOut: (state) => {
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+      state.signInSuccess = false;
+    },
     ///SignUp//////
     startSignUpUser: (state) => {
       state.signUpSuccess = false;
@@ -49,6 +64,8 @@ const authSlice = createSlice({
   },
 });
 export const {
+  addUser,
+  logOut,
   startSignUpUser,
   successSignUpUser,
   errorSignUpUser,

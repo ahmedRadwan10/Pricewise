@@ -8,8 +8,10 @@ import { useSelector } from "react-redux";
 
 const Auth = ({ visible, setVisible }) => {
   const [authMethod, setAuthMethod] = useState("sign-in");
-  const success = useSelector(({ authState }) => authState.signUpSuccess);
 
+  useEffect(() => {
+    setVisible(false);
+  }, []);
   return ReactDom.createPortal(
     <>
       <Overlay visible={visible} setVisible={setVisible} />
@@ -21,7 +23,7 @@ const Auth = ({ visible, setVisible }) => {
           <i className="fa-solid fa-xmark"></i>
         </span>
         {authMethod === "sign-in" ? (
-          <SignIn setAuthMethod={setAuthMethod} />
+          <SignIn setAuthMethod={setAuthMethod} setVisible={setVisible} />
         ) : (
           <SignUp setAuthMethod={setAuthMethod} />
         )}
