@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "../Product.module.css";
 import { useState } from "react";
 import Image from "../../../Components/Collection/Image";
 import Chart from "./Chart";
+import { sendProductToWishlist } from "../../../APIs/products";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductData = ({ product }) => {
+  const dispatch = useDispatch();
+  const products = useSelector(({ productsState }) => productsState.products);
+  const wishlist = useSelector(({ productsState }) => productsState.wishlist);
+  const [added, setAdded] = useState(false);
+
   const renderOldPrice = () => {
     return (
       <div className={styles.old_price}>
@@ -30,6 +37,26 @@ const ProductData = ({ product }) => {
       </div>
     );
   };
+  const addToWishlist = (e) => {
+    e.preventDefault();
+    sendProductToWishlist(dispatch, products, product.id);
+    //post request to add product in wishlist in database
+    //------------------------------------------------///
+  };
+  const productAddedToishlist = () => {
+    if (product.id) {
+      wishlist.forEach((p) => {
+        if (p.id === product.id) {
+          setAdded(true);
+          return;
+        }
+      });
+    }
+  };
+  useEffect(() => {
+    setAdded(false);
+    productAddedToishlist();
+  }, [product, wishlist]);
 
   const renderPriceChange = () => {
     return (
@@ -70,12 +97,22 @@ const ProductData = ({ product }) => {
         </div>
         <h3>{product.title}</h3>
         <div className={styles.buy_now}>
-            <button>Add to wishlist</button>
-              <button>
-                  <span><i className="fa-solid fa-cart-plus"></i> Buy now</span>
-                  <span className="column_divider"></span>
-                  <span><i className="fa-brands fa-amazon"></i></span>
-              </button>
+          <button
+            onClick={addToWishlist}
+            disabled={added ? true : false}
+            className={added ? styles.added_to_wishlist : null}
+          >
+            {added ? "Added To Wishlist" : "Add To Wishlist"}
+          </button>
+          <button>
+            <span>
+              <i className="fa-solid fa-cart-plus"></i> Buy now
+            </span>
+            <span className="column_divider"></span>
+            <span>
+              <i className="fa-brands fa-amazon"></i>
+            </span>
+          </button>
         </div>
         <div className={styles.prices}>
           {product.new_price ? renderNewPrice() : ""}

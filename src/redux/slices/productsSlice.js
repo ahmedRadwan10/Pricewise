@@ -1,13 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   products: {},
   wishlist: [],
-  selectedProduct: {}
+  selectedProduct: {},
 };
 
 export const productsSlice = createSlice({
-  name: 'products',
+  name: "products",
   initialState,
   reducers: {
     fetchProducts: (state, action) => {
@@ -22,9 +22,14 @@ export const productsSlice = createSlice({
     addProductToWishlist: (state, action) => {
       state.wishlist.push(action.payload);
     },
-  }
+  },
 });
 
-export const { fetchProducts, removeProduct, fetchProduct, addProductToWishlist } = productsSlice.actions;
+export const {
+  fetchProducts,
+  removeProduct,
+  fetchProduct,
+  addProductToWishlist,
+} = productsSlice.actions;
 
 export default productsSlice.reducer;
