@@ -43,6 +43,7 @@ const ProductData = ({ product }) => {
     //post request to add product in wishlist in database
     //------------------------------------------------///
   };
+
   const productAddedToishlist = () => {
     if (product.id) {
       wishlist.forEach((p) => {
@@ -104,15 +105,11 @@ const ProductData = ({ product }) => {
           >
             {added ? "Added To Wishlist" : "Add To Wishlist"}
           </button>
-          <button>
-            <span>
-              <i className="fa-solid fa-cart-plus"></i> Buy now
-            </span>
-            <span className="column_divider"></span>
-            <span>
-              <i className="fa-brands fa-amazon"></i>
-            </span>
-          </button>
+            <button>
+              <span>
+                <i className="fa-solid fa-cart-plus"></i> Buy now
+              </span>
+            </button>
         </div>
         <div className={styles.prices}>
           {product.new_price ? renderNewPrice() : ""}

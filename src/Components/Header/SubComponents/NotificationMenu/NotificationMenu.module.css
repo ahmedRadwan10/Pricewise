@@ -6,8 +6,8 @@
   right: 0;
   left: 0;
   background-color: var(--boxbg);
-  /* backdrop-filter: blur(2px); */
-  z-index: 99;
+  backdrop-filter: blur(2px);
+  z-index: 99999;
 }
 
 .overlay_hidden {

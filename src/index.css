@@ -62,7 +62,7 @@ input {
   max-width: 100%;
   outline: none;
   border: none;
-  background-color: var(--boxbg);
+  background-color: var(--color02);
   color: var(--color01);
   border-radius: var(--radius-sm);
   padding: 1em 1.5em;
