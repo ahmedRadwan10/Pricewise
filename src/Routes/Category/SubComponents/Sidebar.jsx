@@ -16,6 +16,7 @@ const Sidebar = ({ category }) => {
   return (
     <div className={styles.side_bar}>
       <h1>{category}</h1>
+      <p>Explore the best deals and discounts on top {category}.</p>
       <ul className={styles.category_list}>{renderCategoryList()}</ul>
     </div>
   );

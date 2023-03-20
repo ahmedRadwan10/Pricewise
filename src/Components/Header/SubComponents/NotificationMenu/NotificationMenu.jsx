@@ -47,7 +47,10 @@ const NotificationMenu = ({ visible, setVisible }) => {
             <div className={ visible ? styles.overlay : styles.overlay_hidden} onClick={() => setVisible(false)}></div>
             <div className={ visible ? styles.main_container : styles.main_container_hidden}>
                 <div className={styles.header}>
-                    <h3>Notifications</h3>
+                    <div>
+                        <h3>Notifications</h3>
+                        <p>Stay updated on your favorite products with wishlist notifications.</p>
+                    </div>
                     <div className={styles.filters}>
                         <button className={ !toggle ? styles.btn_active : "" } onClick={() => setToggle(prev => !prev)}>Unread</button>
                         <button className={ toggle ? styles.btn_active : "" } onClick={() => setToggle(prev => !prev)}>Read</button>

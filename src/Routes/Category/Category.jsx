@@ -31,8 +31,16 @@ const Category = () => {
     getSubCategories(dispatch, params.category);
     getProducts(dispatch);
   }, [dispatch, params]);
+  
   return (
     <div className={styles.main_container}>
+      <div className={styles.nav_container}>
+          <Link to="/">Home</Link>
+          <span>
+            <i className="fa-solid fa-chevron-right"></i>
+          </span>
+          <Link to="/electronics">Electronics</Link>
+      </div>
       <Sidebar category={params.category} />
       <div className={styles.main_section}>
         <Banner banners={banners} />

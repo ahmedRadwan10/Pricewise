@@ -22,7 +22,7 @@ const Categories = ({ visible, setCategoriesVisible }) => {
         <div key={cat.title}>
           <h4 className={styles.cat_title}>
             <Link
-              to={`/${cat.title}`}
+              to={`/${cat.title.toLowerCase()}`}
               onClick={() => setCategoriesVisible(false)}
             >
               {cat.title}

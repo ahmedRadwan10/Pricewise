@@ -44,6 +44,7 @@
   --logo-font: "Righteous", cursive;
   --shadow01: rgba(0, 0, 0, 0.16) 0px 0px 2px;
   --shadow02: rgba(99, 99, 99, 0.2) 0px 2px 5px 0px;
+  --shadow03: rgba(0, 0, 0, 0.1) 1px 3px 8px;
 }
 
 html {
@@ -53,7 +54,7 @@ html {
 
 body {
   font-family: var(--en-font);
-  background-color: var(--white);
+  background-color: rgba(255, 255, 255, 0.568);
   overflow-x: hidden;
 }
 
