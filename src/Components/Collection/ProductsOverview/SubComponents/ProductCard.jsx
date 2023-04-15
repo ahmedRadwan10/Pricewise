@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { setAlarmDetails, showAlarm } from '../../../../redux/slices/alarmSlice';
 import { useNavigate } from 'react-router';
 
-const ProductCard = ({ product, products }) => {
+const ProductCard = ({ product, products, containerSize }) => {
   const [favBtnActive, setFavBtnActive] = useState(false);
   const [productHovered, setProductHovered] = useState(false);
   const [productContainerHidden, setContainerHidden] = useState(false);
@@ -68,9 +68,9 @@ const renderProductFooter = (product) => {
                     <span>{product.new_price.toFixed(2)}</span>
                     <span>EGP</span>
                 </div>
-                {product.old_price > product.new_price ? <div className={styles.price_change}><span>-</span>{Math.floor(100 - (product.new_price / product.old_price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down ${productHovered ? "fa-beat-fade" : ""}`}></i></div> : <div className={styles.price_change_negative}><span>+</span>{Math.floor(100 - (product.old_price / product.new_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
+                {product.old_price ? renderProductOldPrice(product) : ""}
             </div>
-            {product.old_price ? renderProductOldPrice(product) : ""}
+            {product.old_price > product.new_price ? <div className={styles.price_change}><span>-</span>{Math.floor(100 - (product.new_price / product.old_price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down ${productHovered ? "fa-beat-fade" : ""}`}></i></div> : <div className={styles.price_change_negative}><span>+</span>{Math.floor(100 - (product.old_price / product.new_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
             <div className={styles.product_footer}>
                 { renderProductFooter(product) }
             </div>

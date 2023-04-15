@@ -41,13 +41,13 @@
 }
 
 .main_section {
-  width: 75%;
+  width: 70%;
 }
 .side_bar {
   text-align: left;
   border-radius: var(--radius-md);
   margin-top: 2em;
-  width: 22%;
+  width: 25%;
   max-height: 35em;
   padding: 4em 2em 8em;
   font-family: var(--en-font);
