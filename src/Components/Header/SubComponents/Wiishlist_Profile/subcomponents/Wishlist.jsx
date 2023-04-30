@@ -1,8 +1,13 @@
+import { useSelector, useDispatch } from "react-redux";
 import styles from "../Wishlist_Profile.module.css";
+import ProductsOverview from "../../../../Collection/ProductsOverview/ProductsOverview";
 const Wishlist = () => {
+  const wishlist = useSelector(({ productsState }) => productsState.wishlist);
   return (
     <>
-      <h1>Wishlist</h1>
+      <div className={styles.wishlist}>
+        <ProductsOverview title={""} products={wishlist} />
+      </div>
     </>
   );
 };

@@ -6,8 +6,22 @@ const Profile = () => {
 
   return (
     <>
-      <div className="">
-        <h1>{user.username}</h1>
+      <div className={styles.profile}>
+        <header>
+          <ul>
+            <li>Overview</li>
+          </ul>
+        </header>
+        <section>
+          <div>
+            <h3>Name</h3>
+            <p>{user.firstName + " " + user.lastName}</p>
+          </div>
+          <div>
+            <h3>Email</h3>
+            <p>{user.email}</p>
+          </div>
+        </section>
       </div>
     </>
   );
