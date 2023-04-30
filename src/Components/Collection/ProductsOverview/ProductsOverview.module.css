@@ -61,7 +61,7 @@
     cursor: pointer;
 }
 .main_container .products_container {
-    height: 22em;
+    height: 25em;
     display: flex;
     overflow-x: scroll;
     scroll-behavior: smooth;
@@ -72,8 +72,8 @@
 
 .main_container .product_container {
     position: relative;
-    width: calc((100% - 4em) / 5);
-    padding: 0 1em 0.5em;
+    width: calc((100% - 4em) / 4);
+    padding: 0 1.5em 0.5em;
     margin-right: 1em;
     background-color: #dddddd36;
     border-radius: 10px;
@@ -93,6 +93,10 @@
 
 .main_container .product_container:last-of-type {
     margin-right: 0;
+}
+
+.main_container .product_container img {
+    width: 40%;
 }
 
 .product_container button {
@@ -229,7 +233,7 @@
     /* width: calc(100% - 2.5em); */
     position: absolute;
     bottom: 1.5em;
-    left: 1.5em;
+    left: 2.1em;
     display: flex;
     align-items: center;
     font-size: 12px;

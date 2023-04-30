@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { setAlarmDetails, showAlarm } from '../../../../redux/slices/alarmSlice';
 import { useNavigate } from 'react-router';
 
-const ProductCard = ({ product, products, containerSize }) => {
+const ProductCard = ({ product, products, maxProducts }) => {
   const [favBtnActive, setFavBtnActive] = useState(false);
   const [productHovered, setProductHovered] = useState(false);
   const [productContainerHidden, setContainerHidden] = useState(false);
@@ -45,10 +45,15 @@ const renderProductFooter = (product) => {
     const alarmDesc = `${product.title} added to your wishlist successfully.`;
     dispatch(setAlarmDetails({ title: alarmTitle, description: alarmDesc }));
     dispatch(showAlarm());
-  }
+    }
+    
+    const productStyles = {
+        width: `calc((100% - ${maxProducts - 1}em) / ${maxProducts})`
+    }
 
   if (product["img-src"]) {
-    return <div
+      return <div
+            style={ maxProducts ? productStyles : { } }
             ref={productElement}
             className={ productContainerHidden ? styles.product_container_hidden : styles.product_container }
             onClick={() => handleProductOnClick(product)}

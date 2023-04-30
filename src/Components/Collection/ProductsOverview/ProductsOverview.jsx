@@ -6,7 +6,7 @@ import styles from "./ProductsOverview.module.css";
 import { addProductToWishlist, changeProductWishlistState } from '../../../APIs/products';
 import ProductCard from './SubComponents/ProductCard';
 
-const ProductsOverview = ({ title, products, containerSize }) => {
+const ProductsOverview = ({ title, products, maxProducts }) => {
     const productsContainer = useRef();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const ProductsOverview = ({ title, products, containerSize }) => {
     const renderProducts = () => {
         if (products) {
             const productObjects = Object.values(products);
-            return productObjects.map(product => <ProductCard  key={product.id} product={product} products={productObjects} containerSize={containerSize} />);
+            return productObjects.map(product => <ProductCard  key={product.id} product={product} products={productObjects} maxProducts={maxProducts} />);
         }
     }
 
