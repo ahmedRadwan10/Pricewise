@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./Header.module.css";
 import Categories from "./SubComponents/Categories/Categories";
 import Login from "../Auth/Auth";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import NotificationMenu from "./SubComponents/NotificationMenu/NotificationMenu";
 import Wishlist_Profile from "./SubComponents/Wiishlist_Profile/Wishlist_Profile";
 import { useSelector } from "react-redux";
+import Search from "./SubComponents/Search/Search";
 
 const Header = () => {
   const [categoriesVisible, setCategoriesVisible] = useState(false);
@@ -14,6 +15,8 @@ const Header = () => {
   const [wishlistProfileVisible, setWishlistProfiileVisible] = useState(false);
   const navigate = useNavigate();
   const succesSignin = useSelector(({ authState }) => authState.signInSuccess);
+  const categoriesElement = useRef();
+  const navElement = useRef();
 
   const handleCategoriesClick = () => {
     setCategoriesVisible((prev) => !prev);
@@ -24,19 +27,13 @@ const Header = () => {
       <div className={styles.logo} onClick={() => navigate("/")}>
         <p>Pricewise</p>
       </div>
-      <div className={styles.categories} onClick={handleCategoriesClick}>
+      <div ref={categoriesElement} className={styles.categories} onClick={handleCategoriesClick}>
         <i className="fa-solid fa-bars"></i>
         Categories
       </div>
-      <div className="search">
-        <input
-          type="text"
-          placeholder="What are you looking for?"
-          autoComplete="off"
-        />
-      </div>
+      <Search categoriesElement={categoriesElement} navElement={navElement} />
       <div>
-        <nav>
+        <nav ref={navElement}>
           <span className={styles.ar}>العربية</span>
           <span className="column_divider"></span>
           <span

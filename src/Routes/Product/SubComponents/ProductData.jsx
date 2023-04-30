@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import styles from "../Product.module.css";
 import { useState } from "react";
-import Image from "../../../Components/Collection/Image";
 import Chart from "./Chart";
 import { sendProductToWishlist } from "../../../APIs/products";
 import { useDispatch, useSelector } from "react-redux";

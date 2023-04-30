@@ -1,0 +1,45 @@
+import React, { useRef, useState } from 'react';
+import styles from '../../Header.module.css';
+import Overlay from '../../../Collection/Overlay/Overlay';
+
+const stylesObj = {
+    zIndex: 99,
+}
+
+const Search = ({ categoriesElement, navElement }) => {
+    const [searchOverviewVisible, setSearchOverviewVisible] = useState(false);
+
+    const handleInputFocus = () => {
+        setSearchOverviewVisible(true);
+        navElement.current.style.display = "none";
+        categoriesElement.current.style.display = "none";
+    }
+
+    const handleInputBlur = () => {
+        setSearchOverviewVisible(false);
+        navElement.current.style.display = "flex";
+        categoriesElement.current.style.display = "flex";
+    }
+
+    return (
+        <>
+            <Overlay visible={searchOverviewVisible} setSearchOverviewVisible={setSearchOverviewVisible} moreStyles={stylesObj} />
+            <div className={styles.search}>
+                <form>
+                    <input
+                    type="text"
+                    placeholder="What are you looking for?"
+                    autoComplete="off"
+                    onFocus={handleInputFocus}
+                    onBlur={handleInputBlur}
+                    />
+               </form>
+                <div style={ searchOverviewVisible ? { display: "block" } : { display: "none" } } className={styles.search_overview}>
+                    
+                </div>
+            </div>
+        </>
+    );
+}
+
+export default Search;
