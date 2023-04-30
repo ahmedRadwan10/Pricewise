@@ -49,15 +49,15 @@
 }
 
 .product_img_container {
-  align-self: stretch;
+  /* align-self: stretch; */
   width: 40%;
+  height: 46em;
   padding: 0 3em;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #dddddd36;
   border-radius: var(--radius-md);
-  /* transform: translate(20%, -30%);  */
 }
 
 .product_img_container img {
@@ -99,18 +99,39 @@
   flex-direction: row-reverse;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 2em;
   margin: 2em 0 2.5em;
 }
 
-.all_data_container .buy_now .added_to_wishlist {
-  cursor: default !important;
-  background-color: #4caf50 !important;
-  color: white !important;
-}
+.all_data_container .buy_now .add_to_wishlist {
+  position: relative;
+    padding: 0 1em;
+    align-self: stretch;
+    border: none;
+    border-radius: var(--radius-sm);
+    background-color: var(--boxbg);
+    color: var(--dark-gray);
+    font-size: 1.5rem;
+    transition: 0.1s all ease;
+    /* opacity: 0.5; */
+    cursor: pointer;
+  }
 
-.all_data_container .buy_now button {
+  .all_data_container .buy_now .add_to_wishlist i {
+    opacity: 0.5;
+    transform: translateX(-3px);
+  }
+
+  .all_data_container .buy_now .add_to_wishlist i:nth-of-type(2) {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    font-size: 0.8rem;
+    z-index: 99999;
+  }
+
+.all_data_container .buy_now .buy_now_btn {
   outline: none;
   border: none;
   border-radius: var(--radius-sm);
@@ -139,11 +160,6 @@
   font-size: 1.6rem;
 }
 
-.all_data_container .buy_now button:nth-of-type(1) {
-  background-color: transparent;
-  color: var(--dark-gray);
-  align-self: stretch;
-}
 
 .prices {
   margin: 2em 0 2.5em;
@@ -151,9 +167,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.5em;
-  /* background-color: #dddddd36; */
-  /* border-radius: var(--radius-md); */
-  /* padding: 2em; */
 }
 
 .prices span.div {
@@ -286,15 +299,13 @@
 }
 
 .description h3 {
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
 }
 
 .description p {
   font-size: 0.9rem;
   word-spacing: 3px;
   line-height: 1.5;
-  /* max-width: 80%; */
-  opacity: 0.7;
   display: flex;
   align-items: flex-start;
   gap: 1em;

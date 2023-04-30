@@ -101,11 +101,12 @@ const ProductData = ({ product }) => {
           <button
             onClick={addToWishlist}
             disabled={added ? true : false}
-            className={added ? styles.added_to_wishlist : null}
+            className={styles.add_to_wishlist}
           >
-            {added ? "Added To Wishlist" : "Add To Wishlist"}
+             <i className="fa-regular fa-bell"></i>
+            <i className="fa-solid fa-circle-plus"></i>
           </button>
-            <button>
+            <button className={styles.buy_now_btn}>
               <span>
                 <i className="fa-solid fa-cart-plus"></i> Buy now
               </span>
@@ -119,6 +120,10 @@ const ProductData = ({ product }) => {
           {product.old_price ? renderOldPrice() : ""}
         </div>
         <Chart />
+        <div className={styles.description}>
+              <h3>Overview</h3>
+              <p>Typically weighing less than 5 lbs and notebooks keep their supreme lightweight portability advantage over laptops, Laptops are used in a variety of settings such as at work in education for playing games web browsing for personal multimedia and for general home computer use, The main advantage of a laptop as compared with a stationary computer is its mobility, A laptop notebook computer is a small portable personal computer with a screen and alphanumeric keyboard, Laptop Notebook are used in a variety of settings such as at work in education for playing games web browsing for personal multimedia and for general home computer use.</p>
+        </div>
       </div>
     </>
   );
