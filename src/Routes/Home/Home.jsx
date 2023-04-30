@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <div className={styles.main_container}>
       <Banner banners={banners} />
-      <ProductsOverview title="New Arrivals" products={products} maxProducts={4} />
+      <ProductsOverview title="New Arrivals" products={products} maxProducts={5} />
     </div>
   );
 };

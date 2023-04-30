@@ -71,18 +71,21 @@
     align-items: center;
     justify-content: center;
     gap: 0.5em;
-    opacity: 0.3;
+    opacity: 0.5;
 }
 
 .pagination_span {
     display: inline-block;
-    width: 25px;
-    height: 3px;
-    background-color: var(--color02);
-    border-radius: var(--radius-sm);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--white);
     transition: 0.2s all ease;
 }
 
 .pagination_span:first-of-type {
     background-color: var(--color01);
+    width: 25px;
+    border-radius: var(--radius-sm);
+    border: 1px solid white;
 }

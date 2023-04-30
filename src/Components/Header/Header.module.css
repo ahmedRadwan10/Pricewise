@@ -53,6 +53,7 @@
 
 .search input:focus {
     width: 60em;
+    background-color: var(--white);
 }
 
 .search_overview {
@@ -62,6 +63,7 @@
     min-height: 20em;
     background-color: var(--white);
     border-radius: var(--radius-sm);
+    /* box-shadow: var(--shadow01); */
 }
 
 nav {

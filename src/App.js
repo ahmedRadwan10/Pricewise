@@ -6,6 +6,7 @@ import Alarm from "./Components/Collection/Alarm/Alarm";
 import Footer from "./Components/Footer/Footer";
 import Product from "./Routes/Product/Product";
 import Category from "./Routes/Category/Category";
+import Results from "./Routes/Results/Results";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             path="/:subCategory/:productName/:productID"
             element={<Product />}
           />
+          <Route path="/search/:searchQuery" element={<Results />} />
         </Routes>
         <Alarm />
         <Footer />

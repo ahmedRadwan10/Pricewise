@@ -117,6 +117,14 @@ span.dot_divider {
   opacity: 0.7;
 }
 
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 /* .................................................. */
 
 /* ...Media Queries... */

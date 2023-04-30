@@ -22,7 +22,7 @@ const Category = () => {
   const renderSubCategoryOverviews = () => {
     if (subCategories)
       return subCategories.map((sub) => (
-        <ProductsOverview key={sub} title={sub} products={products} maxProducts={3} />
+        <ProductsOverview key={sub} title={sub} products={products} maxProducts={3.8} />
       ));
   };
 

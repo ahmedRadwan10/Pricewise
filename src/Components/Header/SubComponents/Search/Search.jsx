@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styles from '../../Header.module.css';
 import Overlay from '../../../Collection/Overlay/Overlay';
+import { useNavigate } from 'react-router';
 
 const stylesObj = {
     zIndex: 99,
@@ -8,6 +9,8 @@ const stylesObj = {
 
 const Search = ({ categoriesElement, navElement }) => {
     const [searchOverviewVisible, setSearchOverviewVisible] = useState(false);
+    const navigate = useNavigate();
+    const searchBox = useRef();
 
     const handleInputFocus = () => {
         setSearchOverviewVisible(true);
@@ -21,13 +24,22 @@ const Search = ({ categoriesElement, navElement }) => {
         categoriesElement.current.style.display = "flex";
     }
 
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        navigate(`/search/${e.target.searchQuery.value}`);
+        setSearchOverviewVisible(false);
+        searchBox.current.blur();
+    }
+
     return (
         <>
             <Overlay visible={searchOverviewVisible} setSearchOverviewVisible={setSearchOverviewVisible} moreStyles={stylesObj} />
             <div className={styles.search}>
-                <form>
+                <form onSubmit={handleFormSubmit}>
                     <input
+                    ref={searchBox}
                     type="text"
+                    name='searchQuery'
                     placeholder="What are you looking for?"
                     autoComplete="off"
                     onFocus={handleInputFocus}

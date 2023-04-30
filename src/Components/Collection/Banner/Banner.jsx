@@ -25,9 +25,14 @@ const Banner = ({ banners }) => {
         let spansArr = [...paginationElement.current.children];
         if (banners) {
             spansArr.forEach((span) => {
-                span.style.backgroundColor = "var(--color02)";
+                span.style.backgroundColor = "var(--white)";
+                span.style.width = "5px";
+                span.style.borderRadius = "50%";
             });
             paginationElement.current.children[index === bannerImgsCount ? 0 : index ].style.backgroundColor = "var(--color01)";
+            paginationElement.current.children[index === bannerImgsCount ? 0 : index ].style.width = "25px";
+            paginationElement.current.children[index === bannerImgsCount ? 0 : index ].style.borderRadius = "5px";
+            paginationElement.current.children[index === bannerImgsCount ? 0 : index ].style.border = "1px solid white";
         }
     }
 

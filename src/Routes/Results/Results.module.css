@@ -1,0 +1,82 @@
+
+.main_container {
+    padding: 0 10%;
+    min-height: 100vh;
+    margin-top: 8em;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.main_container .sidebar_filters {
+    width: 20%;
+    min-height: 70vh;
+    border-radius: var(--radius-md);
+    background-color: var(--boxbg);
+}
+
+.main_container .results {
+    width: 75%;
+}
+
+.main_container .results .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main_container .dropdown {
+    /* border: 1px solid black; */
+    font-size: 0.8rem;
+    position: relative;
+    z-index: 999;
+}
+
+.main_container .dropdown .current_sort {
+    width: 16em;
+    font-size: 0.8rem;
+    padding: 1em;
+    background-color: transparent;
+    color: var(--dark-gray);
+    border: 1px solid var(--color03);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.main_container .dropdown .menu {
+    width: 100%;
+    padding: 0.5em 0;
+    position: absolute;
+    top: calc(100% + 5px);
+    color: var(--dark-gray);
+    border: 1px solid var(--color03);
+    border-radius: var(--radius-sm);
+    background-color: var(--white);
+}
+
+.main_container .dropdown .menu div {
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
+.main_container .dropdown .menu div:not(.overlay):hover {
+    background-color: var(--boxbg);
+}
+
+.result_products {
+    margin-top: 2em;
+    display: flex;
+}
+
+.result_products .product_container {
+    width: calc((100% - 4em) / 4);
+    padding: 0 1em 0.5em;
+    margin-right: 1em;
+    background-color: #dddddd36;
+    border-radius: 10px;
+    transition: 1s width ease, 1s margin ease;
+    cursor: pointer;
+}

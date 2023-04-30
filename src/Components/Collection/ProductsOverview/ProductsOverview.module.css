@@ -61,7 +61,7 @@
     cursor: pointer;
 }
 .main_container .products_container {
-    height: 25em;
+    height: 22em;
     display: flex;
     overflow-x: scroll;
     scroll-behavior: smooth;
@@ -73,7 +73,7 @@
 .main_container .product_container {
     position: relative;
     width: calc((100% - 4em) / 4);
-    padding: 0 1.5em 0.5em;
+    padding: 0 1em 0.5em;
     margin-right: 1em;
     background-color: #dddddd36;
     border-radius: 10px;
