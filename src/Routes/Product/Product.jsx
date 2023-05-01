@@ -49,8 +49,7 @@ const Product = () => {
           </div>
                 <ProductData product={product} />
         </div>
-            <ProductsOverview title="Same Products" products={products} />
-            <ProductsOverview title="New Arrivals" products={products} />
+            <ProductsOverview title="Same Products" products={products} maxProducts={5} />
       </div>
     );
 };

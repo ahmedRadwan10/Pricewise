@@ -3,6 +3,7 @@ import styles from './Results.module.css';
 import { useSelector } from 'react-redux';
 import ProductCard from '../../Components/Collection/ProductsOverview/SubComponents/ProductCard';
 import { useParams } from 'react-router';
+import ResultsProductCard from './SubComponents/ResultsPoductCard';
 
 const Results = () => {
     const products = useSelector(({ productsState }) => productsState.products);
@@ -22,18 +23,18 @@ const Results = () => {
     const renderResultProducts = () => {
         if (products) {
             const productObjects = Object.values(products);
-            return productObjects.map(product => <ProductCard  key={product.id} product={product} products={productObjects} maxProducts={5} />);
+            return productObjects.map(product => <ResultsProductCard  key={product.id} product={product} products={productObjects} />);
         }
     }
 
     return (
         <div className={styles.main_container}>
             <div className={styles.sidebar_filters}>
-
+                <h3>Filter</h3>
             </div>
             <div className={styles.results}>
                 <div className={styles.header}>
-                    <p>{`345 results for "${params.searchQuery}"`}</p>
+                    <p><span>345 results for</span> {`${params.searchQuery}`}</p>
                     <div className={styles.btns}>
                         <div className={styles.dropdown}>
                             <div className={styles.current_sort} onClick={handleCurrentSortClick}>

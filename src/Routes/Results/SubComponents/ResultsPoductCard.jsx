@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
-import styles from '../ProductsOverview.module.css';
-import Image from '../../Image';
-import { sendProductToWishlist } from '../../../../APIs/products';
+import styles from '../Results.module.css';
 import { useDispatch } from 'react-redux';
-import { setAlarmDetails, showAlarm } from '../../../../redux/slices/alarmSlice';
 import { useNavigate } from 'react-router';
+import Image from '../../../Components/Collection/Image';
+import { sendProductToWishlist } from '../../../APIs/products';
+import { setAlarmDetails, showAlarm } from '../../../redux/slices/alarmSlice';
 
-const ProductCard = ({ product, products, maxProducts }) => {
+const ResultsProductCard = ({ product, products }) => {
   const [favBtnActive, setFavBtnActive] = useState(false);
   const [productHovered, setProductHovered] = useState(false);
   const [productContainerHidden, setContainerHidden] = useState(false);
@@ -47,13 +47,9 @@ const renderProductFooter = (product) => {
     dispatch(showAlarm());
     }
     
-    const productStyles = {
-        width: `calc((100% - ${maxProducts - 1}em) / ${maxProducts})`
-    }
 
   if (product["img-src"]) {
       return <div
-            style={ maxProducts ? productStyles : { } }
             ref={productElement}
             className={ productContainerHidden ? styles.product_container_hidden : styles.product_container }
             onClick={() => handleProductOnClick(product)}
@@ -86,4 +82,4 @@ const renderProductFooter = (product) => {
     }
 }
 
-export default ProductCard;
+export default ResultsProductCard;
