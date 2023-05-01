@@ -5,19 +5,25 @@ import {
   startSignInUser,
   successSignInUser,
   errorSignInUser,
+  msg,
 } from "../redux/slices/authSlice";
 
 export async function signUpUser(dispatch, data) {
   dispatch(startSignUpUser());
   try {
-    const respose = await fetch("http://localhost:9000/users", {
+    const respose = await fetch("http://127.0.0.1:8000/auth/users/", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
-    dispatch(successSignUpUser(true));
+    if (respose.ok) {
+      dispatch(successSignUpUser(true));
+    } else {
+      const data = await respose.json();
+      dispatch(errorSignUpUser(data));
+    }
   } catch (err) {
     dispatch(errorSignUpUser(false));
   }

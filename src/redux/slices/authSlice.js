@@ -6,7 +6,7 @@ const initialState = {
   loading: false,
   error: false,
   token: "",
-  msg: "",
+  msg: {},
 };
 const authSlice = createSlice({
   name: "auth",
@@ -36,9 +36,10 @@ const authSlice = createSlice({
       state.signUpSuccess = action.payload;
       state.loading = false;
     },
-    errorSignUpUser: (state) => {
+    errorSignUpUser: (state, action) => {
       state.loading = false;
       state.error = true;
+      state.msg = action.payload;
     },
     ////SignIn////////
     startSignInUser: (state) => {
@@ -72,5 +73,6 @@ export const {
   startSignInUser,
   successSignInUser,
   errorSignInUser,
+  msg,
 } = authSlice.actions;
 export default authSlice.reducer;

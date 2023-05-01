@@ -5,15 +5,15 @@ import styles from "./SignUp.module.css";
 
 const SignUp = ({ setAuthMethod, setVisible }) => {
   const [formInput, setFormInput] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
   const [formError, setFormError] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -24,6 +24,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
   const refSignUp = useRef();
 
   const loading = useSelector(({ authState }) => authState.loading);
+  const msg = useSelector(({ authState }) => authState.msg);
 
   const handleUserInput = (name, value) => {
     setFormInput({
@@ -33,8 +34,8 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
   };
   const validateFormInput = (e) => {
     const initErr = {
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -48,6 +49,24 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
     }
     setFormError({ initErr });
     signUpUser(dispatch, formInput);
+  };
+
+  const renderErr = (type) => {
+    if (msg.password && type == "password") {
+      return msg.password.map((err) => (
+        <p key={err} className={styles.error_message}>
+          {err}
+        </p>
+      ));
+    }
+    if (msg.email && type == "email") {
+      return msg.email.map((err) => (
+        <p key={err} className={styles.error_message}>
+          {err}
+        </p>
+      ));
+    }
+    return <p></p>;
   };
 
   const changeSubmitBtn = () => {
@@ -81,7 +100,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
             <label className="required">First Name</label>
             <input
               type="text"
-              name="firstName"
+              name="first_name"
               onChange={({ target }) => {
                 handleUserInput(target.name, target.value);
               }}
@@ -92,7 +111,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
             <label className="required">Last Name</label>
             <input
               type="text"
-              name="lastName"
+              name="last_name"
               onChange={({ target }) => {
                 handleUserInput(target.name, target.value);
               }}
@@ -111,6 +130,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
             }}
             required
           />
+          {renderErr("email")}
         </div>
         <div className={styles.form_field}>
           <label className="required">Password</label>
@@ -122,6 +142,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
             }}
             required
           />
+          {renderErr("password")}
         </div>
         <div className={styles.form_field}>
           <label className="required">Confirm Password</label>
@@ -134,6 +155,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
             required
           />
           <p className={styles.error_message}>{formError.confirmPassword}</p>
+          {renderErr("password")}
         </div>
         <button ref={refSignUp} className={styles.sign_up}>
           {signUp}

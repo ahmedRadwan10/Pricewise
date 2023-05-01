@@ -60,7 +60,7 @@ const SignIn = ({ setAuthMethod, setVisible }) => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <p className={styles.error_message}>{msg}</p>
+          {/*<p className={styles.error_message}>{msg}</p>*/}
         </div>
         <span className={styles.forget}>Forgot your password? </span>
         <button ref={refSignIn} className={styles.sign_in}>
