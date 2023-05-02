@@ -65,13 +65,11 @@ const ProductData = ({ product }) => {
         <div>
           {product.old_price > product.new_price ? (
             <div className={styles.decreasing}>
-              <span>-</span>
               {Math.floor(100 - (product.new_price / product.old_price) * 100)}
               <span>%</span> <i className={`fa-solid fa-arrow-trend-down`}></i>
             </div>
           ) : (
             <div className={styles.increasing}>
-              <span>+</span>
               {Math.floor(100 - (product.old_price / product.new_price) * 100)}
               <span>%</span> <i className="fa-solid fa-arrow-trend-up"></i>
             </div>

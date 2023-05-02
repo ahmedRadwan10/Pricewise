@@ -12,10 +12,45 @@
 .main_container .sidebar_filters {
     width: 20%;
     min-height: 70vh;
-    padding: 2em;
     border-radius: var(--radius-md);
     background-color: var(--boxbg);
     color: var(--dark-gray);
+}
+
+.main_container .sidebar_filters h3 {
+    padding: 2em;
+}
+
+.main_container .sidebar_filters .category_filter {
+    padding: 0 2em;
+    margin: 0.5em 0;
+}
+
+.main_container .sidebar_filters .category_filter button {
+    font-weight: bold;
+    color: var(--dark-gray);
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.main_container .sidebar_filters .category_filter .sub_categories {
+    margin-top: 0.5em;
+    padding: 1em 0;
+    padding-left: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    border-left: 1px solid var(--color03);
+    font-size: 0.8rem;
+    transform: translateX(5px);
+}
+
+.main_container .sidebar_filters .category_filter .sub_categories div {
+    cursor: pointer;
 }
 
 .main_container .results {
@@ -211,22 +246,11 @@
 }
 
 .price_change_negative span:first-of-type {
-    font-size: 0.8rem;
-    margin-right: 0.2em;
-}
-
-.price_change_negative span:nth-of-type(2) {
     font-size: 0.6rem;
     margin-right: 0.5em;
 }
 
-
 .price_change span:first-of-type {
-    font-size: 0.8rem;
-    margin-right: 0.2em;
-}
-
-.price_change span:nth-of-type(2) {
     font-size: 0.6rem;
     margin-right: 0.5em;
 }

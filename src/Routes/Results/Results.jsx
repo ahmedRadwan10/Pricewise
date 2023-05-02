@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Results.module.css';
-import { useSelector } from 'react-redux';
-import ProductCard from '../../Components/Collection/ProductsOverview/SubComponents/ProductCard';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import ResultsProductCard from './SubComponents/ResultsPoductCard';
+import { getProducts } from '../../APIs/products';
 
 const Results = () => {
     const products = useSelector(({ productsState }) => productsState.products);
     const [menuIsShown, setMenuIsShown] = useState(false);
     const [currentSort, setCurrentSort] = useState("Price - High to Low");
     const params = useParams();
+    const dispatch = useDispatch();
 
     const handleCurrentSortClick = () => {
         setMenuIsShown(prev => !prev);
@@ -27,10 +28,32 @@ const Results = () => {
         }
     }
 
+    useEffect(() => {
+        getProducts(dispatch);
+      }, [dispatch]);
+
     return (
         <div className={styles.main_container}>
             <div className={styles.sidebar_filters}>
                 <h3>Filter</h3>
+                <div className={styles.category_filter}>
+                    <button><i className="fa-solid fa-square-plus"></i> Electronics</button>
+                    <div className={styles.sub_categories}>
+                        <div>Mobile Phones</div>
+                        <div>Smart Watches</div>
+                        <div>Tablets</div>
+                        <div>Headsets</div>
+                    </div>
+                </div>
+                <div className={styles.category_filter}>
+                    <button><i className="fa-solid fa-square-plus"></i> Computer Components</button>
+                    <div className={styles.sub_categories}>
+                        <div>Laptops</div>
+                        <div>Monitors</div>
+                        <div>Data Storage</div>
+                        <div>TVs</div>
+                    </div>
+                </div>
             </div>
             <div className={styles.results}>
                 <div className={styles.header}>

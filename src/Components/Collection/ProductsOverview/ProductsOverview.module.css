@@ -190,22 +190,11 @@
 }
 
 .price_change_negative span:first-of-type {
-    font-size: 0.8rem;
-    margin-right: 0.2em;
-}
-
-.price_change_negative span:nth-of-type(2) {
     font-size: 0.6rem;
     margin-right: 0.5em;
 }
 
-
 .price_change span:first-of-type {
-    font-size: 0.8rem;
-    margin-right: 0.2em;
-}
-
-.price_change span:nth-of-type(2) {
     font-size: 0.6rem;
     margin-right: 0.5em;
 }
