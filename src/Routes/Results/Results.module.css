@@ -10,6 +10,7 @@
 }
 
 .main_container .sidebar_filters {
+    padding-bottom: 2em;
     width: 20%;
     min-height: 70vh;
     border-radius: var(--radius-md);
@@ -18,15 +19,21 @@
 }
 
 .main_container .sidebar_filters h3 {
-    padding: 2em;
+    padding: 1.5em;
 }
 
-.main_container .sidebar_filters .category_filter {
+.main_container .sidebar_filters .category_filter,
+.price_filter,
+.saving_filter,
+.seller_filter {
     padding: 0 2em;
     margin: 0.5em 0;
 }
 
-.main_container .sidebar_filters .category_filter button {
+.main_container .sidebar_filters .category_filter button,
+.price_filter button,
+.saving_filter button,
+.seller_filter button {
     font-weight: bold;
     color: var(--dark-gray);
     background-color: transparent;
@@ -38,19 +45,100 @@
 }
 
 .main_container .sidebar_filters .category_filter .sub_categories {
+    /* display: none; */
     margin-top: 0.5em;
     padding: 1em 0;
     padding-left: 2em;
     display: flex;
     flex-direction: column;
     gap: 0.5em;
-    border-left: 1px solid var(--color03);
+    border-left: 1px solid #4045532d;
     font-size: 0.8rem;
     transform: translateX(5px);
 }
 
 .main_container .sidebar_filters .category_filter .sub_categories div {
     cursor: pointer;
+}
+
+.price_filter form,
+.saving_filter form {
+    margin-top: 0.5em;
+    padding: 1em 0;
+    padding-left: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    border-left: 1px solid #4045532d;
+    font-size: 0.8rem;
+    transform: translateX(5px);
+}
+
+.seller_filter form {
+    margin-top: 0.5em;
+    padding: 1em 0 2em;
+    padding-left: 2em;
+    border-left: 1px solid #4045532d;
+    font-size: 0.8rem;
+    transform: translateX(5px);
+    user-select: none;
+}
+
+.seller_filter form div {
+    /* width: 100%; */
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.seller_filter form div input {
+    width: fit-content;
+    cursor: pointer;
+}
+
+.price_filter form {
+    display: flex;
+}
+
+.price_filter form div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.price_filter form input {
+    padding: 1em;
+    font-size: 0.7rem;
+    font-family: var(--en-font);
+    background-color: transparent;
+    border: 1px solid var(--color02);
+    width: 50%;
+}
+
+.price_filter form input[type="submit"] {
+    width: 100%;
+    font-size: 0.7rem;
+    color: var(--color03);
+    background-color: transparent;
+    border: 1px solid var(--color02);
+    cursor: pointer;
+}
+
+.saving_filter form label {
+    color: var(--green);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.saving_filter form label span {
+    font-size: 0.8rem;
+    color: var(--dark-gray);
+}
+
+.saving_filter form label span:nth-of-type(2) {
+    color: var(--green);
+    margin-left: 2px;
 }
 
 .main_container .results {
@@ -80,7 +168,7 @@
     /* border: 1px solid black; */
     font-size: 0.8rem;
     position: relative;
-    z-index: 9;
+    z-index: 1;
 }
 
 .main_container .dropdown .current_sort {

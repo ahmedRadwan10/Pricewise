@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import ResultsProductCard from './SubComponents/ResultsPoductCard';
 import { getProducts } from '../../APIs/products';
+import Filter from './SubComponents/Filter';
 
 const Results = () => {
     const products = useSelector(({ productsState }) => productsState.products);
@@ -34,27 +35,7 @@ const Results = () => {
 
     return (
         <div className={styles.main_container}>
-            <div className={styles.sidebar_filters}>
-                <h3>Filter</h3>
-                <div className={styles.category_filter}>
-                    <button><i className="fa-solid fa-square-plus"></i> Electronics</button>
-                    <div className={styles.sub_categories}>
-                        <div>Mobile Phones</div>
-                        <div>Smart Watches</div>
-                        <div>Tablets</div>
-                        <div>Headsets</div>
-                    </div>
-                </div>
-                <div className={styles.category_filter}>
-                    <button><i className="fa-solid fa-square-plus"></i> Computer Components</button>
-                    <div className={styles.sub_categories}>
-                        <div>Laptops</div>
-                        <div>Monitors</div>
-                        <div>Data Storage</div>
-                        <div>TVs</div>
-                    </div>
-                </div>
-            </div>
+            <Filter />
             <div className={styles.results}>
                 <div className={styles.header}>
                     <p><span>345 results for</span> {`${params.searchQuery}`}</p>
