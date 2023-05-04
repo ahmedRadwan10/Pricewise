@@ -22,8 +22,18 @@ const Category = () => {
   const renderSubCategoryOverviews = () => {
     if (subCategories)
       return subCategories.map((sub) => (
-        <ProductsOverview key={sub} title={sub} products={products} maxProducts={3.8} />
+        <ProductsOverview
+          key={sub}
+          title={sub}
+          products={products}
+          maxProducts={3.8}
+        />
       ));
+  };
+
+  const capitalizeWord = (word) => {
+    const str = word.charAt(0).toUpperCase() + word.slice(1);
+    return <>{str}</>;
   };
 
   useEffect(() => {
@@ -31,15 +41,17 @@ const Category = () => {
     getSubCategories(dispatch, params.category);
     getProducts(dispatch);
   }, [dispatch, params]);
-  
+
   return (
     <div className={styles.main_container}>
       <div className={styles.nav_container}>
-          <Link to="/">Home</Link>
-          <span>
-            <i className="fa-solid fa-chevron-right"></i>
-          </span>
-          <Link to="/electronics">Electronics</Link>
+        <Link to="/">Home</Link>
+        <span>
+          <i className="fa-solid fa-chevron-right"></i>
+        </span>
+        <Link to={`/${params.category}`}>
+          {capitalizeWord(params.category)}
+        </Link>
       </div>
       <Sidebar category={params.category} />
       <div className={styles.main_section}>
