@@ -39,6 +39,7 @@
 }
 .modal_container .main_section {
   width: 80%;
+  position: relative;
 }
 .modal_container .sidebar {
   width: 15%;
@@ -55,21 +56,38 @@
 .modal_container .profile header {
   margin: 2rem 0;
 }
-.modal_container .profile ul {
-  list-style-type: none;
+.modal_container .profile .modal__form input {
+  margin-top: 1rem;
 }
-.modal_container .profile li {
-  padding: 0.5rem 0.5rem;
-  width: fit-content;
-  border-bottom: 0.1rem solid var(--light-gray);
-}
-.modal_container .profile section div {
-  margin-bottom: 2rem;
-}
-.modal_container .profile section div h3 {
-  margin-bottom: 1rem;
+.modal_container .profile .name_field {
+  display: flex;
+  margin: 2rem 0;
 }
 
+.modal_container .profile .name_field div {
+  width: 200px;
+  margin-right: 2rem;
+}
+.modal_container .profile .form_field {
+  display: flex;
+  flex-direction: column;
+}
+.modal_container .profile .profile_button {
+  position: absolute;
+  bottom: 0;
+  background-color: var(--blue);
+  padding: 1rem;
+  color: white;
+  cursor: pointer;
+}
 /*------wishlist----*/
 .modal_container .wishlist {
+}
+
+/*---mediaQuery---*/
+/* Small Screen  */
+@media screen and (max-width: 992px) {
+  .modal_container .profile .name_field {
+    flex-direction: column;
+  }
 }
