@@ -25,6 +25,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
 
   const loading = useSelector(({ authState }) => authState.loading);
   const msg = useSelector(({ authState }) => authState.msg);
+  const success = useSelector(({ authState }) => authState.signUpSuccess);
 
   const handleUserInput = (name, value) => {
     setFormInput({
@@ -83,6 +84,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
 
   useEffect(() => {
     changeSubmitBtn();
+    setVisible(!success);
   }, [loading]);
 
   return (
@@ -97,7 +99,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
       <form className={styles.modal__form} onSubmit={handleSubmit}>
         <div className={styles.name_field}>
           <div>
-            <label className="required">First Name</label>
+            <label>First Name</label>
             <input
               type="text"
               name="first_name"
@@ -108,7 +110,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
             />
           </div>
           <div>
-            <label className="required">Last Name</label>
+            <label>Last Name</label>
             <input
               type="text"
               name="last_name"
@@ -120,7 +122,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
           </div>
         </div>
         <div className={styles.form_field}>
-          <label className="required">Email</label>
+          <label>Email</label>
           <input
             type="email"
             name="email"
@@ -133,7 +135,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
           {renderErr("email")}
         </div>
         <div className={styles.form_field}>
-          <label className="required">Password</label>
+          <label>Password</label>
           <input
             type="password"
             name="password"
@@ -145,7 +147,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
           {renderErr("password")}
         </div>
         <div className={styles.form_field}>
-          <label className="required">Confirm Password</label>
+          <label>Confirm Password</label>
           <input
             type="password"
             name="confirmPassword"
