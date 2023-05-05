@@ -38,7 +38,7 @@ const Results = () => {
             <Filter />
             <div className={styles.results}>
                 <div className={styles.header}>
-                    <p><span>345 results for</span> {`${params.searchQuery}`}</p>
+                    <p><span>345 results</span> {`${params.searchQuery}`}</p>
                     <div className={styles.btns}>
                         <div className={styles.dropdown}>
                             <div className={styles.current_sort} onClick={handleCurrentSortClick}>

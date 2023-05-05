@@ -8,11 +8,15 @@ const Filter = () => {
         setRange(Number(e.target.value));
     }
 
+    const toggleFilterVisibility = () => {
+        
+    }
+
     return (
         <div className={styles.sidebar_filters}>
             <h3>Filter</h3>
             <div className={styles.category_filter}>
-                <button><i className="fa-solid fa-square-plus"></i> Electronics</button>
+                <button><i className="fa-solid fa-circle"></i> Electronics</button>
                 <div className={styles.sub_categories}>
                     <div>Mobile Phones</div>
                     <div>Smart Watches</div>
@@ -21,7 +25,7 @@ const Filter = () => {
                 </div>
             </div>
             <div className={styles.category_filter}>
-                <button><i className="fa-solid fa-square-plus"></i> Computer Components</button>
+                <button><i className="fa-solid fa-circle"></i> Computer Components</button>
                 <div className={styles.sub_categories}>
                     <div>Laptops</div>
                     <div>Monitors</div>
@@ -30,7 +34,7 @@ const Filter = () => {
                 </div>
             </div>
             <div className={styles.price_filter}>
-                <button><i className="fa-solid fa-square-plus"></i> Price</button>
+                <button><i className="fa-solid fa-circle"></i> Price</button>
                 <form>
                     <div>
                         <input type="text" placeholder='From' autoComplete='off' />
@@ -40,14 +44,14 @@ const Filter = () => {
                 </form>
             </div>
             <div className={styles.saving_filter}>
-                <button><i className="fa-solid fa-square-plus"></i> Saving</button>
+                <button><i className="fa-solid fa-circle"></i> Saving</button>
                 <form>
                     <label><span>Up to</span> {savingRange}<span>%</span></label>
                     <input type="range" name="range" min={0} max={100} onChange={handleRangeInputChange}  />
                 </form>
             </div>
             <div className={styles.seller_filter}>
-                <button><i className="fa-solid fa-square-plus"></i> Seller</button>
+                <button><i className="fa-solid fa-circle"></i> Seller</button>
                 <form>
                     <div>
                         <label htmlFor="amazon">Amazon</label>
