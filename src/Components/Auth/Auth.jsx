@@ -25,7 +25,7 @@ const Auth = ({ visible, setVisible }) => {
         {authMethod === "sign-in" ? (
           <SignIn setAuthMethod={setAuthMethod} setVisible={setVisible} />
         ) : (
-          <SignUp setAuthMethod={setAuthMethod} />
+          <SignUp setAuthMethod={setAuthMethod} setVisible={setVisible} />
         )}
       </div>
     </>,
