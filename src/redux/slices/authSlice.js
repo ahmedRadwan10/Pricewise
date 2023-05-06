@@ -7,6 +7,9 @@ const initialState = {
   error: false,
   token: "",
   msg: {},
+  msgSignIn: "",
+  activateSuccess: false,
+  email: "",
 };
 const authSlice = createSlice({
   name: "auth",
@@ -22,6 +25,10 @@ const authSlice = createSlice({
       } else state.user = "";
       state.token = "";
     },
+    addEmail: (state) => {
+      const userEmail = localStorage.getItem("email");
+      state.email = JSON.parse(userEmail);
+    },
     logOut: (state) => {
       localStorage.removeItem("user");
       localStorage.removeItem("token");
@@ -33,8 +40,10 @@ const authSlice = createSlice({
       state.loading = true;
     },
     successSignUpUser: (state, action) => {
-      state.signUpSuccess = action.payload;
+      state.signUpSuccess = true;
       state.loading = false;
+      state.email = action.payload.email;
+      localStorage.setItem("email", JSON.stringify(action.payload.email));
     },
     errorSignUpUser: (state, action) => {
       state.loading = false;
@@ -43,12 +52,12 @@ const authSlice = createSlice({
     },
     ////SignIn////////
     startSignInUser: (state) => {
-      state.msg = "";
+      state.msgSignIn = "";
       state.signInSuccess = false;
       state.loading = true;
     },
     successSignInUser: (state, action) => {
-      state.msg = "";
+      state.msgSignIn = "";
       state.loading = false;
       state.signInSuccess = true;
       state.token = action.payload.token;
@@ -57,10 +66,17 @@ const authSlice = createSlice({
       localStorage.setItem("user", JSON.stringify(action.payload));
       localStorage.setItem("token", action.payload.token);
     },
-    errorSignUpUser: (state, action) => {
-      state.msg = action.payload;
+    errorSignInUser: (state, action) => {
+      state.msgSignIn = action.payload;
       state.loading = false;
       state.error = true;
+    },
+    ////Activate////////
+    successActivate: (state) => {
+      state.activateSuccess = true;
+    },
+    errorActivate: (state) => {
+      state.activateSuccess = false;
     },
   },
 });
@@ -74,5 +90,9 @@ export const {
   successSignInUser,
   errorSignInUser,
   msg,
+  successActivate,
+  errorActivate,
+  addEmail,
+  msgSignIn,
 } = authSlice.actions;
 export default authSlice.reducer;

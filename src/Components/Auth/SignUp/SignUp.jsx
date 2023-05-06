@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpUser } from "../../../APIs/postUser";
 import styles from "./SignUp.module.css";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = ({ setAuthMethod, setVisible }) => {
   const [formInput, setFormInput] = useState({
@@ -22,6 +23,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
   const [signUp, setSignUp] = useState("Sign up");
   const dispatch = useDispatch();
   const refSignUp = useRef();
+  const navigate = useNavigate();
 
   const loading = useSelector(({ authState }) => authState.loading);
   const msg = useSelector(({ authState }) => authState.msg);
@@ -53,6 +55,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
   };
 
   const renderErr = (type) => {
+    console.log(msg);
     if (msg.password && type == "password") {
       return msg.password.map((err) => (
         <p key={err} className={styles.error_message}>
@@ -85,7 +88,12 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
   useEffect(() => {
     changeSubmitBtn();
     setVisible(!success);
-  }, [loading]);
+
+    if (success) {
+      // Redirect to the activation page
+      navigate(`/auth/users/activation/${undefined}/${undefined}`);
+    }
+  }, [loading, success]);
 
   return (
     <div>

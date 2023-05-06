@@ -1,0 +1,24 @@
+.container {
+  height: 300px;
+  position: relative;
+}
+.container .activate_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container .activate_container span {
+  color: var(--blue);
+  cursor: pointer;
+}
+.container .submit {
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+  background: var(--blue);
+  color: var(--white);
+}
+.container .hidden {
+  display: none;
+}

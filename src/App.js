@@ -7,6 +7,7 @@ import Footer from "./Components/Footer/Footer";
 import Product from "./Routes/Product/Product";
 import Category from "./Routes/Category/Category";
 import Results from "./Routes/Results/Results";
+import Activate from "./Components/Auth/Activate/Activate";
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
             element={<Product />}
           />
           <Route path="/search/:searchQuery" element={<Results />} />
+          <Route
+            path="/auth/users/activation/:uid/:token"
+            element={<Activate />}
+          />
         </Routes>
         <Alarm />
         <Footer />

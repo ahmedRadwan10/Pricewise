@@ -6,6 +6,8 @@ import {
   successSignInUser,
   errorSignInUser,
   msg,
+  successActivate,
+  errorActivate,
 } from "../redux/slices/authSlice";
 
 export async function signUpUser(dispatch, data) {
@@ -19,7 +21,7 @@ export async function signUpUser(dispatch, data) {
       body: JSON.stringify(data),
     });
     if (respose.ok) {
-      dispatch(successSignUpUser(true));
+      dispatch(successSignUpUser(data));
     } else if (!respose.ok) {
       const data = await respose.json();
       dispatch(errorSignUpUser(data));
@@ -32,7 +34,7 @@ export async function signUpUser(dispatch, data) {
 export async function signInUser(dispatch, loginData) {
   dispatch(startSignInUser());
   try {
-    const respose = await fetch("https://dummyjson.com/auth/login", {
+    const respose = await fetch("http://127.0.0.1:8000/auth/jwt/create/", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -46,6 +48,43 @@ export async function signInUser(dispatch, loginData) {
       throw new Error("Password Or Email Incorrect");
     }
   } catch (err) {
-    dispatch(errorSignUpUser(err.message));
+    dispatch(errorSignInUser(err.message));
   }
+}
+
+export async function verify(dispatch, uid, token) {
+  try {
+    const respose = await fetch(
+      `http://127.0.0.1:8000/auth/users/activation/${uid}/${token}/`,
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ uid, token }),
+      }
+    );
+    if (respose.ok) {
+      dispatch(successActivate());
+    } else if (!respose.ok) {
+      dispatch(errorActivate());
+    }
+  } catch (err) {
+    dispatch(errorActivate());
+  }
+}
+
+export async function resendAct(dispatch, email) {
+  try {
+    const respose = await fetch(
+      `http://127.0.0.1:8000/auth/users/resend_activation/`,
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(email),
+      }
+    );
+  } catch (err) {}
 }

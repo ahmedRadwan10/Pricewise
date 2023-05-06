@@ -5,14 +5,14 @@ import { addUser } from "../../../redux/slices/authSlice";
 import styles from "./SignIn.module.css";
 
 const SignIn = ({ setAuthMethod, setVisible }) => {
-  const [username, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signIn, setSignIn] = useState("Sign in");
 
   const dispatch = useDispatch();
   const refSignIn = useRef();
   const loading = useSelector(({ authState }) => authState.loading);
-  const msg = useSelector(({ authState }) => authState.msg);
+  const msgSignIn = useSelector(({ authState }) => authState.msgSignIn);
   const success = useSelector(({ authState }) => authState.signInSuccess);
 
   const changeSubmitBtn = () => {
@@ -24,7 +24,7 @@ const SignIn = ({ setAuthMethod, setVisible }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signInUser(dispatch, { username, password });
+    signInUser(dispatch, { email, password });
   };
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const SignIn = ({ setAuthMethod, setVisible }) => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          {/*<p className={styles.error_message}>{msg}</p>*/}
+          <p className={styles.error_message}>{msgSignIn}</p>
         </div>
         <span className={styles.forget}>Forgot your password? </span>
         <button ref={refSignIn} className={styles.sign_in}>
