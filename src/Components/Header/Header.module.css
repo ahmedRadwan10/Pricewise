@@ -92,19 +92,14 @@ nav .ar {
 }
 
 .bell::after {
-    content: "13";
+    content: "";
     position: absolute;
-    top: -0.7em;
-    left: 0.5em;
-    width: 15px;
-    height: 15px;
+    top: -5px;
+    left: 0.7em;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background-color: var(--red);
-    color: var(--white);
-    font-size: 0.6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .profile {

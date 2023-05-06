@@ -82,39 +82,42 @@ const ProductData = ({ product }) => {
   return (
     <>
       <div className={styles.all_data_container}>
-        <div className={styles.header}>
-          <h4>{product.brand_name}</h4>
-          {product.rating ? (
-            <div className={styles.rating_container}>
-              {product.rating}
-              <i className="fa-solid fa-star fa-sm"></i>
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
-        <h3>{product.title}</h3>
-        <div className={styles.buy_now}>
-          <button
-            onClick={addToWishlist}
-            disabled={added ? true : false}
-            className={styles.add_to_wishlist}
-          >
-             <i className="fa-regular fa-bell"></i>
-            <i className="fa-solid fa-circle-plus"></i>
-          </button>
-            <button className={styles.buy_now_btn}>
-              <span>
-                <i className="fa-solid fa-cart-plus"></i> Buy now
-              </span>
+        <div className={styles.box}>
+          <div className={styles.header}>
+            <h4>{product.brand_name}</h4>
+            {product.rating ? (
+              <div className={styles.rating_container}>
+                {product.rating}
+                <i className="fa-solid fa-star fa-sm"></i>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+          <h3>{product.title}</h3>
+          <div className={styles.buy_now}>
+            <button
+              onClick={addToWishlist}
+              disabled={added ? true : false}
+              className={styles.add_to_wishlist}
+            >
+              <i className="fa-regular fa-bell"></i>
+              <i className="fa-solid fa-circle-plus"></i>
+              Add to Wishlist
             </button>
-        </div>
-        <div className={styles.prices}>
-          {product.new_price ? renderNewPrice() : ""}
-          <span className={styles.div}></span>
-          {product.old_price ? renderPriceChange() : ""}
-          <span className={styles.div}></span>
-          {product.old_price ? renderOldPrice() : ""}
+              <button className={styles.buy_now_btn}>
+                <span>
+                  <i className="fa-solid fa-cart-plus"></i> Buy now
+                </span>
+              </button>
+          </div>
+          <div className={styles.prices}>
+            {product.new_price ? renderNewPrice() : ""}
+            <span className={styles.div}></span>
+            {product.old_price ? renderPriceChange() : ""}
+            <span className={styles.div}></span>
+            {product.old_price ? renderOldPrice() : ""}
+          </div>
         </div>
         <Chart />
         <div className={styles.description}>
