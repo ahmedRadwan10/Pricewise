@@ -20,10 +20,12 @@ export async function signUpUser(dispatch, data) {
       },
       body: JSON.stringify(data),
     });
+
     if (respose.ok) {
       dispatch(successSignUpUser(data));
     } else if (!respose.ok) {
       const data = await respose.json();
+
       dispatch(errorSignUpUser(data));
     }
   } catch (err) {

@@ -55,7 +55,6 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
   };
 
   const renderErr = (type) => {
-    console.log(msg);
     if (msg.password && type == "password") {
       return msg.password.map((err) => (
         <p key={err} className={styles.error_message}>

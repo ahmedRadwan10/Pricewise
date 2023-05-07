@@ -38,6 +38,7 @@ const authSlice = createSlice({
     startSignUpUser: (state) => {
       state.signUpSuccess = false;
       state.loading = true;
+      state.msg = {};
     },
     successSignUpUser: (state, action) => {
       state.signUpSuccess = true;
