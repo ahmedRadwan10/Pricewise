@@ -23,6 +23,7 @@ const ProductCard = ({ product, products, maxProducts }) => {
     return (
         <div className={styles.old_price_container}>
             <span>{product.old_price.toFixed(2)}</span>
+            <span>EGP</span>
         </div>
     );
   }
@@ -78,9 +79,6 @@ const renderProductFooter = (product) => {
             <div className={styles.saving}>
                 { product.old_price > product.new_price ? <div className={styles.discount}>{product.old_price - product.new_price} <span>EGP</span></div> : <div className={styles.change}>{product.new_price - product.old_price} <span>EGP</span></div> }
                 { product.old_price > product.new_price ? <div className={styles.price_change}>{Math.floor(100 - (product.new_price / product.old_price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down ${productHovered ? "fa-beat-fade" : ""}`}></i></div> : <div className={styles.price_change_negative}>{Math.floor(100 - (product.old_price / product.new_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
-            </div>
-            <div className={styles.product_footer}>
-                {/* { renderProductFooter(product) } */}
             </div>
         </div>
     }

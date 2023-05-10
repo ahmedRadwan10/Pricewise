@@ -53,6 +53,7 @@ export const data = {
 const Chart = () => {
     return (
         <div className={styles.chart_container}>
+            <h4>Last Prices</h4>
             <Line options={options} data={data} />
         </div>
     );

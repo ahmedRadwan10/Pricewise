@@ -8,6 +8,7 @@ import { lazy } from "react";
 import { getProduct, getProducts } from "../../APIs/products";
 import ProductData from "./SubComponents/ProductData";
 import ProductsOverview from "../../Components/Collection/ProductsOverview/ProductsOverview";
+import Chart from "./SubComponents/Chart";
 
 const Product = () => {
   const products = useSelector(({ productsState }) => productsState.products);
@@ -41,15 +42,10 @@ const Product = () => {
           <Link to="">{product.title}</Link>
         </div>
         <div className={styles.flex_container}>
-          <div className={styles.product_img_container}>
-            <Image
-              imgSrc={`/assets/imgs/products/product.png`}
-              imgAlt={product.title}
-            />
-          </div>
-                <ProductData product={product} />
+          <ProductData product={product} />
+          <Chart />
         </div>
-            <ProductsOverview title="Same Products" products={products} maxProducts={5} />
+        <ProductsOverview title="Same Products" products={products} maxProducts={5} />
       </div>
     );
 };

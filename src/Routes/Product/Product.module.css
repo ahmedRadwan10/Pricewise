@@ -44,24 +44,20 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 4em;
+  gap: 2em;
   background-color: var(--white);
 }
 
 .product_img_container {
-  /* align-self: stretch; */
-  width: 40%;
-  height: 46em;
-  padding: 0 3em;
+  margin: 2em 0;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #dddddd36;
-  border-radius: var(--radius-md);
 }
 
 .product_img_container img {
-  width: 100%;
+  width: 30%;
 }
 
 .all_data_container {
@@ -73,7 +69,14 @@
   background-color: var(--boxbg);
   border-radius: var(--radius-md);
   padding: 2em;
+  padding-bottom: 0.5em;
+}
+
+.box .headline {
+  padding-bottom: 1em;
   margin-bottom: 2em;
+  border-bottom: 1px solid var(--color02);
+  opacity: 0.7;
 }
 
 .all_data_container .header {
@@ -83,80 +86,90 @@
   margin-bottom: 1em;
 }
 
-.all_data_container h4:first-of-type {
-  font-weight: 400;
-  opacity: 0.7;
-}
-
 .all_data_container h3:first-of-type {
   font-weight: 600;
   font-size: 1.4rem;
 }
 
 .rating_container {
+  margin-top: 2em;
   font-size: 1rem;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 5px;
-  color: var(--color01);
+  gap: 1em;
+  color: var(--dark-gray);
+  font-weight: 500;
+}
+
+.rating_container span:nth-of-type(2) {
+  display: block;
+  width: 1px;
+  height: 1em;
+  background-color: var(--dark-gray);
+  opacity: 0.5;
+}
+
+.rating_container span:nth-of-type(3) {
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.rating_container i {
+  color: orange;
 }
 
 .all_data_container .buy_now {
-  flex-direction: row-reverse;
+  flex-direction: row;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2em;
-  margin: 2em 0 2.5em;
+  margin: 2em 0;
 }
 
-.all_data_container .buy_now .add_to_wishlist {
+.add_to_wishlist {
     outline: none;
     border: none;
-    align-self: stretch;
     position: relative;
     border-radius: var(--radius-sm);
-    width: 50%;
-    padding: 1em;
+    width: 2em;
+    height: 2em;
+    padding: 0.5em;
     color: var(--dark-gray);
     background-color: var(--color02);
     font-family: inherit;
     font-weight: 600;
     font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2em;
     cursor: pointer;
   }
 
-  .all_data_container .buy_now .add_to_wishlist i {
-    transform: translateX(-3px);
-    font-size: 1.2rem;
+  .add_to_wishlist i {
+    font-size: 0.9rem;
+    transform: translateX(-1.5px);
   }
 
-  .all_data_container .buy_now .add_to_wishlist i:nth-of-type(2) {
+  .add_to_wishlist i:nth-of-type(2) {
     position: absolute;
-    top: 1em;
-    left: 6.2em;
-    font-size: 0.8rem;
+    top: 0.7em;
+    right: 0.5em;
+    font-size: 0.5rem;
   }
-
-.all_data_container .buy_now .buy_now_btn {
-  outline: none;
-  border: none;
-  border-radius: var(--radius-sm);
-  width: 50%;
-  padding: 1em;
-  color: var(--white);
-  background-color: var(--dark-gray);
-  border: 1px solid var(--dark-gray);
-  font-family: inherit;
-  font-weight: 600;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
+  
+  .all_data_container .buy_now .buy_now_btn {
+    outline: none;
+    border: none;
+    border-radius: var(--radius-sm);
+    width: 100%;
+    padding: 1em;
+    color: var(--white);
+    background-color: var(--dark-gray);
+    border: 1px solid var(--dark-gray);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
   justify-content: center;
   gap: 2em;
   cursor: pointer;
@@ -174,21 +187,10 @@
 
 
 .prices {
-  margin-top: 2em;
+  margin: 2em 0;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5em;
-}
-
-.prices span.div {
-  width: 4em;
-  height: 1px;
-  background-color: var(--dark-gray);
-  opacity: 0.3;
-  animation-name: ani-width;
-  animation-duration: 1.5s;
-  animation-timing-function: ease-in-out;
+  align-items: flex-start;
+  gap: 3em;
 }
 
 @keyframes ani-width {
@@ -205,7 +207,6 @@
 .old_price,
 .new_price,
 .price_change {
-  margin: 1em 0;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -215,8 +216,12 @@
 .old_price div,
 .new_price div {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 0.5em;
+}
+
+.old_price div {
+  gap: 0.2em;
 }
 
 .old_price div span:first-of-type,
@@ -227,91 +232,121 @@
 
 .old_price div span:nth-of-type(2),
 .new_price div span:nth-of-type(2) {
-  transform: translateY(-8px);
   opacity: 0.5;
 }
 
 .old_price div span:first-of-type {
+  font-size: 1rem;
   text-decoration: line-through;
   font-weight: 500;
 }
 
-.price_change div {
-  /* margin-top: 0.12em; */
+.old_price div span:nth-of-type(2) {
+  font-size: 0.5rem;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+.saving {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 2rem;
   gap: 0.1em;
+  transform: translateY(calc(50% - 0.2em));
+}
+
+.saving .discount {
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  background-color: var(--light-green);
+  padding: 0.5em 1em;
+  color: var(--green);
   font-weight: bold;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
 }
 
-.price_change div div span:first-of-type {
-  font-size: 1rem;
-  font-weight: 500;
+.saving .discount span {
+  font-weight: 300;
+  font-size: 0.5rem;
+  /* color: var(--color01); */
 }
 
-.price_change div div span:nth-of-type(2) {
-  font-size: 1rem;
-  margin-right: 1em;
-  font-weight: 500;
-}
-
-.price_change div .increasing {
+.saving .change {
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  padding: 0.5em 1em;
+  background-color: var(--light-red);
   color: var(--red);
-  opacity: 0.9;
+  font-weight: bold;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
 }
 
-.price_change div .decreasing {
+.saving .change span {
+  font-weight: 300;
+  font-size: 0.5rem;
+}
+
+.price_change,
+.price_change_negative {
+  padding: 0.5em;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   color: var(--green);
-  opacity: 0.9;
+  background-color: var(--light-green);
+  font-weight: bold;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-.price_change div i {
-  font-size: 1rem;
-  animation-name: ani-size;
-  animation-duration: 1.5s;
-  animation-timing-function: ease-in-out;
-}
-
-@keyframes ani-size {
-  0% {
-    /* transform: scale(0); */
-    opacity: 0;
-  }
-  100% {
-    /* transform: scale(1); */
-    opacity: 1;
-  }
-}
-
-.price_change div .increasing i {
+.price_change_negative {
+  padding: 0.5em;
   color: var(--red);
+  background-color: var(--light-red);
 }
 
-.price_change div .decreasing i {
-  color: var(--green);
+.price_change_negative span:first-of-type {
+  font-size: 0.6rem;
+  margin-right: 0.5em;
+}
+
+.price_change span:first-of-type {
+  font-size: 0.6rem;
+  margin-right: 0.5em;
 }
 
 .chart_container {
-  /* margin-bottom: 4em; */
-  background-color: #dddddd36;
-  padding: 1.5em;
-  border-radius: var(--radius-md);
-}
-
-.description {
-  margin-top: 2.5em;
-  padding: 2em 3em;
-  width: 100%;
-  min-height: 18em;
-  background-color: #dddddd36;
+  /* align-self: stretch; */
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  padding: 2em;
+  background-color: var(--boxbg);
   border-radius: var(--radius-md);
   color: var(--dark-gray);
 }
 
-.description h3 {
-  margin-bottom: 1em;
+.chart_container h4 {
+  padding-bottom: 1em;
+  margin-bottom: 2em;
+  border-bottom: 1px solid var(--color02);
+  opacity: 0.7;
+}
+
+.description {
+  margin-top: 2em;
+  color: var(--dark-gray);
+}
+
+.description .toggle {
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }
 
 .description p {

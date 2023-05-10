@@ -130,7 +130,7 @@
 
 
 .main_container .product_container .price_container {
-    margin-top: 1em;
+    margin-top: 0.5em;
     display: flex;
     flex-direction: column;
 }
@@ -138,17 +138,20 @@
 .saving {
     display: flex;
     align-items: center;
-    gap: 2em;
+    gap: 0.1em;
     transform: translateY(calc(50% - 0.2em));
 }
 
 .saving .discount {
-    border-radius: var(--radius-sm);
-    padding: 0.5em 1em;
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
     background-color: var(--light-green);
+    padding: 0.5em 1em;
     color: var(--green);
     font-weight: bold;
     font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
 }
 
 .saving .discount span {
@@ -157,16 +160,16 @@
     /* color: var(--color01); */
 }
 
-.saving .discount span:nth-of-type(2) {
-}
-
 .saving .change {
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
     padding: 0.5em 1em;
     background-color: var(--light-red);
     color: var(--red);
     font-weight: bold;
     font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
 }
 
 .saving .change span {
@@ -176,8 +179,10 @@
 
 .price_change,
 .price_change_negative {
-    border-radius: var(--radius-sm);
+    padding: 0.5em;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     color: var(--green);
+    background-color: var(--light-green);
     font-weight: bold;
     font-size: 0.9rem;
     display: flex;
@@ -186,7 +191,9 @@
 }
 
 .price_change_negative {
+    padding: 0.5em;
     color: var(--red);
+    background-color: var(--light-red);
 }
 
 .price_change_negative span:first-of-type {
@@ -226,6 +233,9 @@
 .new_price_container {
     font-size: 1.2rem;
     font-weight: 300;
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
 }
 
 .new_price_container span {
@@ -243,11 +253,17 @@
 .old_price_container {
     font-size: 0.8rem;
     color: var(--dark-gray);
+    text-decoration: line-through;
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
 }
 
-
 .old_price_container span:first-of-type {
-    text-decoration: line-through;
+}
+
+.old_price_container span:nth-of-type(2) {
+    font-size: 0.5rem;
 }
 
 .main_container .product_container .product_footer  {
