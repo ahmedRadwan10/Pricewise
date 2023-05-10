@@ -86,11 +86,8 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
 
   useEffect(() => {
     changeSubmitBtn();
-    setVisible(!success);
-
     if (success) {
-      // Redirect to the activation page
-      navigate(`/auth/users/activation/${undefined}/${undefined}`);
+      setAuthMethod("activate");
     }
   }, [loading, success]);
 

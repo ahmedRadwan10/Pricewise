@@ -27,6 +27,10 @@ const SignIn = ({ setAuthMethod, setVisible }) => {
     signInUser(dispatch, { email, password });
   };
 
+  const resetPassword = () => {
+    setAuthMethod("reset-pass");
+  };
+
   useEffect(() => {
     dispatch(addUser());
     changeSubmitBtn();
@@ -62,7 +66,14 @@ const SignIn = ({ setAuthMethod, setVisible }) => {
           />
           <p className={styles.error_message}>{msgSignIn}</p>
         </div>
-        <span className={styles.forget}>Forgot your password? </span>
+        <span
+          className={styles.forget}
+          onClick={() => {
+            resetPassword();
+          }}
+        >
+          Forgot your password?{" "}
+        </span>
         <button ref={refSignIn} className={styles.sign_in}>
           {signIn}
         </button>
