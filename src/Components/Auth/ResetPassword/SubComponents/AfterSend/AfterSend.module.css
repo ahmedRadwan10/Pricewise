@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  align-items: center; /* Centers vertically */
+  justify-content: center; /* Centers horizontally */
+  flex-direction: column; /* Aligns items vertically */
+}
+
+.container .circle {
+  postion: absolute;
+  font-size: 5rem;
+  color: var(--blue);
+}
+.container .success {
+  margin-top: 1rem;
+  text-align: center;
+}

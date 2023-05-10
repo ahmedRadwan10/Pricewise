@@ -1,5 +1,6 @@
 .container {
   height: 300px;
+  width: 300px;
   position: relative;
 }
 .container .activate_container {
@@ -7,6 +8,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.container .activate_container p {
+  margin: 1rem 0;
 }
 .container .activate_container span {
   color: var(--blue);

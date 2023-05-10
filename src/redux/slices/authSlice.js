@@ -9,7 +9,13 @@ const initialState = {
   msg: {},
   msgSignIn: "",
   activateSuccess: false,
+  activateLoading: false,
   email: "",
+  sendResetLinkSuccess: false,
+  sendResetLinkLoading: false,
+  passwordRestSuccess: false,
+  passwordRestLoading: false,
+  msgResetPassword: {},
 };
 const authSlice = createSlice({
   name: "auth",
@@ -38,6 +44,7 @@ const authSlice = createSlice({
     startSignUpUser: (state) => {
       state.signUpSuccess = false;
       state.loading = true;
+      state.msg = {};
     },
     successSignUpUser: (state, action) => {
       state.signUpSuccess = true;
@@ -72,11 +79,45 @@ const authSlice = createSlice({
       state.error = true;
     },
     ////Activate////////
+    startActivate: (state) => {
+      state.activateLoading = true;
+      state.activateSuccess = false;
+    },
     successActivate: (state) => {
       state.activateSuccess = true;
+      state.activateLoading = false;
     },
     errorActivate: (state) => {
       state.activateSuccess = false;
+      state.activateLoading = false;
+    },
+    ////ResetPass////////
+    startSendResetLink: (state) => {
+      state.sendResetLinkSuccess = false;
+      state.sendResetLinkLoading = true;
+    },
+    successSendResetLink: (state) => {
+      state.sendResetLinkSuccess = true;
+      state.sendResetLinkLoading = false;
+    },
+    errorSendResetLink: (state) => {
+      state.sendResetLinkSuccess = false;
+      state.sendResetLinkLoading = true;
+    },
+    ////PassReset////////
+    startPasswordReset: (state) => {
+      state.passwordRestSuccess = false;
+      state.passwordRestLoading = true;
+      state.msgResetPassword = {};
+    },
+    successPasswordReset: (state) => {
+      state.passwordRestSuccess = true;
+      state.passwordRestLoading = false;
+    },
+    errorPasswordReset: (state, action) => {
+      state.passwordRestSuccess = false;
+      state.passwordRestLoading = false;
+      state.msgResetPassword = action.payload;
     },
   },
 });
@@ -90,9 +131,21 @@ export const {
   successSignInUser,
   errorSignInUser,
   msg,
+  startActivate,
   successActivate,
   errorActivate,
   addEmail,
   msgSignIn,
+  startSendResetLink,
+  sendResetLinkSuccess,
+  sendResetLinkLoading,
+  successSendResetLink,
+  errorSendResetLink,
+  startPasswordReset,
+  successPasswordReset,
+  errorPasswordReset,
+  passwordRestSuccess,
+  passwordRestLoading,
+  msgResetPassword,
 } = authSlice.actions;
 export default authSlice.reducer;

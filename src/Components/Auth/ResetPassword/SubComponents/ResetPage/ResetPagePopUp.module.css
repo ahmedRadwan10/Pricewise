@@ -1,0 +1,53 @@
+.modal__form {
+  margin-top: 2em;
+}
+
+.modal__form button:disabled {
+  background: #777;
+}
+
+.modal__form .form_field,
+.modal__form .name_field {
+  margin-bottom: 1.5em;
+}
+
+.modal__form .form_field label,
+.modal__form .name_field label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5em;
+  color: inherit;
+  font-weight: 400;
+}
+
+.modal__form .form_field input,
+.modal__form .name_field input {
+  font-size: 1rem;
+}
+
+.modal__form .sign_up {
+  width: 100%;
+  padding: 1em 0;
+  margin-top: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color01);
+  color: var(--white);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.modal__form .sign_up i {
+  font-size: 1.2rem;
+}
+
+.error_message {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--red);
+  margin-top: 0.2rem;
+}

@@ -55,7 +55,6 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
   };
 
   const renderErr = (type) => {
-    console.log(msg);
     if (msg.password && type == "password") {
       return msg.password.map((err) => (
         <p key={err} className={styles.error_message}>
@@ -87,11 +86,8 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
 
   useEffect(() => {
     changeSubmitBtn();
-    setVisible(!success);
-
     if (success) {
-      // Redirect to the activation page
-      navigate(`/auth/users/activation/${undefined}/${undefined}`);
+      setAuthMethod("activate");
     }
   }, [loading, success]);
 

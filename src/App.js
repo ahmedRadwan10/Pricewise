@@ -22,9 +22,10 @@ function App() {
             element={<Product />}
           />
           <Route path="/search/:searchQuery" element={<Results />} />
+          <Route path="/auth/users/activation/:uid/:token" element={<Home />} />
           <Route
-            path="/auth/users/activation/:uid/:token"
-            element={<Activate />}
+            path="/auth/users/password/reset/confirm/:uid/:token"
+            element={<Home />}
           />
         </Routes>
         <Alarm />
