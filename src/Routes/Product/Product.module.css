@@ -120,40 +120,50 @@
 }
 
 .all_data_container .buy_now {
-  flex-direction: row;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 2em;
+  gap: 1em;
   margin: 2em 0;
 }
 
+.all_data_container .buy_now button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.all_data_container .buy_now button span:first-of-type {
+  display: block;
+  width: 0.5em;
+}
+
+.all_data_container .buy_now button span:nth-of-type(2) {
+  display: block;
+  width: 8em;
+  text-align: center;
+}
+
 .add_to_wishlist {
-    outline: none;
-    border: none;
-    position: relative;
-    border-radius: var(--radius-sm);
-    width: 2em;
-    height: 2em;
-    padding: 0.5em;
-    color: var(--dark-gray);
-    background-color: var(--color02);
-    font-family: inherit;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-  }
+  outline: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  height: 3em;
+  padding: 1em;
+  color: var(--dark-gray);
+  background-color: var(--color02);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+}
 
   .add_to_wishlist i {
-    font-size: 0.9rem;
-    transform: translateX(-1.5px);
-  }
-
-  .add_to_wishlist i:nth-of-type(2) {
-    position: absolute;
-    top: 0.7em;
-    right: 0.5em;
-    font-size: 0.5rem;
+    font-size: 1.2rem;
   }
   
   .all_data_container .buy_now .buy_now_btn {
@@ -161,6 +171,7 @@
     border: none;
     border-radius: var(--radius-sm);
     width: 100%;
+    height: 3em;
     padding: 1em;
     color: var(--white);
     background-color: var(--dark-gray);
@@ -168,21 +179,11 @@
     font-family: inherit;
     font-weight: 600;
     font-size: 1rem;
-    display: flex;
-    align-items: center;
-  justify-content: center;
-  gap: 2em;
-  cursor: pointer;
-}
-
-.all_data_container .buy_now button span:first-of-type {
-  display: flex;
-  align-items: center;
-  gap: 1em;
+    cursor: pointer;
 }
 
 .all_data_container .buy_now button span:last-of-type i {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
 }
 
 
@@ -319,11 +320,14 @@
   margin-right: 0.5em;
 }
 
+.right_container {
+  width: 80%;
+}
+
 .chart_container {
   /* align-self: stretch; */
   display: flex;
   flex-direction: column;
-  width: 85%;
   padding: 2em;
   background-color: var(--boxbg);
   border-radius: var(--radius-md);
@@ -337,36 +341,69 @@
   opacity: 0.7;
 }
 
-.description {
+.specs_description_container {
+  min-height: 20em;
   margin-top: 2em;
+  padding: 2em;
+  background-color: var(--boxbg);
+  border-radius: var(--radius-md);
   color: var(--dark-gray);
 }
 
-.description .toggle {
-  margin-bottom: 0.5em;
+.specs_description_container .toggle {
+  /* padding-bottom: 1em; */
+  margin-bottom: 2em;
+  border-bottom: 1px solid var(--color02);
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 2em;
+} 
+
+.specs_description_container .toggle h4 {
+  opacity: 0.7;
+  padding-bottom: 1em;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
 }
 
-.description p {
-  font-size: 0.9rem;
-  word-spacing: 3px;
+.specs_description_container .toggle .active_toggler {
+  opacity: 1;
+  border-bottom: 1px solid var(--dark-gray);
+}
+
+.specs_description_container .content {
   line-height: 1.5;
-  display: flex;
-  align-items: flex-start;
-  gap: 1em;
+  word-spacing: 2px;
+  font-size: 0.9rem;
 }
 
-.description p i {
-  transform: translateY(5px);
+.specs_container ul {
+  text-align: left;
+}
+
+.specs_container ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  background-color: #dddddd7e;
+  border-radius: var(--radius-sm);
+  margin: 0.4em;
+}
+
+.specs_container ul li p {
+  width: 50%;
+}
+
+.specs_container ul li p:first-of-type {
+  font-weight: bold;
 }
 
 /* ...Media Queries... */
 
 /* .................................................. */
 /* Small Screen  */
-@media screen and (max-width: 1366px) {
+@media screen and (max-width: 1290px) {
   .nav_container {
     margin: 15px 0;
   }
@@ -374,12 +411,24 @@
     align-self: center;
   }
   .flex_container {
-    padding: 0 8%;
     flex-direction: column;
     align-items: flex-start;
-    gap: 5em;
+    gap: 2em;
   }
   .all_data_container {
     width: 100%;
+  }
+  /* .all_data_container .buy_now {
+    align-items: flex-start;
+  }
+  .all_data_container .buy_now button,
+  .all_data_container .buy_now .buy_now_btn {
+    width: 50%;
+  } */
+  .right_container {
+    width: 100%;
+  }
+  .chart_container *:not(h4) {
+    /* font-size: 0.0000025rem; */
   }
 }

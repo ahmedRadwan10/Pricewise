@@ -71,24 +71,16 @@ const ProductData = ({ product }) => {
       <div className={styles.all_data_container}>
         <div className={styles.box}>
         <h4 className={styles.headline}>Product Overview</h4>
+            <div className={styles.product_img_container}>
+              <Image
+                  imgSrc={`/assets/imgs/products/product.png`}
+                  imgAlt={product.title}
+              />
+            </div>
           <div className={styles.header}>
             <h4>{product.brand_name}</h4>
-            {/* <button
-            onClick={addToWishlist}
-            disabled={added ? true : false}
-            className={styles.add_to_wishlist}
-          >
-            <i className="fa-regular fa-bell"></i>
-            <i className="fa-solid fa-circle-plus"></i>
-          </button> */}
           </div>
           <h3>{product.title}</h3>
-          <div className={styles.product_img_container}>
-            <Image
-                imgSrc={`/assets/imgs/products/product.png`}
-                imgAlt={product.title}
-            />
-          </div>
             {product.rating ? (
               <div className={styles.rating_container}>
                 <div>
@@ -105,11 +97,6 @@ const ProductData = ({ product }) => {
             ) : (
               ""
           )}
-          <div className={styles.description}>
-            <p>
-              Typically weighing less than 5 lbs and notebooks keep their supreme lightweight portability advantage over laptops, Laptops are used in a variety of settings such as at work in education for playing games web browsing for personal multimedia and for general.
-            </p>
-          </div>
           <div className={styles.prices}>
             <div>
               {product.new_price ? renderNewPrice() : ""}
@@ -120,9 +107,18 @@ const ProductData = ({ product }) => {
           <div className={styles.buy_now}>
               <button className={styles.buy_now_btn}>
                 <span>
-                  <i className="fa-solid fa-cart-plus"></i> Buy now
-                </span>
+                  <i className="fa-solid fa-cart-plus"></i>
+              </span>
+              <span>Buy now</span>
               </button>
+              <button
+              onClick={addToWishlist}
+              disabled={added ? true : false}
+              className={styles.add_to_wishlist}
+            >
+              <span><i className="fa-regular fa-bell"></i></span>
+              <span>Add to wishlist</span>
+            </button>
           </div>
         </div>
         
