@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   products: {},
+  hotDealsProducts: [],
   wishlist: [],
   selectedProduct: {},
 };
@@ -12,6 +13,9 @@ export const productsSlice = createSlice({
   reducers: {
     fetchProducts: (state, action) => {
       state.products = action.payload;
+    },
+    fetchHotDealsProducts: (state, action) => {
+      state.hotDealsProducts = action.payload;
     },
     removeProduct: (state, action) => {
       delete state.products[`ID-${action.payload}`];
@@ -30,6 +34,7 @@ export const {
   removeProduct,
   fetchProduct,
   addProductToWishlist,
+  fetchHotDealsProducts
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

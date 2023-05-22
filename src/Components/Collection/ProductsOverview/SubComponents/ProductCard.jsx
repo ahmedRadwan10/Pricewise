@@ -22,7 +22,7 @@ const ProductCard = ({ product, products, maxProducts }) => {
   const renderProductOldPrice = (product) => {
     return (
         <div className={styles.old_price_container}>
-            <span>{product.old_price.toFixed(2)}</span>
+            <span>{product.price}</span>
             <span>EGP</span>
         </div>
     );
@@ -40,19 +40,19 @@ const renderProductFooter = (product) => {
   }
 
   const handleFavBtnClick = (productID) => {
-    setContainerHidden(true);
-    sendProductToWishlist(dispatch, products, productID);
-    const alarmTitle = `Well done!`;
-    const alarmDesc = `${product.title} added to your wishlist successfully.`;
-    dispatch(setAlarmDetails({ title: alarmTitle, description: alarmDesc }));
-    dispatch(showAlarm());
+        setContainerHidden(true);
+        sendProductToWishlist(dispatch, products, productID);
+        const alarmTitle = `Well done!`;
+        const alarmDesc = `${product.title} added to your wishlist successfully.`;
+        dispatch(setAlarmDetails({ title: alarmTitle, description: alarmDesc }));
+        dispatch(showAlarm());
     }
     
     const productStyles = {
         width: `calc((100% - ${maxProducts - 1}em) / ${maxProducts})`
     }
 
-  if (product["img-src"]) {
+  if (product) {
       return <div
             style={ maxProducts ? productStyles : { } }
             ref={productElement}
@@ -66,19 +66,19 @@ const renderProductFooter = (product) => {
                 <i className="fa-solid fa-circle-plus"></i>
             </button>
             <div className={styles.product_img_container}>
-                <Image imgSrc={`/assets/imgs/products/product.png`} imgAlt={product.title} />
+                <Image imgSrc={`https://m.media-amazon.com/images/I/${product.images[0].image_url}.jpg`} imgAlt={product.title} />
             </div>
             <p title={product.title}>{product.title}</p>
             <div className={styles.price_container}>
                 <div className={styles.new_price_container}>
-                    <span>{product.new_price.toFixed(2)}</span>
+                    <span>{product.sale_price}</span>
                     <span>EGP</span>
                 </div>
-                {product.old_price ? renderProductOldPrice(product) : ""}
+                {product.sale_price ? renderProductOldPrice(product) : ""}
             </div>
             <div className={styles.saving}>
-                { product.old_price > product.new_price ? <div className={styles.discount}>{product.old_price - product.new_price} <span>EGP</span></div> : <div className={styles.change}>{product.new_price - product.old_price} <span>EGP</span></div> }
-                { product.old_price > product.new_price ? <div className={styles.price_change}>{Math.floor(100 - (product.new_price / product.old_price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down ${productHovered ? "fa-beat-fade" : ""}`}></i></div> : <div className={styles.price_change_negative}>{Math.floor(100 - (product.old_price / product.new_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
+                { product.price > product.sale_price ? <div className={styles.discount}>{Math.floor(product.price - product.sale_price)} <span>EGP</span></div> : <div className={styles.change}>{product.sale_price - product.price} <span>EGP</span></div> }
+                { product.price > product.sale_price ? <div className={styles.price_change}>{Math.floor(100 - (product.sale_price / product.price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down ${productHovered ? "fa-beat-fade" : ""}`}></i></div> : <div className={styles.price_change_negative}>{Math.floor(100 - (product.price / product.sale_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
             </div>
         </div>
     }

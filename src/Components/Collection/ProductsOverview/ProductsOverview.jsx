@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Image from '../Image';
@@ -14,8 +14,7 @@ const ProductsOverview = ({ title, products, maxProducts }) => {
 
     const renderProducts = () => {
         if (products) {
-            const productObjects = Object.values(products);
-            return productObjects.map(product => <ProductCard  key={product.id} product={product} products={productObjects} maxProducts={maxProducts} />);
+            return products.map(product => <ProductCard  key={product.id} product={product} products={products} maxProducts={maxProducts} />);
         }
     }
 
@@ -26,6 +25,10 @@ const ProductsOverview = ({ title, products, maxProducts }) => {
     const scrollProductsToRight = () => {
         productsContainer.current.scrollLeft += 500;
     }
+
+    // useEffect(() => {
+    //     console.log(products);
+    // })
 
     if (products) return (
         <div className={styles.main_container}>

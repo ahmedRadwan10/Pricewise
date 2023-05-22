@@ -25,7 +25,7 @@ const Header = () => {
   return (
     <header className={styles.main_container}>
       <div className={styles.logo} onClick={() => navigate("/")}>
-        <p>Pricewise</p>
+        <img src="/assets/imgs/logo.svg" alt="" />
       </div>
       <div ref={categoriesElement} className={styles.categories} onClick={handleCategoriesClick}>
         <i className="fa-solid fa-bars"></i>
@@ -55,6 +55,7 @@ const Header = () => {
             onClick={() => setNotificationsVisible(true)}
           >
             <i className="fa-regular fa-bell"></i>
+            Notifications
           </span>
         </nav>
       </div>

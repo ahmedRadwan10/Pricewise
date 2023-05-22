@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import {
   addProductToWishlist,
+  fetchHotDealsProducts,
   fetchProduct,
   fetchProducts,
   removeProduct,
@@ -8,6 +9,13 @@ import {
   updateProductWishlistState,
 } from "../redux/slices/productsSlice";
 
+
+export async function getHotDealsProducts(dispatch) {
+  const response = await fetch('http://127.0.0.1:8000/product/deals/');
+  const data = await response.json();
+  console.log(data);
+  dispatch(fetchHotDealsProducts(data));
+}
 
 export async function getProducts(dispatch) {
   const response = await fetch('/data/products.json');

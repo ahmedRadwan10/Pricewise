@@ -21,11 +21,11 @@
     justify-content: center;
     gap: 1em;
     cursor: pointer;
+    transform: translateY(-2px);
 }
 
 .logo img {
-    width: 1.6em;
-    transform: translateY(-5px);
+    width: 8em;
 }
 
 .logo p {
@@ -44,6 +44,7 @@
 
 .search {
     position: relative;
+    width: 27em;
     z-index: 99;
 }
 
@@ -52,7 +53,7 @@
 }
 
 .search input:focus {
-    width: 60em;
+    width: 55em;
     background-color: var(--white);
 }
 
@@ -89,6 +90,9 @@ nav .ar {
 
 .bell {
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1em;
 }
 
 .bell::after {
