@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { signInUser } from "../../../APIs/postUser";
 import { addUser } from "../../../redux/slices/authSlice";
 import styles from "./SignIn.module.css";
+import { useTranslation } from "react-i18next";
 
 const SignIn = ({ setAuthMethod, setVisible }) => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [signIn, setSignIn] = useState("Sign in");
+  const [signIn, setSignIn] = useState(t("sign-in-submit"));
 
   const dispatch = useDispatch();
   const refSignIn = useRef();
@@ -19,7 +21,7 @@ const SignIn = ({ setAuthMethod, setVisible }) => {
     refSignIn.current.disabled = loading;
     loading
       ? setSignIn(<i className="fa-solid fa-circle-notch fa-spin"></i>)
-      : setSignIn("Sign in");
+      : setSignIn(t("sign-in-submit"));
   };
 
   const handleSubmit = (e) => {
@@ -40,16 +42,18 @@ const SignIn = ({ setAuthMethod, setVisible }) => {
   return (
     <div>
       <div className={styles.modal__header}>
-        <p>Welcome back!</p>
-        <h1>Sign in to your account</h1>
+        <p>{t("sign-in-p")}</p>
+        <h1>{t("sign-in-h1")}</h1>
         <h3>
-          Don't have an account?{" "}
-          <span onClick={() => setAuthMethod("sign-up")}>Sign Up</span>
+          {t("sign-in-h3")}{" "}
+          <span onClick={() => setAuthMethod("sign-up")}>
+            {t("sign-in-span")}
+          </span>
         </h3>
       </div>
       <form className={styles.modal__form} onSubmit={handleSubmit}>
         <div className={styles.form_field}>
-          <label>Email</label>
+          <label>{t("sign-in-email")}</label>
           <input
             type="text"
             placeholder="example@mail.com"
@@ -58,7 +62,7 @@ const SignIn = ({ setAuthMethod, setVisible }) => {
           />
         </div>
         <div className={styles.form_field}>
-          <label>Password</label>
+          <label>{t("sign-in-password")}</label>
           <input
             type="password"
             onChange={(e) => setPassword(e.target.value)}
@@ -72,7 +76,7 @@ const SignIn = ({ setAuthMethod, setVisible }) => {
             resetPassword();
           }}
         >
-          Forgot your password?{" "}
+          {t("sign-in-forget")}{" "}
         </span>
         <button ref={refSignIn} className={styles.sign_in}>
           {signIn}

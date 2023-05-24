@@ -7,16 +7,43 @@ import NotificationMenu from "./SubComponents/NotificationMenu/NotificationMenu"
 import Wishlist_Profile from "./SubComponents/Wiishlist_Profile/Wishlist_Profile";
 import { useSelector } from "react-redux";
 import Search from "./SubComponents/Search/Search";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const [categoriesVisible, setCategoriesVisible] = useState(false);
   const [authVisible, setAuthVisible] = useState(false);
   const [notificationsVisible, setNotificationsVisible] = useState(false);
   const [wishlistProfileVisible, setWishlistProfiileVisible] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
   const navigate = useNavigate();
   const succesSignin = useSelector(({ authState }) => authState.signInSuccess);
   const categoriesElement = useRef();
   const navElement = useRef();
+
+  const { i18n } = useTranslation();
+  const { t } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  const handleLanguageChange = (lng) => {
+    changeLanguage(lng);
+    setSelectedLanguage(lng);
+    if (lng === "ar") {
+      document.documentElement.dir = "rtl"; // Set direction to right-to-left for Arabic
+    } else {
+      document.documentElement.dir = "ltr"; // Set direction to left-to-right for other languages
+    }
+  };
+
+  const getLanguageText = () => {
+    if (selectedLanguage === "ar") {
+      return "English";
+    } else {
+      return "العربية";
+    }
+  };
 
   const handleCategoriesClick = () => {
     setCategoriesVisible((prev) => !prev);
@@ -27,14 +54,25 @@ const Header = () => {
       <div className={styles.logo} onClick={() => navigate("/")}>
         <img src="/assets/imgs/logo.svg" alt="" />
       </div>
-      <div ref={categoriesElement} className={styles.categories} onClick={handleCategoriesClick}>
+      <div
+        ref={categoriesElement}
+        className={styles.categories}
+        onClick={handleCategoriesClick}
+      >
         <i className="fa-solid fa-bars"></i>
-        Categories
+        {t("categories")}
       </div>
       <Search categoriesElement={categoriesElement} navElement={navElement} />
       <div>
         <nav ref={navElement}>
-          <span className={styles.ar}>العربية</span>
+          <span
+            className={styles.ar}
+            onClick={() =>
+              handleLanguageChange(selectedLanguage === "ar" ? "en" : "ar")
+            }
+          >
+            {getLanguageText()}
+          </span>
           <span className="column_divider"></span>
           <span
             className={styles.profile}
@@ -47,7 +85,7 @@ const Header = () => {
             }}
           >
             <i className="fa-regular fa-user"></i>
-            {succesSignin ? "profile" : "Sign in"}
+            {succesSignin ? t("profile") : t("sign-in")}
           </span>
           <span className="column_divider"></span>
           <span
@@ -55,7 +93,7 @@ const Header = () => {
             onClick={() => setNotificationsVisible(true)}
           >
             <i className="fa-regular fa-bell"></i>
-            Notifications
+            {t("notifications")}
           </span>
         </nav>
       </div>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signUpUser } from "../../../APIs/postUser";
 import styles from "./SignUp.module.css";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SignUp = ({ setAuthMethod, setVisible }) => {
   const [formInput, setFormInput] = useState({
@@ -19,8 +20,8 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
     password: "",
     confirmPassword: "",
   });
-
-  const [signUp, setSignUp] = useState("Sign up");
+  const { t } = useTranslation();
+  const [signUp, setSignUp] = useState(t("sign-up-submit"));
   const dispatch = useDispatch();
   const refSignUp = useRef();
   const navigate = useNavigate();
@@ -76,7 +77,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
     refSignUp.current.disabled = loading;
     loading
       ? setSignUp(<i className="fa-solid fa-circle-notch fa-spin"></i>)
-      : setSignUp("Sign up");
+      : setSignUp(t("sign-up-submit"));
   };
 
   const handleSubmit = (e) => {
@@ -94,16 +95,18 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
   return (
     <div>
       <div className={styles.modal__header}>
-        <h1>Create an account</h1>
+        <h1>{t("sign-up-h1")}</h1>
         <h3>
-          Already have an account?{" "}
-          <span onClick={() => setAuthMethod("sign-in")}>Sign in</span>
+          {t("sign-up-h3")}{" "}
+          <span onClick={() => setAuthMethod("sign-in")}>
+            {t("sign-up-span")}
+          </span>
         </h3>
       </div>
       <form className={styles.modal__form} onSubmit={handleSubmit}>
         <div className={styles.name_field}>
           <div>
-            <label>First Name</label>
+            <label>{t("sign-up-first-name")}</label>
             <input
               type="text"
               name="first_name"
@@ -114,7 +117,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
             />
           </div>
           <div>
-            <label>Last Name</label>
+            <label>{t("sign-up-last-name")}</label>
             <input
               type="text"
               name="last_name"
@@ -126,7 +129,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
           </div>
         </div>
         <div className={styles.form_field}>
-          <label>Email</label>
+          <label>{t("sign-up-email")}</label>
           <input
             type="email"
             name="email"
@@ -139,7 +142,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
           {renderErr("email")}
         </div>
         <div className={styles.form_field}>
-          <label>Password</label>
+          <label>{t("sign-up-password")}</label>
           <input
             type="password"
             name="password"
@@ -151,7 +154,7 @@ const SignUp = ({ setAuthMethod, setVisible }) => {
           {renderErr("password")}
         </div>
         <div className={styles.form_field}>
-          <label>Confirm Password</label>
+          <label>{t("sign-up-confirm")}</label>
           <input
             type="password"
             name="confirmPassword"
