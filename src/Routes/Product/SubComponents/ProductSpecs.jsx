@@ -1,74 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from '../Product.module.css';
 
-const ProductSpecs = () => {
+const ProductSpecs = ({ specs }) => {
+
+    const renderSpecs = () => {
+        const specsArr = Object.entries(specs);
+        return specsArr.map(spec => {
+            if (spec[1]) return <li key={spec[0]}>
+                                    <p>{spec[0].replace(/_/g, ' ')}</p>
+                                    <p>{spec[1]}</p>
+                                </li>
+        });
+    }
+
     return (
         <div className={styles.specs_container}>
             <ul>
-                    <li>
-                        <p>Audio Jack</p>
-                        <p>Lightning Port</p>
-                    </li>
-                    <li>
-                        <p>Battery Size</p>
-                        <p>4323 mAh</p>
-                    </li>
-                    <li>
-                        <p>Battery Type</p>
-                        <p>Lithium Ion</p>
-                    </li>
-                    <li>
-                        <p>Camera Type</p>
-                        <p>Primary Camera + Secondary Camera</p>
-                    </li>
-                    <li>
-                        <p>Charging Type</p>
-                        <p>Lightning Port</p>
-                    </li>
-                    <li>
-                        <p>Colour Name</p>
-                        <p>Deep Purple</p>
-                    </li>
-                    <li>
-                        <p>Connection Type</p>
-                        <p>Wifi+Cellular</p>
-                    </li>
-                    <li>
-                        <p>Network</p>
-                        <p>5G</p>
-                    </li>
-                    <li>
-                        <p>Audio Jack</p>
-                        <p>Lightning Port</p>
-                    </li>
-                    <li>
-                        <p>Battery Size</p>
-                        <p>4323 mAh</p>
-                    </li>
-                    <li>
-                        <p>Battery Type</p>
-                        <p>Lithium Ion</p>
-                    </li>
-                    <li>
-                        <p>Camera Type</p>
-                        <p>Primary Camera + Secondary Camera</p>
-                    </li>
-                    <li>
-                        <p>Charging Type</p>
-                        <p>Lightning Port</p>
-                    </li>
-                    <li>
-                        <p>Colour Name</p>
-                        <p>Deep Purple</p>
-                    </li>
-                    <li>
-                        <p>Connection Type</p>
-                        <p>Wifi+Cellular</p>
-                    </li>
-                    <li>
-                        <p>Network</p>
-                        <p>5G</p>
-                    </li>
+                { renderSpecs() }
             </ul>
         </div>
     );

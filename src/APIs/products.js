@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import {
   addProductToWishlist,
   fetchHotDealsProducts,
+  fetchPopularProducts,
   fetchProduct,
   fetchProducts,
   removeProduct,
@@ -11,22 +12,22 @@ import {
 
 
 export async function getHotDealsProducts(dispatch) {
-  const response = await fetch('http://127.0.0.1:8000/product/deals/');
+  const response = await fetch('http://127.0.0.1:8000/product/all/deals/');
+  const data = await response.json();
+  dispatch(fetchHotDealsProducts(data.results));
+}
+
+export async function getPopularProducts(dispatch) {
+  const response = await fetch('http://127.0.0.1:8000/product/popular/');
+  const data = await response.json();
+  dispatch(fetchPopularProducts(data.results));
+}
+
+export async function getProduct(dispatch, slug) {
+  const response = await fetch(`http://127.0.0.1:8000/product/${slug}/`);
   const data = await response.json();
   console.log(data);
-  dispatch(fetchHotDealsProducts(data));
-}
-
-export async function getProducts(dispatch) {
-  const response = await fetch('/data/products.json');
-  const data = await response.json();
-  dispatch(fetchProducts({ ...data }));
-}
-
-export async function getProduct(dispatch, productID) {
-  const response = await fetch("/data/products.json");
-  const data = await response.json();
-  dispatch(fetchProduct(data[`ID-${productID}`]));
+  dispatch(fetchProduct(data));
 }
 
 export async function sendProductToWishlist(dispatch, products, productID) {
