@@ -15,15 +15,15 @@ const ProductCard = ({ product, products, maxProducts }) => {
     const navigate = useNavigate();
 
   const handleProductOnClick = (product) => {
-      if (!favBtnActive) navigate(`/electronics/mobile-phones${product.title}/${product.id}`);
+      if (!favBtnActive) navigate(`/${product.category.toLowerCase()}/${product.slug}`);
   }
 
 
-  const renderProductOldPrice = (product) => {
+  const renderProductOldPrice = (oldPrice) => {
     return (
         <div className={styles.old_price_container}>
-            <span>{product.price}</span>
-            <span>EGP</span>
+            <span style={ oldPrice !== "0" ? { transform: "scale(1)" } : { transform: "scale(0)" } }>{oldPrice}</span>
+            <span style={ oldPrice !== "0" ? { transform: "scale(1)" } : { transform: "scale(0)" } }>EGP</span>
         </div>
     );
   }
@@ -71,14 +71,14 @@ const renderProductFooter = (product) => {
             <p title={product.title}>{product.title}</p>
             <div className={styles.price_container}>
                 <div className={styles.new_price_container}>
-                    <span>{product.sale_price}</span>
+                    <span>{product.sale_price ? product.sale_price : product.price}</span>
                     <span>EGP</span>
                 </div>
-                {product.sale_price ? renderProductOldPrice(product) : ""}
+                {product.sale_price ? renderProductOldPrice(product.price) : renderProductOldPrice("0")}
             </div>
             <div className={styles.saving}>
-                { product.price > product.sale_price ? <div className={styles.discount}>{Math.floor(product.price - product.sale_price)} <span>EGP</span></div> : <div className={styles.change}>{product.sale_price - product.price} <span>EGP</span></div> }
-                { product.price > product.sale_price ? <div className={styles.price_change}>{Math.floor(100 - (product.sale_price / product.price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down ${productHovered ? "fa-beat-fade" : ""}`}></i></div> : <div className={styles.price_change_negative}>{Math.floor(100 - (product.price / product.sale_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
+                { Number(product.price) > Number(product.sale_price) ? <div style={ Number(product.sale_price) ? { transform: "scale(1)" } : { transform: "scale(0)" } } className={styles.discount}>{Math.floor(product.price - product.sale_price)} <span>EGP</span></div> : <div className={styles.change}>{product.sale_price - product.price} <span>EGP</span></div> }
+                { Number(product.price) > Number(product.sale_price) ? <div style={ Number(product.sale_price) ? { transform: "scale(1)" } : { transform: "scale(0)" } } className={styles.price_change}>{Math.floor(100 - (Number(product.sale_price) / product.price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down ${productHovered ? "fa-beat-fade" : ""}`}></i></div> : <div className={styles.price_change_negative}>{Math.floor(100 - (product.price / product.sale_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
             </div>
         </div>
     }

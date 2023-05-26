@@ -30,7 +30,7 @@ const Results = () => {
     }
 
     useEffect(() => {
-        getProducts(dispatch);
+        
       }, [dispatch]);
 
     return (

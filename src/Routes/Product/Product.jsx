@@ -13,8 +13,8 @@ import ProductSpecs from "./SubComponents/ProductSpecs";
 
 const Product = () => {
   const [togglerIsSpecs, setTogglerIsSpecs] = useState(false);
-  const products = useSelector(({ productsState }) => productsState.products);
-  const product = useSelector(({ productsState }) => productsState.selectedProduct);
+  const product = useSelector(({ productsState }) => productsState.selectedProduct.product);
+  const similarProducts = useSelector(({ productsState }) => productsState.selectedProduct.similar_products);
   const dispatch = useDispatch();
   const params = useParams();
 
@@ -25,19 +25,22 @@ const Product = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    getProduct(dispatch, params.productID);
-    getProducts(dispatch);
+    getProduct(dispatch, params.productSlug);
   }, [dispatch, params]);
 
   if (product)
     return (
       <div className={styles.main_container}>
         <div className={styles.nav_container}>
-          <Link>Home</Link>
+          <Link to="/">Home</Link>
           <span>
             <i className="fa-solid fa-chevron-right"></i>
           </span>
           <Link to="">Electronics</Link>
+          <span>
+            <i className="fa-solid fa-chevron-right"></i>
+          </span>
+          <Link to="">{product.category}</Link>
           <span>
             <i className="fa-solid fa-chevron-right"></i>
           </span>
@@ -46,7 +49,7 @@ const Product = () => {
         <div className={styles.flex_container}>
           <ProductData product={product} />
           <div className={styles.right_container}>
-            <Chart />
+            <Chart history={product.price_history} />
             <div className={styles.specs_description_container}>
               <div className={styles.toggle}>
                 <h4 onClick={() => setTogglerIsSpecs(false)} className={ !togglerIsSpecs ? styles.active_toggler : ""}>Description</h4>
@@ -54,10 +57,10 @@ const Product = () => {
               </div>
               <div className={styles.content}>
                 {
-                  togglerIsSpecs ? <ProductSpecs /> :
+                  togglerIsSpecs ? <ProductSpecs specs={product[`${product.category.toLowerCase()}`]} /> :
                     <div className={styles.description}>
                       <p>
-                        Typically weighing less than 5 lbs and notebooks keep their supreme lightweight portability advantage over laptops, Laptops are used in a variety of settings such as at work in education for playing games web browsing for personal multimedia and for general.
+                        {product.description}
                       </p>
                     </div>
                 }
@@ -65,7 +68,7 @@ const Product = () => {
             </div>
           </div>
         </div>
-        <ProductsOverview title="Same Products" products={products} maxProducts={5} />
+        <ProductsOverview title="Similar Products" products={similarProducts} maxProducts={5} />
       </div>
     );
 };

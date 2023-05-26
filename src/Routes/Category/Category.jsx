@@ -39,7 +39,6 @@ const Category = () => {
   useEffect(() => {
     getBanners(dispatch);
     getSubCategories(dispatch, params.category);
-    getProducts(dispatch);
   }, [dispatch, params]);
 
   return (

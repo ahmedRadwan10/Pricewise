@@ -32,7 +32,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/:category" element={<Category />} />
           <Route
-            path="/:subCategory/:productName/:productID"
+            path="/:subCategory/:productSlug"
             element={<Product />}
           />
           <Route path="/search/:searchQuery" element={<Results />} />

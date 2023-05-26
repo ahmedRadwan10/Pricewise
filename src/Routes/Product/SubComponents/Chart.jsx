@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../Product.module.css';
 import {
     Chart as ChartJS,
@@ -35,25 +35,58 @@ export const options = {
     },
 };
 
-const labels = ['07/2022', '08/2022', '09/2022', '10/2022', '11/2022', '12/2022', '01/2023'];
+// let labels = [];
 
-export const data = {
-    labels,
-    datasets: [
-        {
-            label: "Price in EGP",
-            data: labels.map(() => Math.floor(Math.random() * 10000)),
-            borderColor: '#dddddd',
-            backgroundColor: '#222831',
-        }
-    ],
-};
+// export const data = {
+//     labels,
+//     datasets: [
+//         {
+//             label: "Price in EGP",
+//             data: labels.map(() => Math.floor(Math.random() * 10000)),
+//             borderColor: '#dddddd',
+//             backgroundColor: '#222831',
+//         }
+//     ],
+// };
   
 
-const Chart = () => {
+const Chart = ({ history }) => {
+
+    const [data, setData] = useState({
+        labels: [],
+        datasets: [
+            {
+                label: "Price in EGP",
+                data: [],
+                borderColor: '#dddddd',
+                backgroundColor: '#222831',
+            }
+        ],
+    });
+
+    useEffect(() => {
+        let labels = [];
+        let data = [];
+        history.forEach(record => {
+            labels.push(record.date);
+            data.push(record.price);
+        });
+        setData({
+            labels: labels,
+            datasets: [
+                {
+                    label: "Price in EGP",
+                    data: data,
+                    borderColor: '#dddddd',
+                    backgroundColor: '#222831',
+                }
+            ],
+        })
+    }, [history]);
+
     return (
         <div className={styles.chart_container}>
-            <h4>Last Prices</h4>
+            <h4>Price History</h4>
             <Line options={options} data={data} />
         </div>
     );

@@ -6,29 +6,35 @@ import { sendProductToWishlist } from "../../../APIs/products";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "../../../Components/Collection/Image";
 
+const vendors = {
+  Amazon: "/assets/imgs/amazon.png",
+  Noon: "",
+  Jumia: "",
+} 
+
 const ProductData = ({ product }) => {
   const dispatch = useDispatch();
   const products = useSelector(({ productsState }) => productsState.products);
   const wishlist = useSelector(({ productsState }) => productsState.wishlist);
   const [added, setAdded] = useState(false);
 
-  const renderOldPrice = () => {
+  const renderOldPrice = (price) => {
     return (
       <div className={styles.old_price}>
         <div>
-          <span>{product.old_price.toFixed(2)}</span>
+          <span>{price}</span>
           <span>EGP</span>
         </div>
       </div>
     );
   };
 
-  const renderNewPrice = () => {
+  const renderNewPrice = (price) => {
     return (
       <div className={styles.new_price}>
         <div>
           <span>
-            <strong>{product.new_price.toFixed(2)}</strong>
+            <strong>{price}</strong>
           </span>
           <span>EGP</span>
         </div>
@@ -60,11 +66,16 @@ const ProductData = ({ product }) => {
   const renderPriceChange = () => {
     return (
       <div className={styles.saving}>
-          { product.old_price > product.new_price ? <div className={styles.discount}>{product.old_price - product.new_price} <span>EGP</span></div> : <div className={styles.change}>{product.new_price - product.old_price} <span>EGP</span></div> }
-          { product.old_price > product.new_price ? <div className={styles.price_change}>{Math.floor(100 - (product.new_price / product.old_price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down`}></i></div> : <div className={styles.price_change_negative}>{Math.floor(100 - (product.old_price / product.new_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
+          { Number(product.price) > Number(product.sale_price) ? <div style={ Number(product.sale_price) ? { transform: "scale(1)" } : { transform: "scale(0)" } } className={styles.discount}>{Math.floor(product.price - product.sale_price)} <span>EGP</span></div> : <div className={styles.change}>{product.sale_price - product.price} <span>EGP</span></div> }
+                { Number(product.price) > Number(product.sale_price) ? <div style={ Number(product.sale_price) ? { transform: "scale(1)" } : { transform: "scale(0)" } } className={styles.price_change}>{Math.floor(100 - (Number(product.sale_price) / product.price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down fa-beat-fade"}`}></i></div> : <div className={styles.price_change_negative}>{Math.floor(100 - (product.price / product.sale_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
       </div>
     );
   };
+
+  const handleBuyNowClicked = (url) => {
+    const newTab = window.open(url, '_blank');
+    newTab.focus();
+  }
 
   return (
     <>
@@ -73,43 +84,43 @@ const ProductData = ({ product }) => {
         <h4 className={styles.headline}>Product Overview</h4>
             <div className={styles.product_img_container}>
               <Image
-                  imgSrc={`/assets/imgs/products/product.png`}
+                  imgSrc={`https://m.media-amazon.com/images/I/${product.images[0].image_url}.jpg`}
                   imgAlt={product.title}
               />
             </div>
           <div className={styles.header}>
-            <h4>{product.brand_name}</h4>
+            <h4>{product.brand}</h4>
           </div>
           <h3>{product.title}</h3>
             {product.rating ? (
               <div className={styles.rating_container}>
                 <div>
-                  <i className="fa-solid fa-star fa-sm"></i>
-                  <i className="fa-solid fa-star fa-sm"></i>
-                  <i className="fa-solid fa-star fa-sm"></i>
-                  <i className="fa-solid fa-star fa-sm"></i>
-                  <i className="fa-solid fa-star fa-sm"></i>
+                  <img src={vendors[product.vendor]} alt={product.vendor} />
                 </div>
-              <span>{product.rating}</span> 
-              <span></span>
-              <span>564 reviews</span>
-              </div>
+                <span></span>
+                <div>
+                    <i className="fa-solid fa-star fa-sm"></i>
+                </div>
+                <span>{Number(product.rating).toFixed(1)}</span> 
+                <span></span>
+                <span>{product.reviews} reviews</span>
+                </div>
             ) : (
               ""
           )}
           <div className={styles.prices}>
             <div>
-              {product.new_price ? renderNewPrice() : ""}
-              {product.old_price ? renderOldPrice() : ""}
+              {product.sale_price ? renderNewPrice(product.sale_price) : renderNewPrice(product.price)}
+              {product.sale_price ? renderOldPrice(product.price) : ""}
             </div>
-            {product.old_price ? renderPriceChange() : ""}
+            {product.sale_price ? renderPriceChange() : ""}
           </div>
           <div className={styles.buy_now}>
-              <button className={styles.buy_now_btn}>
+              <button className={styles.buy_now_btn} onClick={() => handleBuyNowClicked(product.url)}>
                 <span>
                   <i className="fa-solid fa-cart-plus"></i>
-              </span>
-              <span>Buy now</span>
+                </span>
+                <span>Buy now</span>
               </button>
               <button
               onClick={addToWishlist}
