@@ -8,6 +8,20 @@ import Product from "./Routes/Product/Product";
 import Category from "./Routes/Category/Category";
 import Results from "./Routes/Results/Results";
 import Activate from "./Components/Auth/Activate/Activate";
+import { useTranslation, initReactI18next } from "react-i18next";
+import i18n from "i18next";
+
+i18n.use(initReactI18next).init({
+  lng: "en", // Set the default language
+  resources: {
+    en: {
+      translation: require("./locales/en.json"),
+    },
+    ar: {
+      translation: require("./locales/ar.json"),
+    },
+  },
+});
 
 function App() {
   return (

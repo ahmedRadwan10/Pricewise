@@ -5,8 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../../../../APIs/categories";
 import Overlay from "../../../Collection/Overlay/Overlay";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Categories = ({ visible, setCategoriesVisible }) => {
+  const { t } = useTranslation();
+
   const categories = useSelector(
     ({ categoriesState }) => categoriesState.categories
   );
@@ -47,8 +50,8 @@ const Categories = ({ visible, setCategoriesVisible }) => {
       >
         <div className={styles.header}>
           <div>
-            <h3>Our Categories</h3>
-            <p>Explore the top online shopping categories.</p>
+            <h3>{t("our-categories")}</h3>
+            <p>{t("our-categories-p")}</p>
           </div>
           <span onClick={() => setCategoriesVisible(false)}>
             <i className="fa-solid fa-xmark"></i>
