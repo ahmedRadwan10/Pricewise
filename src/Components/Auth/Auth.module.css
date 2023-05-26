@@ -28,3 +28,10 @@
   display: none;
 }
 
+/***     Media Query    ****/
+@media (max-width: 768px) {
+  .auth_modal {
+    max-width: 30em;
+    max-height: 45em;
+  }
+}
