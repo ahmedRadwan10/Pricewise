@@ -10,7 +10,8 @@ import { useTranslation } from "react-i18next";
 const Home = () => {
   const { t } = useTranslation();
   const banners = useSelector(({ bannerState }) => bannerState.banners);
-  const hotDealsProducts = useSelector(({ productsState }) => productsState.hotDealsProducts);
+  const hotDealsProducts = useSelector(({ productsState }) => productsState.home.hotDealsProducts);
+  const popularProducts = useSelector(({ productsState }) => productsState.home.popularProducts);
   const wishlist = useSelector(({ productsState }) => productsState.wishlist);
   const dispatch = useDispatch();
 
@@ -18,12 +19,14 @@ const Home = () => {
       document.title = "Pricewise - Home";
       getBanners(dispatch);
       getHotDealsProducts(dispatch);
+      getPopularProducts(dispatch);
     }, [dispatch]);
 
   return (
     <div className={styles.main_container}>
       <Banner banners={banners} />
       <ProductsOverview title="Hot Deals 🔥" products={hotDealsProducts} maxProducts={5} />
+      <ProductsOverview title="Popular Products" products={popularProducts} maxProducts={5} />
     </div>
   );
 };
