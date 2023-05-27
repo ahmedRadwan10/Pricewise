@@ -5,6 +5,7 @@ import {
   fetchPopularProducts,
   fetchProduct,
   fetchProducts,
+  fetchSearchProducts,
   removeProduct,
   updateProductWishlist,
   updateProductWishlistState,
@@ -21,6 +22,22 @@ export async function getPopularProducts(dispatch) {
   const response = await fetch('http://127.0.0.1:8000/product/popular/');
   const data = await response.json();
   dispatch(fetchPopularProducts(data.results));
+}
+
+export async function getSearchProducts(dispatch, query) {
+  try {
+    const response = await fetch(`http://127.0.0.1:8000/search/products/${query}/`, {
+      method: "POST",
+    });
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(fetchSearchProducts(data));
+    } else {
+      throw new Error("Request not successful!");
+    }
+  } catch (err) {
+    throw new Error(err.message);
+  }
 }
 
 export async function getProduct(dispatch, slug) {

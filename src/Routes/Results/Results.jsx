@@ -3,11 +3,11 @@ import styles from './Results.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import ResultsProductCard from './SubComponents/ResultsPoductCard';
-import { getProducts } from '../../APIs/products';
+import { getProducts, getSearchProducts } from '../../APIs/products';
 import Filter from './SubComponents/Filter';
 
 const Results = () => {
-    const products = useSelector(({ productsState }) => productsState.products);
+    const searchData = useSelector(({ productsState }) => productsState.search);
     const [menuIsShown, setMenuIsShown] = useState(false);
     const [currentSort, setCurrentSort] = useState("Price - High to Low");
     const params = useParams();
@@ -23,15 +23,14 @@ const Results = () => {
     }
 
     const renderResultProducts = () => {
-        if (products) {
-            const productObjects = Object.values(products);
-            return productObjects.map(product => <ResultsProductCard  key={product.id} product={product} products={productObjects} />);
+        if (searchData) {
+            return searchData.results.products.map(product => <ResultsProductCard  key={product.id} product={product} products={searchData.results.products} />);
         }
     }
 
     useEffect(() => {
-        
-      }, [dispatch]);
+        getSearchProducts(dispatch, params.searchQuery);
+      }, [dispatch, params]);
 
     return (
         <div className={styles.main_container}>

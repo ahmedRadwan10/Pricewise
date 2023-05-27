@@ -15,17 +15,33 @@ const ResultsProductCard = ({ product, products }) => {
     const navigate = useNavigate();
 
   const handleProductOnClick = (product) => {
-      if (!favBtnActive) navigate(`/electronics/mobile-phones${product.title}/${product.id}`);
+    if (!favBtnActive) navigate(`/${product.category.toLowerCase()}/${product.slug}`);
   }
 
 
-  const renderProductOldPrice = (product) => {
+  const renderOldPrice = (price) => {
     return (
-        <div className={styles.old_price_container}>
-            <span>{product.old_price.toFixed(2)}</span>
+      <div className={styles.old_price_container}>
+        <div>
+          <span>{price}</span>
+          <span>EGP</span>
         </div>
+      </div>
     );
-  }
+  };
+    
+    const renderNewPrice = (price) => {
+        return (
+          <div className={styles.new_price_container}>
+            <div>
+              <span>
+                <strong>{price}</strong>
+              </span>
+              <span>EGP</span>
+            </div>
+          </div>
+        );
+      };
 
 const renderProductFooter = (product) => {
     return (
@@ -45,10 +61,10 @@ const renderProductFooter = (product) => {
     const alarmDesc = `${product.title} added to your wishlist successfully.`;
     dispatch(setAlarmDetails({ title: alarmTitle, description: alarmDesc }));
     dispatch(showAlarm());
-    }
+}
     
 
-  if (product["img-src"]) {
+  if (product) {
       return <div
             ref={productElement}
             className={ productContainerHidden ? styles.product_container_hidden : styles.product_container }
@@ -61,19 +77,18 @@ const renderProductFooter = (product) => {
                 <i className="fa-solid fa-circle-plus"></i>
             </button>
             <div className={styles.product_img_container}>
-                <Image imgSrc={`/assets/imgs/products/product.png`} imgAlt={product.title} />
+                <Image imgSrc={`https://m.media-amazon.com/images/I/${product.images[0].image_url}.jpg`} imgAlt={product.title} />
             </div>
             <p title={product.title}>{product.title}</p>
             <div className={styles.price_container}>
                 <div className={styles.new_price_container}>
-                    <span>{product.new_price.toFixed(2)}</span>
-                    <span>EGP</span>
+                {product.sale_price ? renderNewPrice(product.sale_price) : renderNewPrice(product.price)}
                 </div>
-                {product.old_price ? renderProductOldPrice(product) : ""}
+                {product.sale_price ? renderOldPrice(product.price) : ""}
             </div>
             <div className={styles.saving}>
-                { product.old_price > product.new_price ? <div className={styles.discount}>{product.old_price - product.new_price} <span>EGP</span></div> : <div className={styles.change}>{product.new_price - product.old_price} <span>EGP</span></div> }
-                { product.old_price > product.new_price ? <div className={styles.price_change}>{Math.floor(100 - (product.new_price / product.old_price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down ${productHovered ? "fa-beat-fade" : ""}`}></i></div> : <div className={styles.price_change_negative}>{Math.floor(100 - (product.old_price / product.new_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
+            { Number(product.price) > Number(product.sale_price) ? <div style={ Number(product.sale_price) ? { transform: "scale(1)" } : { transform: "scale(0)" } } className={styles.discount}>{Math.floor(product.price - product.sale_price)} <span>EGP</span></div> : <div className={styles.change}>{product.sale_price - product.price} <span>EGP</span></div> }
+          { Number(product.price) > Number(product.sale_price) ? <div style={ Number(product.sale_price) ? { transform: "scale(1)" } : { transform: "scale(0)" } } className={styles.price_change}>{Math.floor(100 - (Number(product.sale_price) / product.price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down fa-beat-fade"}`}></i></div> : <div className={styles.price_change_negative}>{Math.floor(100 - (product.price / product.sale_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
             </div>
             <div className={styles.product_footer}>
                 {/* { renderProductFooter(product) } */}
