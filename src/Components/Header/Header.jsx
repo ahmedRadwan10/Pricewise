@@ -63,7 +63,7 @@ const Header = () => {
         {t("categories")}
       </div>
       <Search categoriesElement={categoriesElement} navElement={navElement} />
-      <div>
+      <div className={styles.list}>
         <nav ref={navElement}>
           <span
             className={styles.ar}

@@ -1,72 +1,93 @@
-
 .main_container {
-    padding: 3em 10% 2em;
-    width: 100%;
-    border-top: 1px solid var(--color02);
-    background-color: var(--bg03);
-    color: var(--dark-gray);
+  padding: 3em 10% 2em;
+  width: 100%;
+  border-top: 1px solid var(--color02);
+  background-color: var(--bg03);
+  color: var(--dark-gray);
 }
 
 .main_container .categories {
-    width: 70%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+  width: 70%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .main_container .categories .cat_title,
 .main_container .contact h4,
 .main_container .about h4 {
-    margin-bottom: 1em;
-    font-weight: 500;
-    transition: 0.2s all ease;
-    cursor: pointer;
+  margin-bottom: 1em;
+  font-weight: 500;
+  transition: 0.2s all ease;
+  cursor: pointer;
 }
 
 .main_container .categories .cat_subCats div,
 .main_container .contact div,
 .main_container .about div {
-    margin-bottom: 0.5em;
-    font-weight: 400;
-    font-size: 0.9rem;
-    transition: 0.2s all ease;
-    cursor: pointer;
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  font-size: 0.9rem;
+  transition: 0.2s all ease;
+  cursor: pointer;
 }
 
 .main_container .contact div {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .main_container .contact div h5 {
-    margin-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .main_container .about {
-    width: 50%;
-    margin-top: 2em;
+  width: 50%;
+  margin-top: 2em;
 }
 
 .main_container .about div {
 }
 
 .main_container .copyright_container {
-    /* width: 70%; */
-    padding-top: 2em;
-    margin-top: 2em;
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    border-top: 1px solid var(--color02);
+  /* width: 70%; */
+  padding-top: 2em;
+  margin-top: 2em;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  border-top: 1px solid var(--color02);
 }
 
 .main_container .copyright_container .logo {
-    font-size: 1.5em;
-    font-family: var(--logo-font);
+  font-size: 1.5em;
+  font-family: var(--logo-font);
 }
 
-
 .main_container .copyright_container .copyright {
-    font-size: 0.9rem;
-    color: var(--light-gray);
+  font-size: 0.9rem;
+  color: var(--light-gray);
+}
+
+/***     Media Query    ****/
+@media (max-width: 768px) {
+  .main_container .categories {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.6rem;
+  }
+
+  .main_container .categories .cat_title,
+  .main_container .contact h4,
+  .main_container .about h4 {
+    font-size: 1.4rem;
+  }
+
+  .main_container .categories .cat_subCats div,
+  .main_container .contact div,
+  .main_container .about div {
+    font-size: 1rem;
+  }
 }
