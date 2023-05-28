@@ -28,6 +28,10 @@ const Results = () => {
         }
     }
 
+    const renderPagination = () => {
+
+    }
+
     useEffect(() => {
         window.scrollTo(0, 0);
         getSearchProducts(dispatch, params.searchQuery);
@@ -56,6 +60,13 @@ const Results = () => {
                 </div>
                 <div className={styles.result_products}>
                     { renderResultProducts() }
+                </div>
+                <div className={styles.pagination}>
+                    <button><i className="fa-solid fa-angle-left"></i></button>
+                    {/* { renderPagination() } */}
+                    <button className={styles.active_pagination}>1</button>
+                    <button>2</button>
+                    <button><i className="fa-solid fa-angle-right"></i></button>
                 </div>
             </div>
         </div>

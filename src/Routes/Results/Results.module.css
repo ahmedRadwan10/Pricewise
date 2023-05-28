@@ -10,7 +10,7 @@
 }
 
 .main_container .sidebar_filters {
-    padding-bottom: 2em;
+    padding: 2em 0;
     width: 22%;
     min-height: 70vh;
     border-radius: var(--radius-md);
@@ -39,6 +39,7 @@
 .price_filter button,
 .saving_filter button,
 .gn_filter button {
+    font-size: 1rem;
     font-weight: bold;
     color: var(--dark-gray);
     background-color: transparent;
@@ -80,7 +81,19 @@
 }
 
 .gn_filter button {
+    font-size: 1rem;
     text-transform: capitalize;
+}
+
+.gn_filter button div {
+    width: 12em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.gn_filter button div i:nth-of-type(1) {
+    font-size: 1rem;
 }
 
 .gn_filter form {
@@ -91,6 +104,7 @@
     font-size: 0.8rem;
     transform: translateX(2px);
     user-select: none;
+    transition: 0.3s all ease;
 }
 
 .gn_filter form .flex_box {
@@ -107,6 +121,13 @@
 }
 
 .gn_filter form label {
+    width: 8em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: var(--dark-gray);
     cursor: pointer;
 }
 
@@ -161,6 +182,8 @@
 
 .main_container .results {
     width: 75%;
+    display: flex;
+    flex-direction: column;
 }
 
 .main_container .results .header {
@@ -192,6 +215,8 @@
 .main_container .dropdown .current_sort {
     width: 16em;
     font-size: 0.8rem;
+    font-weight: bold;
+    opacity: 0.7;
     padding: 1em;
     background-color: var(--boxbg);
     color: var(--dark-gray);
@@ -215,6 +240,8 @@
 }
 
 .main_container .dropdown .menu div {
+    font-weight: bold;
+    opacity: 0.7;
     padding: 0.5em 1em;
     cursor: pointer;
 }
@@ -437,7 +464,31 @@
     font-weight: 700;
 }
 
-
 .result_products .product_container .product_footer .rating_container span {
     transform: translateY(-1.8px);
+}
+
+.pagination {
+    align-self: center;
+    margin-bottom: 4em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.pagination button {
+    width: 3em;
+    height: 3em;
+    border-radius: var(--radius-sm);
+    /* border: 1px solid var(--light-gray); */
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: var(--shadow01);
+    /* color: var(--dark-gray); */
+    cursor: pointer;
+}
+
+.active_pagination {
+    background-color: var(--dark-gray);
+    color: white;
 }
