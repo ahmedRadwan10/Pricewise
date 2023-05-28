@@ -30,7 +30,7 @@
 .main_container .sidebar_filters .category_filter,
 .price_filter,
 .saving_filter,
-.seller_filter {
+.gn_filter {
     padding: 0 1.8em;
     margin: 0.5em 0;
 }
@@ -38,7 +38,7 @@
 .main_container .sidebar_filters .category_filter button,
 .price_filter button,
 .saving_filter button,
-.seller_filter button {
+.gn_filter button {
     font-weight: bold;
     color: var(--dark-gray);
     background-color: transparent;
@@ -79,7 +79,11 @@
     transform: translateX(2px);
 }
 
-.seller_filter form {
+.gn_filter button {
+    text-transform: capitalize;
+}
+
+.gn_filter form {
     margin-top: 0.5em;
     padding: 1em 0 2em;
     padding-left: 2em;
@@ -89,19 +93,24 @@
     user-select: none;
 }
 
-.seller_filter form div {
-    /* width: 100%; */
-    margin-top: 1em;
+.gn_filter form .flex_box {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 1em;
 }
 
-.seller_filter form label {
+.gn_filter form .flex_box div {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.gn_filter form label {
     cursor: pointer;
 }
 
-.seller_filter form div input {
+.gn_filter form div input {
     width: fit-content;
     cursor: pointer;
 }
@@ -245,8 +254,20 @@
     margin-right: 0;
 }
 
-.result_products .product_container img {
-    width: 40%;
+.result_products .product_container .product_img_container {
+    width: 100%;
+    height: 55%;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product_img_container img {
+    width: 100%;
+    height: 90%;
+    object-fit: contain;
+    mix-blend-mode: darken;
 }
 
 .product_container button {
@@ -291,17 +312,20 @@
 .saving {
     display: flex;
     align-items: center;
-    gap: 2em;
+    gap: 0.1em;
     transform: translateY(calc(50% - 0.2em));
 }
 
 .saving .discount {
-    border-radius: var(--radius-sm);
-    padding: 0.5em 1em;
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
     background-color: var(--light-green);
+    padding: 0.5em 1em;
     color: var(--green);
     font-weight: bold;
     font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
 }
 
 .saving .discount span {
@@ -310,16 +334,16 @@
     /* color: var(--color01); */
 }
 
-.saving .discount span:nth-of-type(2) {
-}
-
 .saving .change {
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
     padding: 0.5em 1em;
     background-color: var(--light-red);
     color: var(--red);
     font-weight: bold;
     font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
 }
 
 .saving .change span {
@@ -329,8 +353,10 @@
 
 .price_change,
 .price_change_negative {
-    border-radius: var(--radius-sm);
+    padding: 0.5em;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     color: var(--green);
+    background-color: var(--light-green);
     font-weight: bold;
     font-size: 0.9rem;
     display: flex;
@@ -339,7 +365,9 @@
 }
 
 .price_change_negative {
+    padding: 0.5em;
     color: var(--red);
+    background-color: var(--light-red);
 }
 
 .price_change_negative span:first-of-type {
@@ -350,19 +378,6 @@
 .price_change span:first-of-type {
     font-size: 0.6rem;
     margin-right: 0.5em;
-}
-
-.result_products .product_container .product_img_container {
-    width: 100%;
-    height: 55%;
-    padding: 1em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.product_img_container img {
-    width: 80%;
 }
 
 .result_products .product_container p {

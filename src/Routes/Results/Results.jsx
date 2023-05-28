@@ -24,20 +24,21 @@ const Results = () => {
 
     const renderResultProducts = () => {
         if (searchData) {
-            return searchData.results.products.map(product => <ResultsProductCard  key={product.id} product={product} products={searchData.results.products} />);
+            return searchData.results["products"].map(product => <ResultsProductCard  key={product.id} product={product} products={searchData.results["products"]} />);
         }
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         getSearchProducts(dispatch, params.searchQuery);
       }, [dispatch, params]);
 
     return (
         <div className={styles.main_container}>
-            <Filter />
+            <Filter data={searchData.results} />
             <div className={styles.results}>
                 <div className={styles.header}>
-                    <p><span>345 results</span> {`${params.searchQuery}`}</p>
+                    <p><span>{searchData.count} results</span> {`${params.searchQuery}`}</p>
                     <div className={styles.btns}>
                         <div className={styles.dropdown}>
                             <div className={styles.current_sort} onClick={handleCurrentSortClick}>

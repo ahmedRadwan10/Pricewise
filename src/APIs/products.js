@@ -31,6 +31,7 @@ export async function getSearchProducts(dispatch, query) {
     });
     if (response.ok) {
       const data = await response.json();
+      console.log(data);
       dispatch(fetchSearchProducts(data));
     } else {
       throw new Error("Request not successful!");

@@ -53,7 +53,7 @@
 }
 
 .search input:focus {
-  width: 55em;
+  width: 100em;
   background-color: var(--white);
 }
 

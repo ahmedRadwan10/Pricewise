@@ -2,7 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   home: {},
-  search: {},
+  search: {
+    results: {
+      products: [],
+      filter: {}
+    },
+  },
   wishlist: [],
   selectedProduct: {},
 };
