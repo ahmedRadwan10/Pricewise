@@ -16,6 +16,26 @@ const ProductsOverview = ({ title, products, maxProducts }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [maxProductsResize, setMaxProductsResize] = useState(5);
+
+  const handleResize = () => {
+    if (window.innerWidth <= 768) {
+      setMaxProductsResize(2);
+    } else if (window.innerWidth <= 992) {
+      setMaxProductsResize(4);
+    } else {
+      setMaxProductsResize(maxProducts);
+    }
+  };
+
+  const addResizeListener = () => {
+    window.addEventListener("resize", handleResize);
+  };
+
+  const removeResizeListener = () => {
+    window.removeEventListener("resize", handleResize);
+  };
+
   const renderProducts = () => {
     if (products) {
       return products.map((product) => (
@@ -23,7 +43,7 @@ const ProductsOverview = ({ title, products, maxProducts }) => {
           key={product.id}
           product={product}
           products={products}
-          maxProducts={maxProducts}
+          maxProducts={maxProductsResize}
         />
       ));
     }
@@ -37,9 +57,10 @@ const ProductsOverview = ({ title, products, maxProducts }) => {
     productsContainer.current.scrollLeft += 500;
   };
 
-  // useEffect(() => {
-  //     console.log(products);
-  // })
+  useEffect(() => {
+    addResizeListener();
+    return removeResizeListener;
+  }, []);
 
   if (products)
     return (

@@ -23,33 +23,11 @@ const Home = () => {
   const wishlist = useSelector(({ productsState }) => productsState.wishlist);
   const dispatch = useDispatch();
 
-  const [maxProducts, setMaxProducts] = useState(5);
-
-  const handleResize = () => {
-    if (window.innerWidth <= 768) {
-      setMaxProducts(2);
-    } else if (window.innerWidth <= 992) {
-      setMaxProducts(4);
-    } else {
-      setMaxProducts(5);
-    }
-  };
-
-  const addResizeListener = () => {
-    window.addEventListener("resize", handleResize);
-  };
-
-  const removeResizeListener = () => {
-    window.removeEventListener("resize", handleResize);
-  };
-
   useEffect(() => {
     document.title = "Pricewise - Home";
     getBanners(dispatch);
     getHotDealsProducts(dispatch);
     getPopularProducts(dispatch);
-    addResizeListener();
-    return removeResizeListener;
   }, [dispatch]);
 
   return (
@@ -58,12 +36,12 @@ const Home = () => {
       <ProductsOverview
         title="Hot Deals 🔥"
         products={hotDealsProducts}
-        maxProducts={maxProducts}
+        maxProducts={5}
       />
       <ProductsOverview
         title="Popular Products"
         products={popularProducts}
-        maxProducts={maxProducts}
+        maxProducts={5}
       />
     </div>
   );
