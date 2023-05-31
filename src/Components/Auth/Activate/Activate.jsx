@@ -67,8 +67,8 @@ const Activate = ({ setAuthMethod, setVisible }) => {
     changeSubmitBtn();
     dispatch(addEmail());
     const url = window.location.href;
-    setUid(url.substring(44, 47));
-    setToken(url.substring(48, url.length - 1));
+    setUid(url.substring(44, 46));
+    setToken(url.substring(47, url.length - 1));
   }, [loading]);
 
   return (

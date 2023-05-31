@@ -11,24 +11,26 @@ import {
   updateProductWishlistState,
 } from "../redux/slices/productsSlice";
 
-
 export async function getHotDealsProducts(dispatch) {
-  const response = await fetch('http://127.0.0.1:8000/product/all/deals/');
+  const response = await fetch("http://127.0.0.1:8000/product/all/deals/");
   const data = await response.json();
   dispatch(fetchHotDealsProducts(data.results));
 }
 
 export async function getPopularProducts(dispatch) {
-  const response = await fetch('http://127.0.0.1:8000/product/popular/');
+  const response = await fetch("http://127.0.0.1:8000/product/popular/");
   const data = await response.json();
   dispatch(fetchPopularProducts(data.results));
 }
 
 export async function getSearchProducts(dispatch, query) {
   try {
-    const response = await fetch(`http://127.0.0.1:8000/search/products/${query}/`, {
-      method: "POST",
-    });
+    const response = await fetch(
+      `http://127.0.0.1:8000/search/products/${query}/`,
+      {
+        method: "POST",
+      }
+    );
     if (response.ok) {
       const data = await response.json();
       dispatch(fetchSearchProducts(data));
@@ -56,4 +58,28 @@ export async function sendProductToWishlist(dispatch, products, productID) {
   });
   // dispatch(removeProduct(productID));
   dispatch(addProductToWishlist(product));
+}
+
+export async function sendProductToDataBase(data, token) {
+  fetch("http://127.0.0.1:8000/favorites/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (response.ok) {
+        // Handle successful response
+        console.log("Product added to favorites");
+      } else {
+        // Handle error response
+        console.error("Failed to add product to favorites");
+      }
+    })
+    .catch((error) => {
+      // Handle network error
+      console.error("Error:", error);
+    });
 }
