@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 
 import Banner from "../../Components/Collection/Banner/Banner";
 import { getBanners } from "../../APIs/banners";
-import { getCategories, getSubCategories } from "../../APIs/categories";
+import { getSubCategories } from "../../APIs/categories";
 import styles from "./Category.module.css";
 import { getProducts } from "../../APIs/products";
 import ProductsOverview from "../../Components/Collection/ProductsOverview/ProductsOverview";

@@ -24,13 +24,14 @@ export async function getPopularProducts(dispatch) {
   dispatch(fetchPopularProducts(data.results));
 }
 
-export async function getSearchProducts(dispatch, query) {
+export async function getSearchProducts(dispatch, query, offset) {
   try {
-    const response = await fetch(`http://127.0.0.1:8000/search/products/${query}/`, {
+    const response = await fetch(`http://127.0.0.1:8000/search/products/${query}/?limit=50&offset=${offset}`, {
       method: "POST",
     });
     if (response.ok) {
       const data = await response.json();
+      console.log(data);
       dispatch(fetchSearchProducts(data));
     } else {
       throw new Error("Request not successful!");

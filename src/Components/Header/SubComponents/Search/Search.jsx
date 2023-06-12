@@ -15,15 +15,15 @@ const Search = ({ categoriesElement, navElement }) => {
   const searchBox = useRef();
 
   const handleInputFocus = () => {
-    setSearchOverviewVisible(true);
-    navElement.current.style.display = "none";
-    categoriesElement.current.style.display = "none";
+    // setSearchOverviewVisible(true);
+    // navElement.current.style.display = "none";
+    // categoriesElement.current.style.display = "none";
   };
 
   const handleInputBlur = () => {
-    setSearchOverviewVisible(false);
-    navElement.current.style.display = "flex";
-    categoriesElement.current.style.display = "flex";
+    // setSearchOverviewVisible(false);
+    // navElement.current.style.display = "flex";
+    // categoriesElement.current.style.display = "flex";
   };
 
   const handleFormSubmit = (e) => {
@@ -35,11 +35,11 @@ const Search = ({ categoriesElement, navElement }) => {
 
   return (
     <>
-      <Overlay
+      {/* <Overlay
         visible={searchOverviewVisible}
         setSearchOverviewVisible={setSearchOverviewVisible}
         moreStyles={stylesObj}
-      />
+      /> */}
       <div className={styles.search}>
         <form onSubmit={handleFormSubmit}>
           <input

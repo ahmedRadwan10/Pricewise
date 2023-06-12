@@ -20,6 +20,12 @@ export const productsSlice = createSlice({
       state.products = action.payload;
     },
     fetchSearchProducts: (state, action) => {
+      state.search =  {
+                        results: {
+                          products: [],
+                          filter: {}
+                        },
+                      };
       state.search = action.payload;
     },
     fetchHotDealsProducts: (state, action) => {

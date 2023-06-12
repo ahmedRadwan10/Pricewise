@@ -59,7 +59,7 @@ const Chart = ({ history }) => {
                 label: "Price in EGP",
                 data: [],
                 borderColor: '#dddddd',
-                backgroundColor: '#222831',
+                backgroundColor: '# ',
             }
         ],
     });

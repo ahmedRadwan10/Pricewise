@@ -484,11 +484,18 @@
     font-weight: bold;
     font-size: 1rem;
     box-shadow: var(--shadow01);
+    transition: 0.3s all ease;
     /* color: var(--dark-gray); */
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .active_pagination {
     background-color: var(--dark-gray);
     color: white;
+}
+
+.disable_pagination {
+    cursor: not-allowed;
+    opacity: 0.5;
+    color: var(--color03);
 }

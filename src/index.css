@@ -17,6 +17,7 @@
   --color01: #222831;
   --color02: #dddddd;
   --color03: #a3a7ac;
+  --color04: #80D0C7;
   /* ...main-colors... */
   --black: #000000;
   --white: #ffffff;
@@ -44,7 +45,7 @@
   --logo-font: "Righteous", cursive;
   --shadow01: rgba(0, 0, 0, 0.16) 0px 0px 2px;
   --shadow02: rgba(99, 99, 99, 0.2) 0px 2px 5px 0px;
-  --shadow03: rgba(0, 0, 0, 0.1) 1px 3px 8px;
+  --shadow03: #08AEEA 0px 2px 5px 0px;
 }
 
 html {
@@ -58,7 +59,7 @@ body {
 }
 
 input {
-  width: 40em;
+  /* width: 40em; */
   max-width: 100%;
   outline: none;
   border: none;
