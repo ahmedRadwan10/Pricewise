@@ -128,9 +128,9 @@
 }
 
 .prices {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .main_container .notifications .info .new_price {
@@ -151,43 +151,70 @@
 
 .price_change,
 .price_change_negative {
-    color: var(--green);
-    font-weight: bold;
-    font-size: 1rem;
+  color: var(--green);
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 .price_change_negative {
-    color: var(--red);
+  color: var(--red);
 }
 
 .price_change_negative span:first-of-type {
-    font-size: 0.8rem;
-    margin-right: 0.2em;
+  font-size: 0.8rem;
+  margin-right: 0.2em;
 }
 
 .price_change_negative span:nth-of-type(2) {
-    font-size: 0.6rem;
-    margin-right: 0.5em;
+  font-size: 0.6rem;
+  margin-right: 0.5em;
 }
 
-
 .price_change span:first-of-type {
-    font-size: 0.8rem;
-    margin-right: 0.2em;
+  font-size: 0.8rem;
+  margin-right: 0.2em;
 }
 
 .price_change span:nth-of-type(2) {
-    font-size: 0.6rem;
-    margin-right: 0.5em;
+  font-size: 0.6rem;
+  margin-right: 0.5em;
 }
 
 .main_container .notifications .notification button {
-    background-color: transparent;
-    color: var(--dark-gray);
-    align-self: center;
-    position: absolute;
-    right: 0;
-    transform: translateY(5px);
-    cursor: pointer;
+  background-color: transparent;
+  color: var(--dark-gray);
+  align-self: center;
+  position: absolute;
+  right: 0;
+  transform: translateY(5px);
+  cursor: pointer;
 }
 
+/***MediaQuery***/
+/*large Screen*/
+@media (max-width: 1280px) {
+  .main_container {
+    width: 28rem;
+    height: 28rem;
+    right: 32%;
+    top: 7rem;
+  }
+}
+/*medium Screen */
+@media (max-width: 992px) {
+  .main_container {
+    width: 30rem;
+    height: 30rem;
+    right: 32%;
+    top: 7rem;
+  }
+}
+/*small Screen*/
+@media (max-width: 768px) {
+  .main_container {
+    width: 27rem;
+    height: 27rem;
+    right: 9%;
+    top: 8.7rem;
+  }
+}
