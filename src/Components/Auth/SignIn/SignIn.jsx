@@ -6,6 +6,7 @@ import styles from "./SignIn.module.css";
 import { useTranslation } from "react-i18next";
 
 const SignIn = ({ setAuthMethod, setVisible }) => {
+  const lang = useSelector(({ langState }) => langState.lang);
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,28 +43,30 @@ const SignIn = ({ setAuthMethod, setVisible }) => {
   return (
     <div>
       <div className={styles.modal__header}>
-        <p>{t("sign-in-p")}</p>
-        <h1>{t("sign-in-h1")}</h1>
-        <h3>
+        <p lang={lang}>{t("sign-in-p")}</p>
+        <h1 lang={lang}>{t("sign-in-h1")}</h1>
+        <h3 lang={lang}>
           {t("sign-in-h3")}{" "}
-          <span onClick={() => setAuthMethod("sign-up")}>
+          <span lang={lang} onClick={() => setAuthMethod("sign-up")}>
             {t("sign-in-span")}
           </span>
         </h3>
       </div>
       <form className={styles.modal__form} onSubmit={handleSubmit}>
         <div className={styles.form_field}>
-          <label>{t("sign-in-email")}</label>
+          <label lang={lang}>{t("sign-in-email")}</label>
           <input
+            lang={lang}
             type="text"
-            placeholder="example@mail.com"
+            placeholder=""
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
         <div className={styles.form_field}>
-          <label>{t("sign-in-password")}</label>
+          <label lang={lang}>{t("sign-in-password")}</label>
           <input
+            lang={lang}
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -71,6 +74,7 @@ const SignIn = ({ setAuthMethod, setVisible }) => {
           <p className={styles.error_message}>{msgSignIn}</p>
         </div>
         <span
+          lang={lang}
           className={styles.forget}
           onClick={() => {
             resetPassword();
@@ -78,7 +82,7 @@ const SignIn = ({ setAuthMethod, setVisible }) => {
         >
           {t("sign-in-forget")}{" "}
         </span>
-        <button ref={refSignIn} className={styles.sign_in}>
+        <button lang={lang} ref={refSignIn} className={styles.sign_in}>
           {signIn}
         </button>
       </form>

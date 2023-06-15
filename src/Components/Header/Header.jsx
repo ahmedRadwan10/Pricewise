@@ -5,9 +5,10 @@ import Login from "../Auth/Auth";
 import { useNavigate } from "react-router";
 import NotificationMenu from "./SubComponents/NotificationMenu/NotificationMenu";
 import Wishlist_Profile from "./SubComponents/Wiishlist_Profile/Wishlist_Profile";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Search from "./SubComponents/Search/Search";
 import { useTranslation } from "react-i18next";
+import { changeReduxLanguage } from "../../redux/slices/langSlice";
 
 const Header = () => {
   const [categoriesVisible, setCategoriesVisible] = useState(false);
@@ -16,7 +17,9 @@ const Header = () => {
   const [wishlistProfileVisible, setWishlistProfiileVisible] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const succesSignin = useSelector(({ authState }) => authState.signInSuccess);
+  const lang = useSelector(({ langState }) => langState.lang);
   const categoriesElement = useRef();
   const navElement = useRef();
 
@@ -25,6 +28,7 @@ const Header = () => {
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
+    dispatch(changeReduxLanguage(`${lang === "en" ? "ar" : "en"}`))
   };
 
   const handleLanguageChange = (lng) => {
@@ -50,17 +54,18 @@ const Header = () => {
   };
 
   return (
-    <header className={styles.main_container}>
+    <header className={styles.main_container} lang={lang}>
       <div className={styles.logo} onClick={() => navigate("/")}>
         <img src="/assets/imgs/logo.svg" alt="" />
       </div>
       <div
+        lang={lang}
         ref={categoriesElement}
         className={styles.categories}
         onClick={handleCategoriesClick}
       >
         <i className="fa-solid fa-bars"></i>
-        {t("categories")}
+        <span>{t("categories")}</span>
       </div>
       <Search categoriesElement={categoriesElement} navElement={navElement} />
       <div className={styles.list}>

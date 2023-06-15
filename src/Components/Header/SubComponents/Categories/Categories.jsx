@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Categories = ({ visible, setCategoriesVisible }) => {
+  const lang = useSelector(({ langState }) => langState.lang);
   const { t } = useTranslation();
 
   const categories = useSelector(
@@ -23,7 +24,7 @@ const Categories = ({ visible, setCategoriesVisible }) => {
     if (categories)
       return categories.map((cat) => (
         <div key={cat.title}>
-          <h4 className={styles.cat_title}>
+          <h4 className={styles.cat_title}> 
             <Link
               to={`/${cat.title.toLowerCase()}`}
               onClick={() => setCategoriesVisible(false)}
@@ -50,8 +51,8 @@ const Categories = ({ visible, setCategoriesVisible }) => {
       >
         <div className={styles.header}>
           <div>
-            <h3>{t("our-categories")}</h3>
-            <p>{t("our-categories-p")}</p>
+            <h3 lang={lang}>{t("our-categories")}</h3>
+            <p lang={lang}>{t("our-categories-p")}</p>
           </div>
           <span onClick={() => setCategoriesVisible(false)}>
             <i className="fa-solid fa-xmark"></i>

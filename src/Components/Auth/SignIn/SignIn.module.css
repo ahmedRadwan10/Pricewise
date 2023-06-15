@@ -3,6 +3,10 @@
   line-height: 1.5;
 }
 
+.modal__header *:lang(ar) {
+  font-family: var(--ar-font);
+}
+
 .modal__header p {
   color: inherit;
   font-size: 1.2rem;
@@ -45,6 +49,8 @@
 
 .modal__form .form_field input {
   font-size: 1rem;
+  width: 100%;
+  padding: 1em;
 }
 
 .modal__form .forget {
@@ -59,7 +65,7 @@
 
 .modal__form .sign_in {
   width: 100%;
-  padding: 1em 0;
+  padding: 0.5em 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,6 +77,11 @@
   border: none;
   cursor: pointer;
 }
+
+.modal__form .sign_in:lang(ar) {
+  font-family: var(--ar-font);
+}
+
 .error_message {
   font-size: 0.8rem;
   font-weight: 300;

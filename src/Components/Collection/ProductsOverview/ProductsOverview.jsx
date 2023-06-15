@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Image from "../Image";
 import styles from "./ProductsOverview.module.css";
@@ -11,6 +11,7 @@ import ProductCard from "./SubComponents/ProductCard";
 import { useTranslation } from "react-i18next";
 
 const ProductsOverview = ({ title, products, maxProducts }) => {
+  const lang = useSelector(({ langState }) => langState.lang);
   const { t } = useTranslation();
   const productsContainer = useRef();
   const navigate = useNavigate();
@@ -73,7 +74,7 @@ const ProductsOverview = ({ title, products, maxProducts }) => {
         </button>
         <div className={styles.header}>
           <h2>{title}</h2>
-          <button>{t("shop-now")}</button>
+          <button lang={lang}>{t("shop-now")}</button>
         </div>
         <div ref={productsContainer} className={styles.products_container}>
           {renderProducts()}

@@ -60,6 +60,11 @@
   font-size: 0.8rem;
   cursor: pointer;
 }
+
+.main_container .header button:lang(ar) {
+  font-family: var(--ar-font);
+}
+
 .main_container .products_container {
   height: 20em;
   display: flex;
