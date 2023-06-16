@@ -8,6 +8,8 @@ import {
 } from "../../../APIs/products";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "../../../Components/Collection/Image";
+import Alarm from "../../../Components/Collection/Alarm/Alarm";
+import { setAlarmDetails, showAlarm } from "../../../redux/slices/alarmSlice";
 
 const vendors = {
   Amazon: "/assets/imgs/amazon.png",
@@ -21,7 +23,9 @@ const ProductData = ({ product }) => {
   const wishlist = useSelector(({ productsState }) => productsState.wishlist);
   const token = useSelector(({ authState }) => authState.user.access);
   const user = useSelector(({ authState }) => authState.user);
+  const [wishlistOpen, setWishlistOpen] = useState(false);
   const [added, setAdded] = useState(false);
+  const [desiredPrice, setDesiredPrice] = useState();
 
   const renderOldPrice = (price) => {
     return (
@@ -51,14 +55,10 @@ const ProductData = ({ product }) => {
     /*sendProductToWishlist(dispatch, products, product.id);*/
     //post request to add product in wishlist in database
     //------------------------------------------------///
+
     if (user) {
-      sendProductToDataBase(
-        {
-          product_id: product.id,
-          desired_price: 9.99, //ui design
-        },
-        token
-      );
+      //show popup to enter desired_price
+      setWishlistOpen(!wishlistOpen);
     } else {
       console.log("please Sign In"); //ui design
     }
@@ -128,16 +128,45 @@ const ProductData = ({ product }) => {
     newTab.focus();
   };
 
+  const handleWishlistSubmit = () => {
+    // Get the desired price from the input field
+    console.log(desiredPrice);
+
+    //sendProductToDataBase with product_id and desired_price
+    sendProductToDataBase(
+      {
+        product_id: product.id,
+        desired_price: desiredPrice,
+      },
+      token
+    );
+
+    //change addToWishlist button
+    dispatch(
+      setAlarmDetails({
+        title: product.title,
+        description: product.description,
+      })
+    );
+    dispatch(showAlarm());
+    // Close the wishlist form/modal
+    setWishlistOpen(false);
+  };
+
   return (
     <>
       <div className={styles.all_data_container}>
         <div className={styles.box}>
           <h4 className={styles.headline}>Product Overview</h4>
           <div className={styles.product_img_container}>
-            <Image
-              imgSrc={`https://m.media-amazon.com/images/I/${product.images[0].image_url}.jpg`}
-              imgAlt={product.title}
-            />
+            {product.images && product.images.length > 0 ? (
+              <Image
+                imgSrc={`https://m.media-amazon.com/images/I/${product.images[0].image_url}.jpg`}
+                imgAlt={product.title}
+              />
+            ) : (
+              <div>No image</div>
+            )}
           </div>
           <div className={styles.header}>
             <h4>{product.brand}</h4>
@@ -186,8 +215,19 @@ const ProductData = ({ product }) => {
               <span>
                 <i className="fa-regular fa-bell"></i>
               </span>
+
               <span>Add to wishlist</span>
             </button>
+            {wishlistOpen && (
+              <div className={styles.wishlist_form}>
+                <input
+                  type="number"
+                  placeholder="Enter Desired Price"
+                  onChange={(e) => setDesiredPrice(e.target.value)}
+                />
+                <button onClick={handleWishlistSubmit}>Submit</button>
+              </div>
+            )}
           </div>
         </div>
       </div>
