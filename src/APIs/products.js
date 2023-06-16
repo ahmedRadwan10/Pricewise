@@ -41,6 +41,27 @@ export async function getSearchProducts(dispatch, query, offset) {
   }
 }
 
+export async function getFilteredSearchProducts(dispatch, query, filters) {
+  try {
+    const response = await fetch(`http://127.0.0.1:8000/search/products/${query}/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(filters)
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+      // dispatch(fetchSearchProducts(data));
+    } else {
+      throw new Error("Request not successful!");
+    }
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+
 export function sortSearchProducts(dispatch, products, sortMethod, isAsend) {
   let noSwaps;
   for (let i = products.length; i > 0; i--) {

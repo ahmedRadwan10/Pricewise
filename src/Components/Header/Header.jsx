@@ -55,8 +55,8 @@ const Header = () => {
 
   return (
     <header className={styles.main_container} lang={lang}>
-      <div className={styles.logo} onClick={() => navigate("/")}>
-        <img src="/assets/imgs/logo.svg" alt="" />
+      <div lang={lang} className={styles.logo} onClick={() => navigate("/")}>
+        <img lang={lang} src={`/assets/imgs/logo_${lang === "en" ? "en" : "ar"}.svg`} alt="" />
       </div>
       <div
         lang={lang}

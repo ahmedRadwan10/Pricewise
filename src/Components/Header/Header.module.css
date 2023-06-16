@@ -19,13 +19,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1em;
   cursor: pointer;
   transform: translateY(-2px);
 }
 
+.logo:lang(ar) {
+  transform: translateY(0px);
+}
+
 .logo img {
   width: 10em;
+}
+
+.logo img:lang(ar) {
+  width: 8em;
 }
 
 .logo p {

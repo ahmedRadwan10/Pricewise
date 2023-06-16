@@ -3,11 +3,12 @@ import styles from './Results.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import ResultsProductCard from './SubComponents/ResultsPoductCard';
-import { getProducts, getSearchProducts, sortSearchProducts } from '../../APIs/products';
+import { getFilteredSearchProducts, getProducts, getSearchProducts, sortSearchProducts } from '../../APIs/products';
 import Filter from './SubComponents/Filter';
 
 const Results = () => {
     const searchData = useSelector(({ productsState }) => productsState.search);
+    const filters = useSelector(({ filterState }) => filterState.filters);
     const [menuIsShown, setMenuIsShown] = useState(false);
     const [numOfProducts, setNumOfProducts] = useState(0);
     const [currentSort, setCurrentSort] = useState("Arranged by");
@@ -82,6 +83,10 @@ const Results = () => {
             setOffset(prev => prev + 50);
         }
     }
+
+    useEffect(() => {
+        getFilteredSearchProducts(dispatch, params.searchQuery, filters)
+    }, [filters])
 
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });

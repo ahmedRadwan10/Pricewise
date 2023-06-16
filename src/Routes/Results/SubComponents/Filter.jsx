@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../Results.module.css';
+import { useDispatch } from 'react-redux';
+import { addFilter } from '../../../redux/slices/filterSlice';
 
 const Filter = ({ data }) => {
     const [savingRange, setRange] = useState(0);
+    const dispatch = useDispatch();
 
     const handleRangeInputChange = (e) => {
         setRange(Number(e.target.value));
@@ -31,18 +34,29 @@ const Filter = ({ data }) => {
                       </div>
                   </button>
                 <form id={`dynamic-filter-${i}`}>
-                  {renderFilterData(filter[1])}
+                  {renderFilterData(filter[1], filter[0])}
                 </form>
               </div>
           ));
         }
-      };
+    };
     
-    const renderFilterData = (filter) => {
+    const handleCheckboxChange = (e) => {
+        let checkbox = e.target;
+        let filter_slug = e.target.getAttribute("data-slug");
+        let filter_value = e.target.id;
+        if (checkbox.checked) {
+            dispatch(addFilter({ filter_slug: filter_slug, filter_value: filter_value }));
+        } else {
+
+        }
+    }
+    
+    const renderFilterData = (filter, filter_slug) => {
         return filter.map((entry, i) =>
                 <div key={i} className={styles.flex_box}>
                     <div>
-                        <input type="checkbox" name={entry[0]} id={entry[0]} />
+                        <input onChange={handleCheckboxChange} type="checkbox" name={entry[0]} id={entry[0]} data-slug={filter_slug} />
                         <label htmlFor={entry[0]}>{entry[0]}</label>
                     </div>
                     <p>{`(${entry[1]})`}</p>
@@ -59,20 +73,6 @@ const Filter = ({ data }) => {
 
     if (data.prices) return (
         <div className={styles.sidebar_filters}>
-            <div className={styles.category_filter}>
-                <button><i className="fa-solid fa-circle"></i> Electronics</button>
-                <div className={styles.sub_categories}>
-                    <div>Mobile Phones</div>
-                    <div>Tablets</div>
-                </div>
-            </div>
-            <div className={styles.category_filter}>
-                <button><i className="fa-solid fa-circle"></i> Computer Components</button>
-                <div className={styles.sub_categories}>
-                    <div>Laptops</div>
-                    <div>TVs</div>
-                </div>
-            </div>
             <div className={styles.price_filter}>
                 <button><i className="fa-solid fa-circle"></i> Price</button>
                 <form>
