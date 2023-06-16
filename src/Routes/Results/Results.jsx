@@ -10,7 +10,7 @@ const Results = () => {
     const searchData = useSelector(({ productsState }) => productsState.search);
     const [menuIsShown, setMenuIsShown] = useState(false);
     const [numOfProducts, setNumOfProducts] = useState(0);
-    const [currentSort, setCurrentSort] = useState("Price - High to Low");
+    const [currentSort, setCurrentSort] = useState("Arranged by");
     const [currentPage, setCurrentPage] = useState(1);
     const [offset, setOffset] = useState(0);
     const [isLastPage, setIsLastPage] = useState(false);

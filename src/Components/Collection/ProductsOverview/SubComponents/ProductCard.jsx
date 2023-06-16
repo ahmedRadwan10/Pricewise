@@ -2,14 +2,21 @@ import React, { useRef, useState } from "react";
 import styles from "../ProductsOverview.module.css";
 import Image from "../../Image";
 import { sendProductToWishlist } from "../../../../APIs/products";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setAlarmDetails,
   showAlarm,
 } from "../../../../redux/slices/alarmSlice";
 import { useNavigate } from "react-router";
 
+const vendors = {
+  Amazon: "/assets/imgs/amazon.png",
+  Noon: "",
+  Jumia: "",
+};
+
 const ProductCard = ({ product, products, maxProducts }) => {
+  const lang = useSelector(({ langState }) => langState.lang);
   const [favBtnActive, setFavBtnActive] = useState(false);
   const [productHovered, setProductHovered] = useState(false);
   const [productContainerHidden, setContainerHidden] = useState(false);
@@ -52,8 +59,13 @@ const ProductCard = ({ product, products, maxProducts }) => {
       <>
         {product.rating ? (
           <div className={styles.rating_container}>
-            <i className="fa-solid fa-star fa-sm"></i>
-            <span>{product.rating}</span>
+            <div className={styles.rating}>
+              <i className="fa-solid fa-star fa-sm"></i>
+              <span>{Number(product.rating).toFixed(1)}</span>
+            </div>
+            <div className={styles.reviews}>
+              <span>({ product.reviews })</span>
+            </div>
           </div>
         ) : (
           <div className={styles.rating_container}>
@@ -64,6 +76,15 @@ const ProductCard = ({ product, products, maxProducts }) => {
       </>
     );
   };
+
+  const truncateTitle = (title) => {
+    const LENGTH = 30;
+    if (title.length <= LENGTH) {
+      return title;
+    } else {
+      return title.slice(0, LENGTH);
+    }
+  }
 
   const handleFavBtnClick = (productID) => {
     setContainerHidden(true);
@@ -101,6 +122,9 @@ const ProductCard = ({ product, products, maxProducts }) => {
           <i className="fa-regular fa-bell"></i>
           <i className="fa-solid fa-circle-plus"></i>
         </button>
+        <div className={styles.vendor}>
+          <img src={vendors[`${product.vendor}`]} alt={product.vendor} />
+        </div>
         <div className={styles.product_img_container}>
           {product.images && product.images.length > 0 ? (
             <Image
@@ -111,7 +135,7 @@ const ProductCard = ({ product, products, maxProducts }) => {
             <div>No image</div>
           )}
         </div>
-        <p title={product.title}>{product.title}</p>
+        <p title={product.title}>{ product.title }</p>
         <div className={styles.price_container}>
           <div className={styles.new_price_container}>
             <span>
@@ -123,7 +147,7 @@ const ProductCard = ({ product, products, maxProducts }) => {
             ? renderProductOldPrice(product.price)
             : renderProductOldPrice("0")}
         </div>
-        <div className={styles.saving}>
+        <div lang={lang} className={styles.saving}>
           {Number(product.price) > Number(product.sale_price) ? (
             <div
               style={
@@ -165,6 +189,9 @@ const ProductCard = ({ product, products, maxProducts }) => {
               <span>%</span> <i className="fa-solid fa-arrow-trend-up"></i>
             </div>
           )}
+        </div>
+        <div lang={lang} className={styles.product_footer}>
+          { renderProductFooter(product) }
         </div>
       </div>
     );
