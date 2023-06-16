@@ -28,6 +28,9 @@ export const productsSlice = createSlice({
                       };
       state.search = action.payload;
     },
+    sortReduxSearchProducts: (state, action) => {
+      state.search.results.products = action.payload;
+    },
     fetchHotDealsProducts: (state, action) => {
       state.home.hotDealsProducts = action.payload;
     },
@@ -50,7 +53,8 @@ export const {
   addProductToWishlist,
   fetchHotDealsProducts,
   fetchPopularProducts,
-  fetchSearchProducts
+  fetchSearchProducts,
+  sortReduxSearchProducts
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

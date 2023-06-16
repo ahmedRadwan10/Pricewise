@@ -10,6 +10,7 @@
 }
 
 .main_container .sidebar_filters {
+    margin-bottom: 4em;
     padding: 2em 0;
     width: 22%;
     min-height: 70vh;
@@ -486,7 +487,7 @@
     box-shadow: var(--shadow01);
     transition: 0.3s all ease;
     /* color: var(--dark-gray); */
-    /* cursor: pointer; */
+    cursor: pointer;
 }
 
 .active_pagination {
@@ -494,7 +495,7 @@
     color: white;
 }
 
-.disable_pagination {
+.pagination button.disable_pagination {
     cursor: not-allowed;
     opacity: 0.5;
     color: var(--color03);
