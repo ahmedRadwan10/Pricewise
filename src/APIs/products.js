@@ -6,12 +6,12 @@ import {
   fetchProduct,
   fetchProducts,
   fetchSearchProducts,
+  getWishlistDataSuccessfully,
   removeProduct,
   sortReduxSearchProducts,
   updateProductWishlist,
   updateProductWishlistState,
 } from "../redux/slices/productsSlice";
-
 
 export async function getHotDealsProducts(dispatch) {
   const response = await fetch("http://127.0.0.1:8000/product/all/deals/");
@@ -27,9 +27,12 @@ export async function getPopularProducts(dispatch) {
 
 export async function getSearchProducts(dispatch, query, offset) {
   try {
-    const response = await fetch(`http://127.0.0.1:8000/search/products/${query}/?limit=50&offset=${offset}`, {
-      method: "POST",
-    });
+    const response = await fetch(
+      `http://127.0.0.1:8000/search/products/${query}/?limit=50&offset=${offset}`,
+      {
+        method: "POST",
+      }
+    );
     if (response.ok) {
       const data = await response.json();
       dispatch(fetchSearchProducts(data));
@@ -50,13 +53,18 @@ export function sortSearchProducts(dispatch, products, sortMethod, isAsend) {
       let comparedProduct;
       let condition;
       if (sortMethod === "saving") {
-        currentProduct = Number(products[j].price) - Number(products[j].sale_price);
-        comparedProduct = Number(products[j + 1].price) - Number(products[j + 1].sale_price);
+        currentProduct =
+          Number(products[j].price) - Number(products[j].sale_price);
+        comparedProduct =
+          Number(products[j + 1].price) - Number(products[j + 1].sale_price);
         condition = currentProduct > comparedProduct;
-      }
-      else {
-        currentProduct = Number(products[j].sale_price) ? Number(products[j].sale_price) : Number(products[j].price);
-        comparedProduct = Number(products[j + 1].sale_price) ? Number(products[j + 1].sale_price) : Number(products[j + 1].price);
+      } else {
+        currentProduct = Number(products[j].sale_price)
+          ? Number(products[j].sale_price)
+          : Number(products[j].price);
+        comparedProduct = Number(products[j + 1].sale_price)
+          ? Number(products[j + 1].sale_price)
+          : Number(products[j + 1].price);
         condition = currentProduct > comparedProduct;
       }
       if (condition) {
@@ -91,25 +99,48 @@ export async function sendProductToWishlist(dispatch, products, productID) {
 }
 
 export async function sendProductToDataBase(data, token) {
-  fetch("http://127.0.0.1:8000/favorites/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => {
-      if (response.ok) {
-        // Handle successful response
-        console.log("Product added to favorites");
-      } else {
-        // Handle error response
-        console.error("Failed to add product to favorites");
-      }
-    })
-    .catch((error) => {
-      // Handle network error
-      console.error("Error:", error);
+  try {
+    const response = await fetch("http://127.0.0.1:8000/favorites/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
     });
+
+    if (response.ok) {
+      // Handle successful response
+      console.log("Product added to favorites");
+    } else {
+      // Handle error response
+      console.error("Failed to add product to favorites");
+    }
+  } catch (error) {
+    // Handle network error
+    console.error("Error:", error);
+  }
+}
+
+export async function getWishListData(dispatch, token) {
+  try {
+    const response = await fetch(
+      "http://127.0.0.1:8000/favorites/?limit=50&offset=0",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(addProductToWishlist(data.results));
+      dispatch(getWishlistDataSuccessfully());
+    }
+  } catch (error) {
+    // Handle network error
+    console.error("Error:", error);
+  }
 }
