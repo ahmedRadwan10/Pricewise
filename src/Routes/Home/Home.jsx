@@ -7,6 +7,7 @@ import {
   getHotDealsProducts,
   getPopularProducts,
   getProducts,
+  getWishListData,
 } from "../../APIs/products";
 import ProductsOverview from "../../Components/Collection/ProductsOverview/ProductsOverview";
 import { useTranslation } from "react-i18next";
@@ -21,6 +22,7 @@ const Home = () => {
     ({ productsState }) => productsState.home.popularProducts
   );
   const wishlist = useSelector(({ productsState }) => productsState.wishlist);
+  const token = useSelector(({ authState }) => authState.user.access);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,7 +30,10 @@ const Home = () => {
     getBanners(dispatch);
     getHotDealsProducts(dispatch);
     getPopularProducts(dispatch);
-  }, [dispatch]);
+    if (token) {
+      getWishListData(dispatch, token);
+    }
+  }, [dispatch, token]);
 
   return (
     <div className={styles.main_container}>

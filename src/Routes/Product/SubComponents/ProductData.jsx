@@ -3,6 +3,7 @@ import styles from "../Product.module.css";
 import { useState } from "react";
 import Chart from "./Chart";
 import {
+  getWishListData,
   sendProductToDataBase,
   sendProductToWishlist,
 } from "../../../APIs/products";
@@ -21,12 +22,16 @@ const ProductData = ({ product }) => {
   const dispatch = useDispatch();
   const products = useSelector(({ productsState }) => productsState.products);
   const wishlist = useSelector(({ productsState }) => productsState.wishlist);
+  const success = useSelector(
+    ({ productsState }) => productsState.getWishlistDataSuccess
+  );
   const token = useSelector(({ authState }) => authState.user.access);
   const user = useSelector(({ authState }) => authState.user);
+  const refAddToWishlistBtn = useRef();
   const [wishlistOpen, setWishlistOpen] = useState(false);
   const [added, setAdded] = useState(false);
   const [desiredPrice, setDesiredPrice] = useState();
-
+  const [wishlistBtn, setWishlistBtn] = useState("Add to wishlist");
   const renderOldPrice = (price) => {
     return (
       <div className={styles.old_price}>
@@ -57,27 +62,24 @@ const ProductData = ({ product }) => {
     //------------------------------------------------///
 
     if (user) {
-      //show popup to enter desired_price
+      //show inputForm to enter desired_price
       setWishlistOpen(!wishlistOpen);
     } else {
       console.log("please Sign In"); //ui design
     }
   };
 
-  const productAddedToishlist = () => {
-    if (product.id) {
-      wishlist.forEach((p) => {
-        if (p.id === product.id) {
-          setAdded(true);
-          return;
-        }
-      });
-    }
+  const changeAddToWishlistBtn = () => {
+    setWishlistBtn("In Your Wishlist");
+    setAdded(true);
+    refAddToWishlistBtn.current.style.cursor = "default";
   };
-  useEffect(() => {
+
+  const defaultAddToWishlistBtn = () => {
+    setWishlistBtn("Add to wishlist");
     setAdded(false);
-    productAddedToishlist();
-  }, [product, wishlist]);
+    refAddToWishlistBtn.current.style.cursor = "pointer";
+  };
 
   const renderPriceChange = () => {
     return (
@@ -129,9 +131,6 @@ const ProductData = ({ product }) => {
   };
 
   const handleWishlistSubmit = () => {
-    // Get the desired price from the input field
-    console.log(desiredPrice);
-
     //sendProductToDataBase with product_id and desired_price
     sendProductToDataBase(
       {
@@ -141,7 +140,7 @@ const ProductData = ({ product }) => {
       token
     );
 
-    //change addToWishlist button
+    //show alarm
     dispatch(
       setAlarmDetails({
         title: product.title,
@@ -149,10 +148,23 @@ const ProductData = ({ product }) => {
       })
     );
     dispatch(showAlarm());
+
+    //change addToWishlist button
+    changeAddToWishlistBtn();
+
     // Close the wishlist form/modal
     setWishlistOpen(false);
   };
-
+  useEffect(() => {
+    const isProductInWishlist = wishlist.some(
+      (el) => el.product.id === product.id
+    );
+    if (isProductInWishlist) {
+      changeAddToWishlistBtn();
+    } else {
+      defaultAddToWishlistBtn();
+    }
+  }, [product]);
   return (
     <>
       <div className={styles.all_data_container}>
@@ -211,12 +223,17 @@ const ProductData = ({ product }) => {
               onClick={addToWishlist}
               disabled={added ? true : false}
               className={styles.add_to_wishlist}
+              ref={refAddToWishlistBtn}
             >
               <span>
-                <i className="fa-regular fa-bell"></i>
+                {added ? (
+                  <i className="fa-solid fa-star"></i>
+                ) : (
+                  <i className="fa-regular fa-bell"></i>
+                )}
               </span>
 
-              <span>Add to wishlist</span>
+              <span>{wishlistBtn}</span>
             </button>
             {wishlistOpen && (
               <div className={styles.wishlist_form}>
