@@ -5,10 +5,11 @@ const initialState = {
   search: {
     results: {
       products: [],
-      filter: {}
+      filter: {},
     },
   },
   wishlist: [],
+  getWishlistDataSuccess: false,
   selectedProduct: {},
 };
 
@@ -20,12 +21,12 @@ export const productsSlice = createSlice({
       state.products = action.payload;
     },
     fetchSearchProducts: (state, action) => {
-      state.search =  {
-                        results: {
-                          products: [],
-                          filter: {}
-                        },
-                      };
+      state.search = {
+        results: {
+          products: [],
+          filter: {},
+        },
+      };
       state.search = action.payload;
     },
     fetchFilteredSearchProducts: (state, action) => {
@@ -45,7 +46,10 @@ export const productsSlice = createSlice({
       state.selectedProduct = action.payload;
     },
     addProductToWishlist: (state, action) => {
-      state.wishlist.push(action.payload);
+      state.wishlist = action.payload;
+    },
+    getWishlistDataSuccessfully: (state) => {
+      state.getWishlistDataSuccess = true;
     },
   },
 });
@@ -59,7 +63,8 @@ export const {
   fetchPopularProducts,
   fetchSearchProducts,
   sortReduxSearchProducts,
-  fetchFilteredSearchProducts
+  fetchFilteredSearchProducts,
+  getWishlistDataSuccessfully,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
