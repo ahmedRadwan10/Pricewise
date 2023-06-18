@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import {
   addProductToWishlist,
+  fetchFilteredSearchProducts,
   fetchHotDealsProducts,
   fetchPopularProducts,
   fetchProduct,
@@ -41,19 +42,18 @@ export async function getSearchProducts(dispatch, query, offset) {
   }
 }
 
-export async function getFilteredSearchProducts(dispatch, query, filters) {
+export async function getFilteredSearchProducts(dispatch, query, filters, price) {
   try {
-    const response = await fetch(`http://127.0.0.1:8000/search/products/${query}/`, {
+    const response = await fetch(`http://127.0.0.1:8000/search/products/${query}/?filters=${filters}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(filters)
+      body: JSON.stringify({ filters, price })
     });
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
-      // dispatch(fetchSearchProducts(data));
+      dispatch(fetchFilteredSearchProducts(data));
     } else {
       throw new Error("Request not successful!");
     }

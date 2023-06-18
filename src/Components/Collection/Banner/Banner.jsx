@@ -98,14 +98,14 @@ const Banner = ({ banners }) => {
 
     return (
         <div className={styles.main_container}>
-            <div ref={bannerElement} className={styles.banners}>
+            <div style={ { direction: "ltr" } } ref={bannerElement} className={styles.banners}>
                 { renderBanners() }
             </div>
             <div className={styles.btns}>
                 <button className={styles.right_btn} onClick={scrollImgsToRight}><i className="fa-solid fa-chevron-right"></i></button>
                 <button className={styles.left_btn} onClick={scrollImgsToLeft}><i className="fa-solid fa-chevron-left"></i></button>
             </div>
-            <div ref={paginationElement} className={styles.pagination}>
+            <div style={ { direction: "ltr" } } ref={paginationElement} className={styles.pagination}>
                     { renderPagination() }
                 </div>
         </div>

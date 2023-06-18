@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../../APIs/categories';
 
 const Footer = () => {
+    const lang = useSelector(({ langState }) => langState.lang);
     const categories = useSelector(({ categoriesState }) => categoriesState.categories);
     const [currentYear, setCurrentYear] = useState("");
     const dispatch = useDispatch(); 
@@ -53,23 +54,9 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            {/* <div className={styles.about}>
-                <h4>About</h4>
-                <div>
-                    Pricewise is a platform which
-                    aims to provide a full prices
-                    tracking, 
-                    Pricewise is a platform which
-                    aims to provide a full prices
-                    tracking, 
-                    Pricewise is a platform which
-                    aims to provide a full prices
-                    tracking, 
-                </div>
-            </div> */}
             <div className={styles.copyright_container}>
                 <div className={styles.logo}>
-                    <p>Pricewise</p>
+                    <img src={`/assets/imgs/logo_${lang}.svg`} alt="" />
                 </div>
                 <div className={styles.copyright}>
                     <p>All rights reserved <i className="fa-regular fa-copyright"></i> Pricewise {currentYear }</p>

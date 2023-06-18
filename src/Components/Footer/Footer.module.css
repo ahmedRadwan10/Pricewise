@@ -64,6 +64,10 @@
   font-family: var(--logo-font);
 }
 
+.main_container .copyright_container .logo img {
+  width: 5em;
+}
+
 .main_container .copyright_container .copyright {
   font-size: 0.9rem;
   color: var(--light-gray);

@@ -9,6 +9,8 @@ import Filter from './SubComponents/Filter';
 const Results = () => {
     const searchData = useSelector(({ productsState }) => productsState.search);
     const filters = useSelector(({ filterState }) => filterState.filters);
+    const prices = useSelector(({ filterState }) => filterState.prices);
+    const numOfFilters = useSelector(({ filterState }) => filterState.numOfFilters);
     const [menuIsShown, setMenuIsShown] = useState(false);
     const [numOfProducts, setNumOfProducts] = useState(0);
     const [currentSort, setCurrentSort] = useState("Arranged by");
@@ -85,8 +87,15 @@ const Results = () => {
     }
 
     useEffect(() => {
-        getFilteredSearchProducts(dispatch, params.searchQuery, filters)
-    }, [filters])
+        getFilteredSearchProducts(dispatch, params.searchQuery, filters, prices)
+    }, [filters, prices]);
+
+    useEffect(() => {
+        if (numOfFilters === 0) {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+            getSearchProducts(dispatch, params.searchQuery, offset);
+        }
+    }, [numOfFilters]);
 
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });

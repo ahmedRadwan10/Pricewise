@@ -1,0 +1,16 @@
+{
+    "banners": [
+        {
+            "imgURL": "/assets/imgs/banners/banner1_ar.png",
+            "routeURL": ""
+        },
+        {
+            "imgURL": "/assets/imgs/banners/banner2_ar.png",
+            "routeURL": ""
+        },
+        {
+            "imgURL": "/assets/imgs/banners/banner3_ar.png",
+            "routeURL": ""
+        }
+    ]
+}

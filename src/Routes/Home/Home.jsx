@@ -12,6 +12,7 @@ import ProductsOverview from "../../Components/Collection/ProductsOverview/Produ
 import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const lang = useSelector(({ langState }) => langState.lang);
   const { t } = useTranslation();
   const banners = useSelector(({ bannerState }) => bannerState.banners);
   const hotDealsProducts = useSelector(
@@ -25,10 +26,13 @@ const Home = () => {
 
   useEffect(() => {
     document.title = "Pricewise - Home";
-    getBanners(dispatch);
     getHotDealsProducts(dispatch);
     getPopularProducts(dispatch);
   }, [dispatch]);
+  
+  useEffect(() => {
+    getBanners(dispatch, lang);
+  }, [dispatch, lang])
 
   return (
     <div className={styles.main_container}>
