@@ -1,6 +1,7 @@
 import {
   fetchCategories,
   fetchSubCategories,
+  fetchSubCategoryProducts,
 } from "../redux/slices/categoriesSlice";
 
 function capitalize(str) {
@@ -8,17 +9,24 @@ function capitalize(str) {
 }
 
 export async function getCategories(dispatch) {
-  const response = await fetch("/data/categories.json");
+  const response = await fetch("http://127.0.0.1:8000/category/");
   const data = await response.json();
-  dispatch(fetchCategories(data.categories));
+  dispatch(fetchCategories(data));
 }
-export async function getSubCategories(dispatch, title) {
-  const response = await fetch("/data/categories.json");
-  const data = await response.json();
-  data.categories.map((cat) => {
-    if (cat.title.toLowerCase() === title) {
-      dispatch(fetchSubCategories(cat.subcats));
-      return;
+
+export async function getSubCategories(dispatch, slug, categories) {
+  categories.results.map((cat) => {
+    if (cat.slug === slug) {
+      dispatch(fetchSubCategories(cat.subcategory));
     }
   });
 }
+
+export async function getSubCategoriesProducts(dispatch, subCategories) {
+  subCategories.forEach(async (sub) => {
+     const response = await fetch(`http://127.0.0.1:8000/category/${sub.slug}/products/`);
+     const data = await response.json();
+     dispatch(fetchSubCategoryProducts({ slug: sub.slug, results: data.results }))
+  });
+}
+

@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  categories: [],
+  categories: {},
   subCategories: [],
+  products: {}
 };
 
 export const categoriesSlice = createSlice({
@@ -15,9 +16,12 @@ export const categoriesSlice = createSlice({
     fetchSubCategories: (state, action) => {
       state.subCategories = action.payload;
     },
+    fetchSubCategoryProducts: (state, action) => {
+      state.products[action.payload.slug] = action.payload.results;
+    },
   },
 });
 
-export const { fetchCategories, fetchSubCategories } = categoriesSlice.actions;
+export const { fetchCategories, fetchSubCategories, fetchSubCategoryProducts } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

@@ -8,8 +8,8 @@ const Sidebar = ({ category }) => {
   const renderCategoryList = () => {
     if (subCategories)
       return subCategories.map((sub) => (
-        <li key={sub}>
-          <a>{sub}</a>
+        <li key={sub.slug}>
+          <a>{sub.name}s</a>
         </li>
       ));
   };

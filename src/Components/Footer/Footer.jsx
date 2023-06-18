@@ -10,17 +10,17 @@ const Footer = () => {
     const dispatch = useDispatch(); 
 
     const renderSubCategories = (category) => {
-        return category.subcats.map(sub =>
-          <div key={sub}>
-            {sub}
+        return category.subcategory.map(sub =>
+          <div key={sub.slug}>
+            {sub.name}
           </div>
         )
     }
 
     const renderCategories = () => {
-        if (categories) return categories.map(cat =>
-          <div key={cat.title}>
-            <h4 className={styles.cat_title}>{cat.title}</h4>
+        if (categories.results) return categories.results.map(cat =>
+          <div key={cat.name}>
+            <h4 className={styles.cat_title}>{cat.name}</h4>
             <div className={styles.cat_subCats}>
               { renderSubCategories(cat) }
             </div>

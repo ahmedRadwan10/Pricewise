@@ -11,25 +11,22 @@ const Categories = ({ visible, setCategoriesVisible }) => {
   const lang = useSelector(({ langState }) => langState.lang);
   const { t } = useTranslation();
 
-  const categories = useSelector(
-    ({ categoriesState }) => categoriesState.categories
-  );
+  const categories = useSelector(({ categoriesState }) => categoriesState.categories);
   const dispatch = useDispatch();
 
   const renderSubCategories = (category) => {
-    return category.subcats.map((sub) => <div key={sub}>{sub}</div>);
+    if  (category.subcategory) return category.subcategory.map((sub) => <div key={sub.slug}>{sub.name}</div>);
   };
 
   const renderCategories = () => {
-    if (categories)
-      return categories.map((cat) => (
-        <div key={cat.title}>
+      return categories.results.map((cat) => (
+        <div key={cat.name}>
           <h4 className={styles.cat_title}> 
             <Link
-              to={`/${cat.title.toLowerCase()}`}
+              to={`/${cat.slug}`}
               onClick={() => setCategoriesVisible(false)}
             >
-              {cat.title}
+              {cat.name}
             </Link>
           </h4>
           <div className={styles.cat_subCats}>{renderSubCategories(cat)}</div>
@@ -41,7 +38,7 @@ const Categories = ({ visible, setCategoriesVisible }) => {
     getCategories(dispatch);
   }, [dispatch]);
 
-  return ReactDOM.createPortal(
+  if (categories.results) return ReactDOM.createPortal(
     <>
       <Overlay visible={visible} setVisible={setCategoriesVisible} />
       <div

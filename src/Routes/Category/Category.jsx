@@ -4,31 +4,31 @@ import { Link, useParams } from "react-router-dom";
 
 import Banner from "../../Components/Collection/Banner/Banner";
 import { getBanners } from "../../APIs/banners";
-import { getSubCategories } from "../../APIs/categories";
+import { getSubCategories, getSubCategoriesProducts } from "../../APIs/categories";
 import styles from "./Category.module.css";
 import { getProducts } from "../../APIs/products";
 import ProductsOverview from "../../Components/Collection/ProductsOverview/ProductsOverview";
 import Sidebar from "./SubComponents/Sidebar";
 
 const Category = () => {
-  const products = useSelector(({ productsState }) => productsState.products);
+  const lang = useSelector(({ langState }) => langState.lang);
   const banners = useSelector(({ bannerState }) => bannerState.banners);
-  const subCategories = useSelector(
-    ({ categoriesState }) => categoriesState.subCategories
-  );
+  const products = useSelector(({ categoriesState }) => categoriesState.products);
+  const categories = useSelector(({ categoriesState }) => categoriesState.categories);
+  const subCategories = useSelector(({ categoriesState }) => categoriesState.subCategories);
   const dispatch = useDispatch();
   const params = useParams();
 
   const renderSubCategoryOverviews = () => {
     if (subCategories)
-      return subCategories.map((sub) => (
-        <ProductsOverview
-          key={sub}
-          title={sub}
-          products={products}
-          maxProducts={3.8}
+      return subCategories.map((sub) => {
+        return <ProductsOverview
+          key={sub.slug}
+          title={`${sub.name}s`}
+          products = {products[sub.slug]}
+          maxProducts = {3}
         />
-      ));
+    });
   };
 
   const capitalizeWord = (word) => {
@@ -37,9 +37,10 @@ const Category = () => {
   };
 
   useEffect(() => {
-    getBanners(dispatch);
-    getSubCategories(dispatch, params.category);
-  }, [dispatch, params]);
+    getBanners(dispatch, lang);
+    getSubCategories(dispatch, params.category, categories);
+    getSubCategoriesProducts(dispatch, subCategories);
+  }, [dispatch, params, categories, subCategories, lang]);
 
   return (
     <div className={styles.main_container}>
@@ -55,7 +56,7 @@ const Category = () => {
       <Sidebar category={params.category} />
       <div className={styles.main_section}>
         <Banner banners={banners} />
-        {renderSubCategoryOverviews()}
+        { renderSubCategoryOverviews() }
       </div>
     </div>
   );
