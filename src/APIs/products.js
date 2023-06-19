@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import {
   addProductToWishlist,
+  fetchDealProducts,
   fetchFilteredSearchProducts,
   fetchHotDealsProducts,
   fetchPopularProducts,
@@ -18,6 +19,16 @@ export async function getHotDealsProducts(dispatch) {
   const response = await fetch("http://127.0.0.1:8000/product/all/deals/");
   const data = await response.json();
   dispatch(fetchHotDealsProducts(data.results));
+}
+
+export async function getDealProducts(dispatch, categories) {
+  categories.results.forEach((cat) => {
+    cat.subcategory.forEach( async(sub) => {
+      const response = await fetch(`http://127.0.0.1:8000/product/${sub.slug}/deals/`);
+      const data = await response.json();
+      dispatch(fetchDealProducts({ title: sub.name + "s", products: data.results }));
+    });
+  });
 }
 
 export async function getPopularProducts(dispatch) {

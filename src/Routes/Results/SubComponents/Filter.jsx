@@ -54,8 +54,8 @@ const Filter = ({ data }) => {
         return filter.map((entry, i) =>
                 <div key={i} className={styles.flex_box}>
                     <div>
-                        <input onChange={handleCheckboxChange} type="checkbox" name={entry[0]} id={entry[0]} data-slug={filter_slug} />
-                        <label htmlFor={entry[0]}>{entry[0]}</label>
+                        <input onChange={handleCheckboxChange} type="checkbox" name={entry[0]} id={`${entry[0]}${filter_slug}`} data-slug={filter_slug} />
+                        <label htmlFor={`${entry[0]}${filter_slug}`}>{entry[0]}</label>
                     </div>
                     <p>{`(${entry[1]})`}</p>
                 </div>

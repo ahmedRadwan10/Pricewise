@@ -89,3 +89,12 @@
     border-radius: var(--radius-sm);
     border: 1px solid white;
 }
+
+@media (max-width: 768px) {
+  .btns button {
+    display: none;
+  }
+  .pagination {
+    display: none;
+  }
+}

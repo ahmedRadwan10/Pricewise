@@ -369,4 +369,13 @@
   .main_container .scroll_btn:nth-of-type(2) {
     right: -5px;
   }
+  .main_container {
+    margin: 2em 0;
+  }
+  .main_container .product_container {
+    height: 20em;
+  }
+  .main_container .product_container .product_img_container {
+    height: 45%;
+  }
 }

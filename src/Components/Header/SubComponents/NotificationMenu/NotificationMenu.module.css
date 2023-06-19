@@ -19,7 +19,7 @@
   width: 30em;
   height: 30em;
   padding: 2em;
-  position: absolute;
+  position: fixed;
   top: 4em;
   right: 9%;
   background-color: var(--white);
@@ -27,6 +27,10 @@
   box-shadow: var(--shadow02);
   overflow: hidden;
   z-index: 99999999;
+}
+
+.main_container:lang(ar) {
+  right: 60%;
 }
 
 .main_container_hidden {
@@ -196,8 +200,8 @@
   .main_container {
     width: 28rem;
     height: 28rem;
-    right: 32%;
-    top: 7rem;
+    right: 9%;
+    top: 7.5rem;
   }
 }
 /*medium Screen */

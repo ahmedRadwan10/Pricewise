@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  home: {},
+  home: {
+    deals: {}
+  },
   search: {
     results: {
       products: [],
@@ -36,11 +38,14 @@ export const productsSlice = createSlice({
     sortReduxSearchProducts: (state, action) => {
       state.search.results.products = action.payload;
     },
+    fetchDealProducts: (state, action) => {
+      state.home.deals[action.payload.title] = action.payload.products;
+    },
     fetchHotDealsProducts: (state, action) => {
-      state.home.hotDealsProducts = action.payload;
+      state.home["Hot Deals 🔥"] = action.payload;
     },
     fetchPopularProducts: (state, action) => {
-      state.home.popularProducts = action.payload;
+      state.home["Popular Products"] = action.payload;
     },
     fetchProduct: (state, action) => {
       state.selectedProduct = action.payload;
@@ -60,6 +65,7 @@ export const {
   fetchProduct,
   addProductToWishlist,
   fetchHotDealsProducts,
+  fetchDealProducts,
   fetchPopularProducts,
   fetchSearchProducts,
   sortReduxSearchProducts,

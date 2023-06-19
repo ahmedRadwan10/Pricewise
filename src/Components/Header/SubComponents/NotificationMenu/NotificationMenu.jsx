@@ -4,8 +4,9 @@ import { useSelector } from 'react-redux';
 import MarkBtn from './MarkBtn';
 
 const NotificationMenu = ({ visible, setVisible }) => {
-    const [toggle, setToggle] = useState(false);
+    const lang = useSelector(({ langState }) => langState.lang);
     const products = useSelector(({ productsState }) => productsState.products);
+    const [toggle, setToggle] = useState(false);
 
     const renderNotifications = () => {
         if (products) {
@@ -45,11 +46,11 @@ const NotificationMenu = ({ visible, setVisible }) => {
     return (
         <>
             <div className={ visible ? styles.overlay : styles.overlay_hidden} onClick={() => setVisible(false)}></div>
-            <div className={ visible ? styles.main_container : styles.main_container_hidden}>
+            <div lang={lang} className={ visible ? styles.main_container : styles.main_container_hidden}>
                 <div className={styles.header}>
                     <div>
                         <h3>Notifications</h3>
-                        <p>Stay updated on your favorite products with wishlist notifications.</p>
+                        <p>Stay updated on your favorite products.</p>
                     </div>
                     <div className={styles.filters}>
                         <button className={ !toggle ? styles.btn_active : "" } onClick={() => setToggle(prev => !prev)}>Unread</button>
