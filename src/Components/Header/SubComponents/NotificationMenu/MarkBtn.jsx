@@ -6,6 +6,7 @@ const MarkBtn = () => {
 
     return (
         <button
+            className={styles.mark_btn}
             onMouseOver={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >

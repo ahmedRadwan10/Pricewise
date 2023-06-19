@@ -100,7 +100,7 @@ const Results = () => {
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         getSearchProducts(dispatch, params.searchQuery, offset);
-      }, [dispatch, params, offset]);
+    }, [dispatch, params, offset]);
 
     return (
         <div className={styles.main_container}>

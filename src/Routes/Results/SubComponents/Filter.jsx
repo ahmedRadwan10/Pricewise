@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../Results.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addFilter, changePrices, removeFilter } from '../../../redux/slices/filterSlice';
 
 const Filter = ({ data }) => {
+    const prices = useSelector(({ filterState }) => filterState.prices);
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
     const dispatch = useDispatch();
@@ -42,7 +43,8 @@ const Filter = ({ data }) => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         let checkbox = e.target;
         let filter_slug = e.target.getAttribute("data-slug");
-        let filter_value = e.target.id;
+        let filter_value = e.target.getAttribute("data-value");
+        if (prices.length === 0) dispatch(changePrices([data.prices.min_price, data.prices.max_price]))
         if (checkbox.checked) {
             dispatch(addFilter({ filter_slug: filter_slug, filter_value: filter_value }));
         } else {
@@ -54,7 +56,7 @@ const Filter = ({ data }) => {
         return filter.map((entry, i) =>
                 <div key={i} className={styles.flex_box}>
                     <div>
-                        <input onChange={handleCheckboxChange} type="checkbox" name={entry[0]} id={`${entry[0]}${filter_slug}`} data-slug={filter_slug} />
+                        <input onChange={handleCheckboxChange} type="checkbox" name={entry[0]} id={`${entry[0]}${filter_slug}`} data-value={entry[0]} data-slug={filter_slug} />
                         <label htmlFor={`${entry[0]}${filter_slug}`}>{entry[0]}</label>
                     </div>
                     <p>{`(${entry[1]})`}</p>
