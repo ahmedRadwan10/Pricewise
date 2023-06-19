@@ -10,7 +10,11 @@ import {
   fetchSearchProducts,
   getWishlistDataSuccessfully,
   removeProduct,
+  removeProductFromWishlistSuccessfully,
   sortReduxSearchProducts,
+  startRemoveFromWishlist,
+  startUpdateProductDesiredPrice,
+  updateProductDesiredPriceSuccessfully,
   updateProductWishlist,
   updateProductWishlistState,
 } from "../redux/slices/productsSlice";
@@ -23,10 +27,14 @@ export async function getHotDealsProducts(dispatch) {
 
 export async function getDealProducts(dispatch, categories) {
   categories.results.forEach((cat) => {
-    cat.subcategory.forEach( async(sub) => {
-      const response = await fetch(`http://127.0.0.1:8000/product/${sub.slug}/deals/`);
+    cat.subcategory.forEach(async (sub) => {
+      const response = await fetch(
+        `http://127.0.0.1:8000/product/${sub.slug}/deals/`
+      );
       const data = await response.json();
-      dispatch(fetchDealProducts({ title: sub.name + "s", products: data.results }));
+      dispatch(
+        fetchDealProducts({ title: sub.name + "s", products: data.results })
+      );
     });
   });
 }
@@ -56,15 +64,23 @@ export async function getSearchProducts(dispatch, query, offset) {
   }
 }
 
-export async function getFilteredSearchProducts(dispatch, query, filters, price) {
+export async function getFilteredSearchProducts(
+  dispatch,
+  query,
+  filters,
+  price
+) {
   try {
-    const response = await fetch(`http://127.0.0.1:8000/search/products/${query}/?filters=${filters}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ filters, price })
-    });
+    const response = await fetch(
+      `http://127.0.0.1:8000/search/products/${query}/?filters=${filters}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ filters, price }),
+      }
+    );
     if (response.ok) {
       const data = await response.json();
       dispatch(fetchFilteredSearchProducts(data));
@@ -170,6 +186,49 @@ export async function getWishListData(dispatch, token) {
       const data = await response.json();
       dispatch(addProductToWishlist(data.results));
       dispatch(getWishlistDataSuccessfully());
+    }
+  } catch (error) {
+    // Handle network error
+    console.error("Error:", error);
+  }
+}
+
+export async function deleteFromWishlist(dispatch, token, id) {
+  try {
+    dispatch(startRemoveFromWishlist());
+    const response = await fetch(`http://127.0.0.1:8000/favorites/${id}/`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response);
+
+    if (response.ok) {
+      dispatch(removeProductFromWishlistSuccessfully());
+    }
+  } catch (error) {
+    // Handle network error
+    console.error("Error:", error);
+  }
+}
+
+export async function updateProductDesiredPrice(dispatch, token, id, price) {
+  try {
+    dispatch(startUpdateProductDesiredPrice());
+    const response = await fetch(`http://127.0.0.1:8000/favorites/${id}/`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ desired_price: price }),
+    });
+    console.log(response);
+
+    if (response.ok) {
+      dispatch(updateProductDesiredPriceSuccessfully());
     }
   } catch (error) {
     // Handle network error

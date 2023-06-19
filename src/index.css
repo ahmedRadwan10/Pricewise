@@ -17,7 +17,7 @@
   --color01: #222831;
   --color02: #dddddd;
   --color03: #a3a7ac;
-  --color04: #80D0C7;
+  --color04: #80d0c7;
   /* ...main-colors... */
   --black: #000000;
   --white: #ffffff;
@@ -26,6 +26,7 @@
   --green: #38ae04;
   --light-green: #37ae0439;
   --red: #de0b0b;
+  --dark-red: #8a3636;
   --light-red: #de0b0b39;
   --orange: #f5a523;
   --light-gray: #808080;
@@ -45,7 +46,7 @@
   --logo-font: "Righteous", cursive;
   --shadow01: rgba(0, 0, 0, 0.16) 0px 0px 2px;
   --shadow02: rgba(99, 99, 99, 0.2) 0px 2px 5px 0px;
-  --shadow03: #08AEEA 0px 2px 5px 0px;
+  --shadow03: #08aeea 0px 2px 5px 0px;
 }
 
 *::lang(ar) {
@@ -77,17 +78,17 @@ input:lang(ar) {
   padding: 0.7em 2em;
 }
 
-input[type=range] {
+input[type="range"] {
   -webkit-appearance: none;
   background-color: transparent;
   padding: 1em 0;
 }
 
-input[type=range]:focus {
+input[type="range"]:focus {
   outline: none;
 }
 
-input[type=range]::-webkit-slider-runnable-track {
+input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 6px;
   background: var(--color02);
@@ -96,7 +97,7 @@ input[type=range]::-webkit-slider-runnable-track {
   opacity: 0.7;
 }
 
-input[type=range]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   height: 12px;
   width: 12px;
   border-radius: 50%;
