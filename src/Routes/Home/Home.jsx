@@ -12,11 +12,14 @@ import {
 } from "../../APIs/products";
 import ProductsOverview from "../../Components/Collection/ProductsOverview/ProductsOverview";
 import { useTranslation } from "react-i18next";
+import { getUserData } from "../../APIs/postUser";
 
 const Home = () => {
   const lang = useSelector(({ langState }) => langState.lang);
   const { t } = useTranslation();
-  const categories = useSelector(({ categoriesState }) => categoriesState.categories);
+  const categories = useSelector(
+    ({ categoriesState }) => categoriesState.categories
+  );
   const banners = useSelector(({ bannerState }) => bannerState.banners);
   const homeDeals = useSelector(({ productsState }) => productsState.home);
   const wishlist = useSelector(({ productsState }) => productsState.wishlist);
@@ -27,33 +30,36 @@ const Home = () => {
     if (homeDeals.deals) {
       const entries = Object.entries(homeDeals.deals);
       console.log(entries);
-      return entries.map(deal => {
-        return <ProductsOverview
-        title={deal[0]}
-        products={deal[1]}
-        maxProducts={5}
-      />
+      return entries.map((deal) => {
+        return (
+          <ProductsOverview
+            title={deal[0]}
+            products={deal[1]}
+            maxProducts={5}
+          />
+        );
       });
     }
-  }
+  };
 
   useEffect(() => {
     document.title = "Pricewise - Home";
     getHotDealsProducts(dispatch);
     getPopularProducts(dispatch);
   }, [dispatch]);
-  
+
   useEffect(() => {
     getDealProducts(dispatch, categories);
-  }, [dispatch, categories])
-  
+  }, [dispatch, categories]);
+
   useEffect(() => {
     getBanners(dispatch, lang);
-  }, [dispatch, lang])
+  }, [dispatch, lang]);
 
   useEffect(() => {
     if (token) {
       getWishListData(dispatch, token);
+      getUserData(dispatch, token);
     }
   }, [dispatch, token]);
 
@@ -70,7 +76,7 @@ const Home = () => {
         products={homeDeals["Popular Products"]}
         maxProducts={5}
       />
-      { renderHomeDeals() }
+      {renderHomeDeals()}
     </div>
   );
 };

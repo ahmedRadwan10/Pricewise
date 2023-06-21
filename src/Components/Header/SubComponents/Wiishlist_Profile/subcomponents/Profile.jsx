@@ -2,13 +2,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../../../../../redux/slices/authSlice";
 import styles from "../Wishlist_Profile.module.css";
 import { useState, useEffect } from "react";
+import { getUserData } from "../../../../../APIs/postUser";
 
 const Profile = () => {
-  const user = useSelector(({ authState }) => authState.user);
+  const user = useSelector(({ authState }) => authState.userData);
+  const success = useSelector(({ authState }) => authState.getUserDataSuccess);
   const [profileButton, setProfileButton] = useState("Update");
   const [formInput, setFormInput] = useState({
-    first_name: user.firstName,
-    last_name: user.lastName,
+    first_name: user.first_name,
+    last_name: user.last_name,
     email: user.email,
   });
 
@@ -18,6 +20,13 @@ const Profile = () => {
       [name]: value,
     });
   };
+  useEffect(() => {
+    setFormInput({
+      first_name: user.first_name,
+      last_name: user.last_name,
+      email: user.email,
+    });
+  }, [user]);
 
   return (
     <>

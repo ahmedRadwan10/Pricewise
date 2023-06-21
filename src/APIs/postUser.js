@@ -1,3 +1,4 @@
+import { use } from "i18next";
 import {
   errorSignUpUser,
   startSignUpUser,
@@ -15,6 +16,8 @@ import {
   errorPasswordReset,
   startPasswordReset,
   successPasswordReset,
+  successGetUserData,
+  startGetUserData,
 } from "../redux/slices/authSlice";
 
 export async function signUpUser(dispatch, data) {
@@ -27,8 +30,10 @@ export async function signUpUser(dispatch, data) {
       },
       body: JSON.stringify(data),
     });
+    console.log(respose);
 
     if (respose.ok) {
+      console.log(data);
       dispatch(successSignUpUser(data));
     } else if (!respose.ok) {
       const data = await respose.json();
@@ -145,4 +150,19 @@ export async function passwordReset(dispatch, uid, token, new_password) {
   } catch (err) {
     dispatch(errorPasswordReset());
   }
+}
+
+export async function getUserData(dispatch, token) {
+  dispatch(startGetUserData());
+  const response = await fetch("http://127.0.0.1:8000/auth/users/", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await response.json();
+  const user = data.results[0];
+  console.log(user);
+  dispatch(successGetUserData(user));
 }
