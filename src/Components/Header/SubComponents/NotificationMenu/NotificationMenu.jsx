@@ -18,11 +18,11 @@ const NotificationMenu = ({ visible, setVisible }) => {
     const renderNotifications = () => {
         if (homeDeals["Hot Deals 🔥"]) {
             const productsArr = homeDeals["Hot Deals 🔥"];
-            return productsArr.map(product => 
+            return productsArr.map(product =>
                 <div key={product.id} className={styles.notification} onClick={() => handleNotificationClicked(product)}>
                     <span className={styles.dot}></span>
                     <div className={styles.img_container}>
-                    <img src={`https://m.media-amazon.com/images/I/${product.images[0].image_url}.jpg`} alt={product.title} />
+                        <img src={`https://m.media-amazon.com/images/I/${product.images[0].image_url}.jpg`} alt={product.title} />
                     </div>
                     <div className={styles.info}>
                         <h5>{product.title}</h5>
@@ -37,36 +37,72 @@ const NotificationMenu = ({ visible, setVisible }) => {
                             </div>
                             <div className={styles.saving}>
                                 {/* { Number(product.price) > Number(product.sale_price) ? <div style={ Number(product.sale_price) ? { transform: "scale(1)" } : { transform: "scale(0)" } } className={styles.discount}>{Math.floor(product.price - product.sale_price)} <span>EGP</span></div> : <div className={styles.change}>{product.sale_price - product.price} <span>EGP</span></div> } */}
-                                { Number(product.price) > Number(product.sale_price) ? <div style={ Number(product.sale_price) ? { transform: "scale(1)" } : { transform: "scale(0)" } } className={styles.price_change}>{Math.floor(100 - (Number(product.sale_price) / product.price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down fa-beat-fade"}`}></i></div> : <div className={styles.price_change_negative}>{Math.floor(100 - (product.price / product.sale_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
+                                {Number(product.price) > Number(product.sale_price) ? <div style={Number(product.sale_price) ? { transform: "scale(1)" } : { transform: "scale(0)" }} className={styles.price_change}>{Math.floor(100 - (Number(product.sale_price) / product.price) * 100)}<span>%</span> <i className={`fa-solid fa-arrow-trend-down fa-beat-fade"}`}></i></div> : <div className={styles.price_change_negative}>{Math.floor(100 - (product.price / product.sale_price) * 100)}<span>%</span> <i className="fa-solid fa-arrow-trend-up"></i></div>}
                             </div>
                         </div>
                     </div>
                     <MarkBtn />
-                </div>
-            );
+                    <div className={styles.saving}>
+                        {/* { Number(product.price) > Number(product.sale_price) ? <div style={ Number(product.sale_price) ? { transform: "scale(1)" } : { transform: "scale(0)" } } className={styles.discount}>{Math.floor(product.price - product.sale_price)} <span>EGP</span></div> : <div className={styles.change}>{product.sale_price - product.price} <span>EGP</span></div> } */}
+                        {Number(product.price) > Number(product.sale_price) ? (
+                            <div
+                                style={
+                                    Number(product.sale_price)
+                                        ? { transform: "scale(1)" }
+                                        : { transform: "scale(0)" }
+                                }
+                                className={styles.price_change}
+                            >
+                                {Math.floor(
+                                    100 - (Number(product.sale_price) / product.price) * 100
+                                )}
+                                <span>%</span>{" "}
+                                <i
+                                    className={`fa-solid fa-arrow-trend-down fa-beat-fade"}`}
+                                ></i>
+                            </div>
+                        ) : (
+                            <div className={styles.price_change_negative}>
+                                {Math.floor(
+                                    100 - (product.price / product.sale_price) * 100
+                                )}
+                                <span>%</span>{" "}
+                                <i className="fa-solid fa-arrow-trend-up"></i>
+                            </div>
+                        )}
+                    </div>
+                    </div>
+
+                );       
         }
     }
 
-    return (
-        <>
-            <div className={ visible ? styles.overlay : styles.overlay_hidden} onClick={() => setVisible(false)}></div>
-            <div lang={lang} className={ visible ? styles.main_container : styles.main_container_hidden}>
-                <div className={styles.header}>
-                    <div>
-                        <h3>Notifications</h3>
-                        <p>Stay updated on your favorite products.</p>
-                    </div>
-                    {/* <div className={styles.filters}>
+  return (
+    <>
+      <div
+        className={visible ? styles.overlay : styles.overlay_hidden}
+        onClick={() => setVisible(false)}
+      ></div>
+      <div
+        lang={lang}
+        className={
+          visible ? styles.main_container : styles.main_container_hidden
+        }
+      >
+        <div className={styles.header}>
+          <div>
+            <h3>Notifications</h3>
+            <p>Stay updated on your favorite products.</p>
+          </div>
+          {/* <div className={styles.filters}>
                         <button className={ !toggle ? styles.btn_active : "" } onClick={() => setToggle(prev => !prev)}>Unread</button>
                         <button className={ toggle ? styles.btn_active : "" } onClick={() => setToggle(prev => !prev)}>Read</button>
                     </div> */}
-                </div>
-                <div className={styles.notifications}>
-                    { renderNotifications() }
-                </div>
-            </div>
-        </>
-    );
-}
+        </div>
+        <div className={styles.notifications}>{renderNotifications()}</div>
+      </div>
+    </>
+  );
+};
 
 export default NotificationMenu;

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: {},
+  userData: {},
   signUpSuccess: false,
   signInSuccess: false,
   loading: false,
@@ -11,11 +12,13 @@ const initialState = {
   activateSuccess: false,
   activateLoading: false,
   email: "",
+  id: 0,
   sendResetLinkSuccess: false,
   sendResetLinkLoading: false,
   passwordRestSuccess: false,
   passwordRestLoading: false,
   msgResetPassword: {},
+  getUserDataSuccess: false,
 };
 const authSlice = createSlice({
   name: "auth",
@@ -50,8 +53,10 @@ const authSlice = createSlice({
       state.signUpSuccess = true;
       state.loading = false;
       state.email = action.payload.email;
+      // Store the id value in the state
       localStorage.setItem("email", JSON.stringify(action.payload.email));
     },
+
     errorSignUpUser: (state, action) => {
       state.loading = false;
       state.error = true;
@@ -119,6 +124,14 @@ const authSlice = createSlice({
       state.passwordRestLoading = false;
       state.msgResetPassword = action.payload;
     },
+    ///ProFile////
+    startGetUserData: (state) => {
+      state.getUserDataSuccess = false;
+    },
+    successGetUserData: (state, action) => {
+      state.getUserDataSuccess = true;
+      state.userData = action.payload;
+    },
   },
 });
 export const {
@@ -147,5 +160,7 @@ export const {
   passwordRestSuccess,
   passwordRestLoading,
   msgResetPassword,
+  successGetUserData,
+  startGetUserData,
 } = authSlice.actions;
 export default authSlice.reducer;

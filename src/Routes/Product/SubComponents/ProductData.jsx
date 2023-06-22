@@ -131,29 +131,31 @@ const ProductData = ({ product }) => {
   };
 
   const handleWishlistSubmit = () => {
-    //sendProductToDataBase with product_id and desired_price
-    sendProductToDataBase(
-      {
-        product_id: product.id,
-        desired_price: desiredPrice,
-      },
-      token
-    );
+    if (desiredPrice) {
+      //sendProductToDataBase with product_id and desired_price
+      sendProductToDataBase(
+        {
+          product_id: product.id,
+          desired_price: desiredPrice,
+        },
+        token
+      );
 
-    //show alarm
-    dispatch(
-      setAlarmDetails({
-        title: product.title,
-        description: product.description,
-      })
-    );
-    dispatch(showAlarm());
+      //show alarm
+      dispatch(
+        setAlarmDetails({
+          title: product.title,
+          description: product.description,
+        })
+      );
+      dispatch(showAlarm());
 
-    //change addToWishlist button
-    changeAddToWishlistBtn();
+      //change addToWishlist button
+      changeAddToWishlistBtn();
 
-    // Close the wishlist form/modal
-    setWishlistOpen(false);
+      // Close the wishlist form/modal
+      setWishlistOpen(false);
+    }
   };
   useEffect(() => {
     const isProductInWishlist = wishlist.some(

@@ -12,6 +12,8 @@ const initialState = {
   },
   wishlist: [],
   getWishlistDataSuccess: false,
+  removeSuccess: false,
+  updateSuccess: false,
   selectedProduct: {},
 };
 
@@ -53,8 +55,20 @@ export const productsSlice = createSlice({
     addProductToWishlist: (state, action) => {
       state.wishlist = action.payload;
     },
+    startRemoveFromWishlist: (state) => {
+      state.removeSuccess = false;
+    },
     getWishlistDataSuccessfully: (state) => {
       state.getWishlistDataSuccess = true;
+    },
+    removeProductFromWishlistSuccessfully: (state) => {
+      state.removeSuccess = true;
+    },
+    startUpdateProductDesiredPrice: (state) => {
+      state.updateSuccess = false;
+    },
+    updateProductDesiredPriceSuccessfully: (state) => {
+      state.updateSuccess = true;
     },
   },
 });
@@ -71,6 +85,10 @@ export const {
   sortReduxSearchProducts,
   fetchFilteredSearchProducts,
   getWishlistDataSuccessfully,
+  removeProductFromWishlistSuccessfully,
+  startRemoveFromWishlist,
+  startUpdateProductDesiredPrice,
+  updateProductDesiredPriceSuccessfully,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
