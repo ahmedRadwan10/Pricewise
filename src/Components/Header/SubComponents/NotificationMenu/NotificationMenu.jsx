@@ -2,17 +2,24 @@ import React, { useEffect, useState } from 'react';
 import styles from './NotificationMenu.module.css';
 import { useSelector } from 'react-redux';
 import MarkBtn from './MarkBtn';
+import { useNavigate } from 'react-router';
 
 const NotificationMenu = ({ visible, setVisible }) => {
     const homeDeals = useSelector(({ productsState }) => productsState.home);
     const lang = useSelector(({ langState }) => langState.lang);
     const [toggle, setToggle] = useState(false);
+    const navigate = useNavigate();
+
+    const handleNotificationClicked = (product) => {
+        navigate(`/${product.category.toLowerCase()}/${product.slug}`)
+        setVisible(false);
+    }
 
     const renderNotifications = () => {
         if (homeDeals["Hot Deals 🔥"]) {
             const productsArr = homeDeals["Hot Deals 🔥"];
             return productsArr.map(product => 
-                <div key={product.id} className={styles.notification}>
+                <div key={product.id} className={styles.notification} onClick={() => handleNotificationClicked(product)}>
                     <span className={styles.dot}></span>
                     <div className={styles.img_container}>
                     <img src={`https://m.media-amazon.com/images/I/${product.images[0].image_url}.jpg`} alt={product.title} />

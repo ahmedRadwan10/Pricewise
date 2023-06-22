@@ -3,8 +3,9 @@ import styles from '../Results.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFilter, changePrices, removeFilter } from '../../../redux/slices/filterSlice';
 
-const Filter = ({ data }) => {
+const Filter = ({ data, display, visible, setVisible }) => {
     const prices = useSelector(({ filterState }) => filterState.prices);
+    const [isMd, setIsMd] = useState(false);
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
     const dispatch = useDispatch();
@@ -85,6 +86,7 @@ const Filter = ({ data }) => {
         const minPriceInputValue = Number(e.target.min_price.value);
         const maxPriceInputValue = Number(e.target.max_price.value);
         dispatch(changePrices([minPriceInputValue, maxPriceInputValue]))
+        setVisible(false);
     }
 
     const handleMinPriceChange = (e) => {
@@ -103,20 +105,30 @@ const Filter = ({ data }) => {
         }
     }
 
+    useEffect(() => {
+        if (window.innerWidth <= 1280) setIsMd(true); 
+    }, []);
+
     if (data.prices) return (
-        <div className={styles.sidebar_filters}>
-            <div className={styles.price_filter}>
-                <button><i className="fa-solid fa-circle"></i> Price</button>
-                <form onSubmit={handleFilterPricesSumbit}>
-                    <div>
-                        <input type="text" onChange={handleMinPriceChange} placeholder={`From : ${data.prices.min_price}`} autoComplete='off' name='min_price' />
-                        <input type="text" onChange={handleMaxPriceChange} placeholder={`To : ${data.prices.max_price}`} autoComplete='off' name='max_price' />
-                    </div>
-                    <input type="submit" value="Apply" />
-                </form>
+        <>
+            <div className={ visible ? styles.overlay : styles.overlay_hidden} onClick={() => setVisible(false)}></div>
+            <div className={styles.sidebar_filters} style={ visible && isMd ? { display: "block" } : {} }>
+                <button className={styles.close_btn} onClick={() => setVisible(false)}><i className="fa-solid fa-xmark"></i></button>
+                <div className={styles.price_filter}>
+                    <button><i className="fa-solid fa-circle"></i> Price</button>
+                    <form onSubmit={handleFilterPricesSumbit}>
+                        <div>
+                            <input type="text" onChange={handleMinPriceChange} placeholder={`From : ${data.prices.min_price}`} autoComplete='off' name='min_price' />
+                            <input type="text" onChange={handleMaxPriceChange} placeholder={`To : ${data.prices.max_price}`} autoComplete='off' name='max_price' />
+                        </div>
+                        <input type="submit" value="Apply" />
+                    </form>
+                </div>
+                <div className={styles.filters}>
+                    { data.filter ? renderFilters() : "" }
+                </div>
             </div>
-            { data.filter ? renderFilters() : "" }
-        </div>
+        </>
     );
 }
 

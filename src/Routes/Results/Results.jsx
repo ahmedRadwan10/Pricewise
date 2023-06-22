@@ -17,6 +17,7 @@ const Results = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [offset, setOffset] = useState(0);
     const [isLastPage, setIsLastPage] = useState(false);
+    const [visible, setVisible] = useState(false);
     const params = useParams();
     const dispatch = useDispatch();
     const paginationElement = useRef();
@@ -86,6 +87,10 @@ const Results = () => {
         }
     }
 
+    const handleFilterBtnClicked = () => {
+        setVisible(true);
+    }
+
     useEffect(() => {
         getFilteredSearchProducts(dispatch, params.searchQuery, filters, prices)
     }, [filters, prices]);
@@ -104,7 +109,8 @@ const Results = () => {
 
     return (
         <div className={styles.main_container}>
-            <Filter data={searchData.results} />
+            <button className={styles.filter_btn} onClick={handleFilterBtnClicked}><i className="fa-solid fa-filter"></i> Filters</button>
+            <Filter visible={visible} setVisible={setVisible} data={searchData.results} />
             <div className={styles.results}>
                 <div className={styles.header}>
                     <p><span>{searchData.count} results</span> {`${params.searchQuery}`}</p>

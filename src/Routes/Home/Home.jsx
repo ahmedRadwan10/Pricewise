@@ -26,7 +26,6 @@ const Home = () => {
   const renderHomeDeals = () => {
     if (homeDeals.deals) {
       const entries = Object.entries(homeDeals.deals);
-      console.log(entries);
       return entries.map(deal => {
         return <ProductsOverview
         title={deal[0]}
