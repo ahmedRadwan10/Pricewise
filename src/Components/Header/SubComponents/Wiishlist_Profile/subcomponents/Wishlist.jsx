@@ -18,7 +18,7 @@ const Wishlist = () => {
   const successUpdate = useSelector(
     ({ productsState }) => productsState.updateSuccess
   );
-  const products = wishlist.map((item) => item.product);
+
   const token = useSelector(({ authState }) => authState.user.access);
   const dispatch = useDispatch();
 
@@ -54,7 +54,7 @@ const Wishlist = () => {
             </tr>
           </thead>
           <tbody>
-            {wishlist.map((el) => (
+            {wishlist.products.map((el) => (
               <tr key={el.id}>
                 <td>
                   <img

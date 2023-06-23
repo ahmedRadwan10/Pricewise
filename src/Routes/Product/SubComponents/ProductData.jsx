@@ -10,7 +10,10 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Image from "../../../Components/Collection/Image";
 import Alarm from "../../../Components/Collection/Alarm/Alarm";
-import { setAlarmDetails, showAlarm } from "../../../redux/slices/alarmSlice";
+import {
+  setProductid,
+  showWishlistPopUp,
+} from "../../../redux/slices/addWishlistSlice";
 
 const vendors = {
   Amazon: "/assets/imgs/amazon.png",
@@ -20,18 +23,18 @@ const vendors = {
 
 const ProductData = ({ product }) => {
   const dispatch = useDispatch();
-  const products = useSelector(({ productsState }) => productsState.products);
+  const id = useSelector(({ addWishlistState }) => addWishlistState.id);
   const wishlist = useSelector(({ productsState }) => productsState.wishlist);
   const success = useSelector(
-    ({ productsState }) => productsState.getWishlistDataSuccess
+    ({ addWishlistState }) => addWishlistState.success
   );
   const token = useSelector(({ authState }) => authState.user.access);
   const user = useSelector(({ authState }) => authState.user);
   const refAddToWishlistBtn = useRef();
-  const [wishlistOpen, setWishlistOpen] = useState(false);
   const [added, setAdded] = useState(false);
-  const [desiredPrice, setDesiredPrice] = useState();
   const [wishlistBtn, setWishlistBtn] = useState("Add to wishlist");
+  let isProductInWishlist = false;
+
   const renderOldPrice = (price) => {
     return (
       <div className={styles.old_price}>
@@ -63,9 +66,23 @@ const ProductData = ({ product }) => {
 
     if (user) {
       //show inputForm to enter desired_price
-      setWishlistOpen(!wishlistOpen);
+      dispatch(showWishlistPopUp());
     } else {
       console.log("please Sign In"); //ui design
+    }
+  };
+
+  const checkProductInWishlist = (wishlist) => {
+    if (wishlist.length != 0) {
+      wishlist.products.map((el) => console.log(el.product.id));
+      isProductInWishlist = wishlist.products.some(
+        (el) => el.product.id === id
+      );
+    }
+    if (isProductInWishlist) {
+      changeAddToWishlistBtn();
+    } else {
+      defaultAddToWishlistBtn();
     }
   };
 
@@ -130,43 +147,10 @@ const ProductData = ({ product }) => {
     newTab.focus();
   };
 
-  const handleWishlistSubmit = () => {
-    if (desiredPrice) {
-      //sendProductToDataBase with product_id and desired_price
-      sendProductToDataBase(
-        {
-          product_id: product.id,
-          desired_price: desiredPrice,
-        },
-        token
-      );
-
-      //show alarm
-      dispatch(
-        setAlarmDetails({
-          title: product.title,
-          description: product.description,
-        })
-      );
-      dispatch(showAlarm());
-
-      //change addToWishlist button
-      changeAddToWishlistBtn();
-
-      // Close the wishlist form/modal
-      setWishlistOpen(false);
-    }
-  };
   useEffect(() => {
-    const isProductInWishlist = wishlist.some(
-      (el) => el.product.id === product.id
-    );
-    if (isProductInWishlist) {
-      changeAddToWishlistBtn();
-    } else {
-      defaultAddToWishlistBtn();
-    }
-  }, [product]);
+    dispatch(setProductid(product.id));
+    checkProductInWishlist(wishlist);
+  }, [product, success, wishlist, id]);
   return (
     <>
       <div className={styles.all_data_container}>
@@ -234,19 +218,8 @@ const ProductData = ({ product }) => {
                   <i className="fa-regular fa-bell"></i>
                 )}
               </span>
-
               <span>{wishlistBtn}</span>
             </button>
-            {wishlistOpen && (
-              <div className={styles.wishlist_form}>
-                <input
-                  type="number"
-                  placeholder="Enter Desired Price"
-                  onChange={(e) => setDesiredPrice(e.target.value)}
-                />
-                <button onClick={handleWishlistSubmit}>Submit</button>
-              </div>
-            )}
           </div>
         </div>
       </div>

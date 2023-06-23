@@ -18,6 +18,10 @@ import {
   updateProductWishlist,
   updateProductWishlistState,
 } from "../redux/slices/productsSlice";
+import {
+  startAddToWishlist,
+  successAddToWishlist,
+} from "../redux/slices/addWishlistSlice";
 
 export async function getHotDealsProducts(dispatch) {
   const response = await fetch("http://127.0.0.1:8000/product/all/deals/");
@@ -146,8 +150,9 @@ export async function sendProductToWishlist(dispatch, products, productID) {
   dispatch(addProductToWishlist(product));
 }
 
-export async function sendProductToDataBase(data, token) {
+export async function sendProductToDataBase(dispatch, data, token) {
   try {
+    dispatch(startAddToWishlist());
     const response = await fetch("http://127.0.0.1:8000/favorites/", {
       method: "POST",
       headers: {
@@ -156,10 +161,12 @@ export async function sendProductToDataBase(data, token) {
       },
       body: JSON.stringify(data),
     });
+    console.log(response);
 
     if (response.ok) {
       // Handle successful response
       console.log("Product added to favorites");
+      dispatch(successAddToWishlist());
     } else {
       // Handle error response
       console.error("Failed to add product to favorites");
@@ -184,6 +191,7 @@ export async function getWishListData(dispatch, token) {
     );
     if (response.ok) {
       const data = await response.json();
+      console.log(data);
       dispatch(addProductToWishlist(data.results));
       dispatch(getWishlistDataSuccessfully());
     }

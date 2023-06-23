@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "../ProductsOverview.module.css";
 import Image from "../../Image";
 import { sendProductToWishlist } from "../../../../APIs/products";
@@ -8,6 +8,10 @@ import {
   showAlarm,
 } from "../../../../redux/slices/alarmSlice";
 import { useNavigate } from "react-router";
+import {
+  setProductid,
+  showWishlistPopUp,
+} from "../../../../redux/slices/addWishlistSlice";
 
 const vendors = {
   Amazon: "/assets/imgs/amazon.png",
@@ -20,9 +24,20 @@ const ProductCard = ({ product, products, maxProducts }) => {
   const [favBtnActive, setFavBtnActive] = useState(false);
   const [productHovered, setProductHovered] = useState(false);
   const [productContainerHidden, setContainerHidden] = useState(false);
+  const [added, setAdded] = useState(false);
+  const [icon, setIcon] = useState("fa-regular fa-bell");
+  const [secondIcon, setSecondIcon] = useState();
+  const refAddToWishlistBtn = useRef();
+  const id = useSelector(({ addWishlistState }) => addWishlistState.id);
+  const wishlist = useSelector(({ productsState }) => productsState.wishlist);
+  const success = useSelector(
+    ({ addWishlistState }) => addWishlistState.success
+  );
+
   const productElement = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  let isProductInWishlist = false;
 
   const handleProductOnClick = (product) => {
     if (!favBtnActive)
@@ -64,7 +79,7 @@ const ProductCard = ({ product, products, maxProducts }) => {
               <span>{Number(product.rating).toFixed(1)}</span>
             </div>
             <div className={styles.reviews}>
-              <span>({ product.reviews })</span>
+              <span>({product.reviews})</span>
             </div>
           </div>
         ) : (
@@ -84,20 +99,56 @@ const ProductCard = ({ product, products, maxProducts }) => {
     } else {
       return title.slice(0, LENGTH);
     }
-  }
+  };
 
   const handleFavBtnClick = (productID) => {
-    setContainerHidden(true);
+    /*setContainerHidden(true);
     sendProductToWishlist(dispatch, products, productID);
     const alarmTitle = `Well done!`;
     const alarmDesc = `${product.title} added to your wishlist successfully.`;
     dispatch(setAlarmDetails({ title: alarmTitle, description: alarmDesc }));
-    dispatch(showAlarm());
+    dispatch(showAlarm());*/
+    dispatch(setProductid(product.id));
+    dispatch(showWishlistPopUp());
   };
 
   const productStyles = {
     width: `calc((100% - ${maxProducts - 1}em) / ${maxProducts})`,
   };
+
+  const checkProductInWishlist = (wishlist) => {
+    if (wishlist.length != 0) {
+      isProductInWishlist = wishlist.products.some(
+        (el) => el.product.id === product.id
+      );
+    }
+    if (isProductInWishlist) {
+      changeAddToWishlistBtn();
+    } else {
+      defaultAddToWishlistBtn();
+    }
+  };
+
+  const changeAddToWishlistBtn = () => {
+    setAdded(true);
+    setIcon("fa-sharp fa-solid fa-heart");
+    setSecondIcon("");
+    refAddToWishlistBtn.current.style.color = "#921c1c";
+    refAddToWishlistBtn.current.style.opacity = "1";
+    refAddToWishlistBtn.current.style.cursor = "default";
+  };
+
+  const defaultAddToWishlistBtn = () => {
+    setAdded(false);
+    setIcon("fa-regular fa-bell");
+    setSecondIcon("fa-solid fa-circle-plus");
+    refAddToWishlistBtn.current.style.color = "var(--dark-gray)";
+    refAddToWishlistBtn.current.style.cursor = "pointer";
+  };
+
+  useEffect(() => {
+    checkProductInWishlist(wishlist);
+  }, [product, success, wishlist, product.id]);
 
   if (product) {
     return (
@@ -118,9 +169,11 @@ const ProductCard = ({ product, products, maxProducts }) => {
           onMouseLeave={() => setFavBtnActive(false)}
           onClick={() => handleFavBtnClick(product.id)}
           className={styles.fav_btn}
+          disabled={added ? true : false}
+          ref={refAddToWishlistBtn}
         >
-          <i className="fa-regular fa-bell"></i>
-          <i className="fa-solid fa-circle-plus"></i>
+          <i className={icon}></i>
+          <i className={secondIcon}></i>
         </button>
         <div className={styles.vendor}>
           <img src={vendors[`${product.vendor}`]} alt={product.vendor} />
@@ -135,7 +188,7 @@ const ProductCard = ({ product, products, maxProducts }) => {
             <div>No image</div>
           )}
         </div>
-        <p title={product.title}>{ product.title }</p>
+        <p title={product.title}>{product.title}</p>
         <div className={styles.price_container}>
           <div className={styles.new_price_container}>
             <span>
@@ -191,7 +244,7 @@ const ProductCard = ({ product, products, maxProducts }) => {
           )}
         </div>
         <div lang={lang} className={styles.product_footer}>
-          { renderProductFooter(product) }
+          {renderProductFooter(product)}
         </div>
       </div>
     );
