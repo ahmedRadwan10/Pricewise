@@ -10,6 +10,7 @@ import Results from "./Routes/Results/Results";
 import Activate from "./Components/Auth/Activate/Activate";
 import { useTranslation, initReactI18next } from "react-i18next";
 import i18n from "i18next";
+import AddWishPopUp from "./Components/Collection/AddWishPopUp/AddWishPopUp";
 
 i18n.use(initReactI18next).init({
   lng: "en", // Set the default language
@@ -31,10 +32,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:category" element={<Category />} />
-          <Route
-            path="/:subCategory/:productSlug"
-            element={<Product />}
-          />
+          <Route path="/:subCategory/:productSlug" element={<Product />} />
           <Route path="/search/:searchQuery" element={<Results />} />
           <Route path="/auth/users/activation/:uid/:token" element={<Home />} />
           <Route
@@ -43,6 +41,7 @@ function App() {
           />
         </Routes>
         <Alarm />
+        <AddWishPopUp />
         <Footer />
       </BrowserRouter>
     </div>

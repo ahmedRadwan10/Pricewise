@@ -6,6 +6,7 @@ import alarmReducer from "./slices/alarmSlice";
 import authSlice from "./slices/authSlice";
 import langSlice from "./slices/langSlice";
 import filterSlice from "./slices/filterSlice";
+import addWishlistSlice from "./slices/addWishlistSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
     filterState: filterSlice,
     alarmState: alarmReducer,
     authState: authSlice,
+    addWishlistState: addWishlistSlice,
   },
 });
