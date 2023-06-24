@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   home: {
-    deals: {}
+    deals: {},
   },
   search: {
     results: {
@@ -13,6 +13,7 @@ const initialState = {
   wishlist: [],
   getWishlistDataSuccess: false,
   removeSuccess: false,
+  removeLoading: false,
   updateSuccess: false,
   selectedProduct: {},
 };
@@ -57,12 +58,14 @@ export const productsSlice = createSlice({
     },
     startRemoveFromWishlist: (state) => {
       state.removeSuccess = false;
+      state.removeLoading = true;
     },
     getWishlistDataSuccessfully: (state) => {
       state.getWishlistDataSuccess = true;
     },
     removeProductFromWishlistSuccessfully: (state) => {
       state.removeSuccess = true;
+      state.removeLoading = false;
     },
     startUpdateProductDesiredPrice: (state) => {
       state.updateSuccess = false;

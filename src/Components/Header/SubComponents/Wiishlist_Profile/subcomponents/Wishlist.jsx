@@ -7,6 +7,7 @@ import {
   updateProductDesiredPrice,
 } from "../../../../../APIs/products";
 import { useEffect, useState } from "react";
+import Overlay from "../../../../Collection/Overlay/Overlay";
 const Wishlist = () => {
   const [showInputForm, setShowInputForm] = useState(false);
   const [desiredPrice, setDesiredPrice] = useState(0);
@@ -17,6 +18,9 @@ const Wishlist = () => {
   );
   const successUpdate = useSelector(
     ({ productsState }) => productsState.updateSuccess
+  );
+  const loadingRemove = useSelector(
+    ({ productsState }) => productsState.removeLoading
   );
 
   const token = useSelector(({ authState }) => authState.user.access);
@@ -43,6 +47,7 @@ const Wishlist = () => {
   return (
     <>
       <div className={styles.wishlist}>
+        <Overlay visible={loadingRemove} />
         <table>
           <thead>
             <tr>

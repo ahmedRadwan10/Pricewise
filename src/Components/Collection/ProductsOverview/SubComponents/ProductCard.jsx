@@ -33,6 +33,7 @@ const ProductCard = ({ product, products, maxProducts }) => {
   const success = useSelector(
     ({ addWishlistState }) => addWishlistState.success
   );
+  const user = useSelector(({ authState }) => authState.user);
 
   const productElement = useRef();
   const dispatch = useDispatch();
@@ -108,8 +109,12 @@ const ProductCard = ({ product, products, maxProducts }) => {
     const alarmDesc = `${product.title} added to your wishlist successfully.`;
     dispatch(setAlarmDetails({ title: alarmTitle, description: alarmDesc }));
     dispatch(showAlarm());*/
-    dispatch(setProductid(product.id));
-    dispatch(showWishlistPopUp());
+    if (user) {
+      dispatch(setProductid(product.id));
+      dispatch(showWishlistPopUp());
+    } else {
+      console.log("please Sign In"); //ui design
+    }
   };
 
   const productStyles = {

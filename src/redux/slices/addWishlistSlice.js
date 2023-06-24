@@ -44,6 +44,7 @@ export const addToWishlistSlice = createSlice({
     successAddToWishlist: (state, action) => {
       state.success = true;
       state.loading = false;
+      state.desiredPrice = 0;
     },
   },
 });
