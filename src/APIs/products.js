@@ -8,6 +8,7 @@ import {
   fetchProduct,
   fetchProducts,
   fetchSearchProducts,
+  getData,
   getWishlistDataSuccessfully,
   removeProduct,
   removeProductFromWishlistSuccessfully,
@@ -30,17 +31,19 @@ export async function getHotDealsProducts(dispatch) {
 }
 
 export async function getDealProducts(dispatch, categories) {
-  categories.results.forEach((cat) => {
-    cat.subcategory.forEach(async (sub) => {
-      const response = await fetch(
-        `http://127.0.0.1:8000/product/${sub.slug}/deals/`
-      );
-      const data = await response.json();
-      dispatch(
-        fetchDealProducts({ title: sub.name + "s", products: data.results })
-      );
+  if (categories) {
+    categories.results.forEach((cat) => {
+      cat.subcategory.forEach(async (sub) => {
+        const response = await fetch(
+          `http://127.0.0.1:8000/product/${sub.slug}/deals/`
+        );
+        const data = await response.json();
+        dispatch(
+          fetchDealProducts({ title: sub.name + "s", products: data.results })
+        );
+      });
     });
-  });
+  }
 }
 
 export async function getPopularProducts(dispatch) {
@@ -238,6 +241,44 @@ export async function updateProductDesiredPrice(dispatch, token, id, price) {
     if (response.ok) {
       dispatch(updateProductDesiredPriceSuccessfully());
     }
+  } catch (error) {
+    // Handle network error
+    console.error("Error:", error);
+  }
+}
+
+export async function getNotificationData(dispatch, token) {
+  try {
+    let data;
+    console.log(token);
+    const response = await fetch("http://127.0.0.1:8000/notifications/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.ok) {
+      data = await response.json();
+      console.log(data);
+    }
+    data.results.map(async (el) => {
+      const response1 = await fetch(
+        `http://127.0.0.1:8000/notifications/${el.id}/`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response1.ok) {
+        const data1 = await response1.json();
+        console.log(data1);
+        dispatch(getData(data));
+      }
+    });
   } catch (error) {
     // Handle network error
     console.error("Error:", error);

@@ -16,6 +16,8 @@ const initialState = {
   removeLoading: false,
   updateSuccess: false,
   selectedProduct: {},
+  notificationData: [],
+  count: 0,
 };
 
 export const productsSlice = createSlice({
@@ -73,6 +75,10 @@ export const productsSlice = createSlice({
     updateProductDesiredPriceSuccessfully: (state) => {
       state.updateSuccess = true;
     },
+    //noticfications//
+    getData: (state, action) => {
+      state.notificationData = action.payload;
+    },
   },
 });
 
@@ -92,6 +98,7 @@ export const {
   startRemoveFromWishlist,
   startUpdateProductDesiredPrice,
   updateProductDesiredPriceSuccessfully,
+  getData,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
