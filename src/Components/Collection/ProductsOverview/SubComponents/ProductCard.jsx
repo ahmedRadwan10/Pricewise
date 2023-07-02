@@ -122,7 +122,7 @@ const ProductCard = ({ product, products, maxProducts }) => {
   };
 
   const checkProductInWishlist = (wishlist) => {
-    if (wishlist.length != 0) {
+    if (wishlist.products.length !== 0) {
       isProductInWishlist = wishlist.products.some(
         (el) => el.product.id === product.id
       );

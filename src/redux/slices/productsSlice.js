@@ -10,7 +10,10 @@ const initialState = {
       filter: {},
     },
   },
-  wishlist: [],
+  wishlist: {
+    products: []
+  },
+  products: {},
   getWishlistDataSuccess: false,
   removeSuccess: false,
   removeLoading: false,
@@ -54,7 +57,7 @@ export const productsSlice = createSlice({
       state.selectedProduct = action.payload;
     },
     addProductToWishlist: (state, action) => {
-      state.wishlist = action.payload;
+      state.wishlist.products = action.payload;
     },
     startRemoveFromWishlist: (state) => {
       state.removeSuccess = false;

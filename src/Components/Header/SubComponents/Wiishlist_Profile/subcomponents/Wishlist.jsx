@@ -50,24 +50,24 @@ const Wishlist = () => {
         <Overlay visible={loadingRemove} />
         <table>
           <thead>
-            <tr>
+            {/* <tr>
               <th>Image</th>
               <th>Product name</th>
               <th>Price</th>
               <th>Desired price</th>
-              <th>Option</th>
-            </tr>
+              <th>Options</th>
+            </tr> */}
           </thead>
           <tbody>
             {wishlist.products.map((el) => (
               <tr key={el.id}>
-                <td>
+                <td className={styles.product_img}>
                   <img
                     src={`https://m.media-amazon.com/images/I/${el.product.images[0].image_url}.jpg`}
                     alt={el.product.title}
                   />
                 </td>
-                <td>{el.product.title}</td>
+                <td className={styles.product_title}>{el.product.title}</td>
                 <td>{el.product.sale_price}</td>
                 {showInputForm && current == el.id ? (
                   <td>
@@ -84,7 +84,7 @@ const Wishlist = () => {
                 ) : (
                   <td>{el.desired_price}</td>
                 )}
-                <td>
+                <td className={styles.options}>
                   <button
                     onClick={() => handleUpdateClick(el.id, el.desired_price)}
                   >

@@ -18,11 +18,12 @@ const NotificationMenu = ({ visible, setVisible }) => {
     const renderNotifications = () => {
         if (homeDeals["Hot Deals 🔥"]) {
             const productsArr = homeDeals["Hot Deals 🔥"];
+            console.log(productsArr);
             return productsArr.map(product =>
                 <div key={product.id} className={styles.notification} onClick={() => handleNotificationClicked(product)}>
                     <span className={styles.dot}></span>
                     <div className={styles.img_container}>
-                        <img src={`https://m.media-amazon.com/images/I/${product.images[0].image_url}.jpg`} alt={product.title} />
+                        <img src={`${product.images[0].image_url}`} alt={product.title} />
                     </div>
                     <div className={styles.info}>
                         <h5>{product.title}</h5>

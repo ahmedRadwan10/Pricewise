@@ -19,6 +19,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const succesSignin = useSelector(({ authState }) => authState.signInSuccess);
+  const user = useSelector(({ authState }) => authState.userData);
   const lang = useSelector(({ langState }) => langState.lang);
   const categoriesElement = useRef();
   const navElement = useRef();
@@ -90,7 +91,7 @@ const Header = () => {
             }}
           >
             <i className="fa-regular fa-user"></i>
-            {succesSignin ? t("profile") : t("sign-in")}
+            {succesSignin ? user.first_name : t("sign-in")}
           </span>
           <span className="column_divider"></span>
           <span

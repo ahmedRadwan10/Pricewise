@@ -1,7 +1,7 @@
 .modal_container {
   display: flex;
   justify-content: space-between;
-  width: 80vw;
+  width: 68vw;
   height: 80vh;
   padding: 3em;
   position: fixed;
@@ -26,7 +26,7 @@
   font-size: 1.2rem;
   margin-bottom: 0.5em;
   padding-bottom: 1em;
-  border-bottom: 1px solid var(--color02);
+  border-bottom: 1px solid var(--boxbg);
 }
 
 .modal_container .header span {
@@ -39,18 +39,26 @@
   font-size: 0.9rem;
 }
 .modal_container .main_section {
-  width: 80%;
+  width: 74%;
   position: relative;
 }
 .modal_container .sidebar {
-  width: 15%;
+  width: 22%;
+  padding-right: 3em;
+  border-right: 1px solid var(--boxbg);
 }
 .modal_container .sidebar ul {
   list-style-type: none;
 }
 .modal_container .sidebar ul li {
-  padding: 1rem 0;
+  margin: 0.5em 0;
+  padding: 0.8rem 2em;
+  border-radius: var(--radius-sm);
   cursor: pointer;
+}
+
+.modal_container .sidebar ul li.active_page {
+  background-color: var(--boxbg);
 }
 
 /*-----Profile-----*/
@@ -66,18 +74,27 @@
 }
 
 .modal_container .profile .name_field div {
-  width: 200px;
   margin-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 20em;
 }
+
+/* .modal_container .profile .name_field div input {
+  width: 50em;
+} */
+
 .modal_container .profile .form_field {
   display: flex;
   flex-direction: column;
+  width: 42em;
 }
 .modal_container .profile .profile_button {
   position: absolute;
   bottom: 0;
-  background-color: var(--blue);
-  padding: 1rem;
+  right: 2.5em;
+  background-color: var(--dark-gray);
+  padding: 1rem 5rem;
   color: white;
   cursor: pointer;
 }
@@ -87,42 +104,56 @@
   overflow: auto;
 }
 .modal_container .wishlist table {
+  width: 100%;
+  margin-top: 2em;
   table-layout: auto;
   text-align: center;
-  border-collapse: separate;
-  border-spacing: 1em;
+  border-collapse: collapse;
 }
 .modal_container .wishlist tr {
   margin-bottom: 1rem;
+  cursor: pointer;
+  /* background-color: var(--boxbg); */
+  border-radius: var(--radius-md);
+}
+.modal_container .wishlist tr td {
+  padding: 0 0.5em;
 }
 .modal_container .wishlist tr td:nth-of-type(2) {
   padding: 0 1rem;
 }
+.modal_container .wishlist tbody tr td.product_title {
+  max-width: 15em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.modal_container .wishlist tbody tr td.product_img img {
+}
+
 .modal_container .wishlist img {
-  max-width: 100px;
-  max-height: 100px;
-  width: auto;
-  height: auto;
+  width: 4em;
+  padding: 1em;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 .modal_container .wishlist button {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0.5rem;
-  padding: 1rem;
+  display: inline-block;
+  margin: 0.5rem;
   width: 5rem;
   color: white;
   cursor: pointer;
 }
 .modal_container .wishlist td button:nth-child(1) {
-  background-color: var(--blue);
+  color: var(--blue);
+  background-color: transparent;
 }
 
 .modal_container .wishlist td button:nth-child(2) {
-  background-color: var(--dark-red);
+  color: var(--red);
+  background-color: transparent;
 }
 
 .modal_container .wishlist input {

@@ -55,6 +55,10 @@
   font-size: 1rem;
 }
 
+.modal__form .form_field input {
+  width: 100%;
+}
+
 .modal__form .sign_up {
   width: 100%;
   padding: 1em 0;

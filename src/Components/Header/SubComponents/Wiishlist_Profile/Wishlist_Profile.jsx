@@ -5,6 +5,7 @@ import SideBar from "./subcomponents/SideBar";
 import { useState } from "react";
 import Profile from "./subcomponents/Profile";
 import Wishlist from "./subcomponents/Wishlist";
+
 const Wishlist_Profile = ({ visible, setWishlistProfiileVisible }) => {
   const [page, setPage] = useState("profile");
   const renderProfileHeader = () => {
@@ -41,7 +42,7 @@ const Wishlist_Profile = ({ visible, setWishlistProfiileVisible }) => {
           visible ? styles.modal_container : styles.modal_container_hidden
         }
       >
-        <SideBar setPage={setPage} />
+        <SideBar setPage={setPage} page={page} />
         <div className={styles.main_section}>
           {page === "profile" ? renderProfileHeader() : renderWishHeader()}
           {page === "profile" ? <Profile /> : <Wishlist />}
