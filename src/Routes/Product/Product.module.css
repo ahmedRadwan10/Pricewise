@@ -48,6 +48,11 @@
   background-color: var(--white);
 }
 
+.overview_container {
+  display: flex;
+  flex-direction: column;
+}
+
 .product_img_container {
   margin: 2em 0;
   width: 100%;
@@ -57,7 +62,7 @@
 }
 
 .product_img_container img {
-  width: 30%;
+  width: 90%;
   mix-blend-mode: darken;
 }
 
@@ -93,7 +98,7 @@
 }
 
 .rating_container {
-  /* margin-top: 0.5em; */
+  margin: 2em 0;
   font-size: 1rem;
   font-weight: 600;
   display: flex;
@@ -106,7 +111,7 @@
 .rating_container img {
   width: 6em;
   mix-blend-mode: darken;
-  transform: translateY(6px);
+  transform: translateY(3px);
 }
 
 .rating_container span:nth-of-type(1),

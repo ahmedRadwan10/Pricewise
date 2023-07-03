@@ -15,6 +15,7 @@ const Product = () => {
   const [togglerIsSpecs, setTogglerIsSpecs] = useState(false);
   const product = useSelector(({ productsState }) => productsState.selectedProduct.product);
   const similarProducts = useSelector(({ productsState }) => productsState.selectedProduct.similar_products);
+  const sameProducts = useSelector(({ productsState }) => productsState.selectedProduct.same_product_other_vendor);
   const dispatch = useDispatch();
   const params = useParams();
 
@@ -47,7 +48,9 @@ const Product = () => {
           <Link to="">{product.title}</Link>
         </div>
         <div className={styles.flex_container}>
-          <ProductData product={product} />
+          {/* <div className={styles.overview_container}> */}
+            <ProductData product={product} />
+          {/* </div> */}
           <div className={styles.right_container}>
             <Chart history={product.price_history} />
             <div className={styles.specs_description_container}>
@@ -68,6 +71,7 @@ const Product = () => {
             </div>
           </div>
         </div>
+        <ProductsOverview title="Same Products" products={sameProducts} maxProducts={5} ctaIsDisabled={true} navIsDisabled={true} />
         <ProductsOverview title="Similar Products" products={similarProducts} maxProducts={5} />
       </div>
     );

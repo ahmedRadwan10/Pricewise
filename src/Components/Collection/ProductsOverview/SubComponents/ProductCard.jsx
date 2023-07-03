@@ -15,8 +15,8 @@ import {
 
 const vendors = {
   Amazon: "/assets/imgs/amazon.png",
-  Noon: "",
-  Jumia: "",
+  Noon: "/assets/imgs/noon.svg",
+  Jumia: "/assets/imgs/jumia.png",
 };
 
 const ProductCard = ({ product, products, maxProducts }) => {
@@ -40,6 +40,8 @@ const ProductCard = ({ product, products, maxProducts }) => {
   const navigate = useNavigate();
   let isProductInWishlist = false;
 
+  let currency = lang === "en" ? "EGP" : "جم";
+
   const handleProductOnClick = (product) => {
     if (!favBtnActive)
       navigate(`/${product.category.toLowerCase()}/${product.slug}`);
@@ -58,13 +60,14 @@ const ProductCard = ({ product, products, maxProducts }) => {
           {oldPrice}
         </span>
         <span
+          lang={lang}
           style={
             oldPrice !== "0"
               ? { transform: "scale(1)" }
               : { transform: "scale(0)" }
           }
         >
-          EGP
+          {currency}
         </span>
       </div>
     );
@@ -186,12 +189,10 @@ const ProductCard = ({ product, products, maxProducts }) => {
         <div className={styles.product_img_container}>
           {product.images && product.images.length > 0 ? (
             <Image
-              imgSrc={`https://m.media-amazon.com/images/I/${product.images[0].image_url}.jpg`}
+              imgSrc={`${product.images[0].image_url}`}
               imgAlt={product.title}
             />
-          ) : (
-            <div>No image</div>
-          )}
+          ) : "" }
         </div>
         <p title={product.title}>{product.title}</p>
         <div className={styles.price_container}>
@@ -199,7 +200,7 @@ const ProductCard = ({ product, products, maxProducts }) => {
             <span>
               {product.sale_price ? product.sale_price : product.price}
             </span>
-            <span>EGP</span>
+            <span lang={lang}>{currency}</span>
           </div>
           {product.sale_price
             ? renderProductOldPrice(product.price)
@@ -215,11 +216,11 @@ const ProductCard = ({ product, products, maxProducts }) => {
               }
               className={styles.discount}
             >
-              {Math.floor(product.price - product.sale_price)} <span>EGP</span>
+              {Math.floor(product.price - product.sale_price)}  <span lang={lang}>{currency}</span>
             </div>
           ) : (
             <div className={styles.change}>
-              {product.sale_price - product.price} <span>EGP</span>
+              {product.sale_price - product.price}  <span lang={lang}>{currency}</span>
             </div>
           )}
           {Number(product.price) > Number(product.sale_price) ? (

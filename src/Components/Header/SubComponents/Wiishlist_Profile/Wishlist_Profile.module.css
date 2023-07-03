@@ -102,6 +102,8 @@
 .modal_container .wishlist {
   height: 90%;
   overflow: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .modal_container .wishlist table {
   width: 100%;
@@ -119,9 +121,11 @@
 .modal_container .wishlist tr td {
   padding: 0 0.5em;
 }
+
 .modal_container .wishlist tr td:nth-of-type(2) {
   padding: 0 1rem;
 }
+
 .modal_container .wishlist tbody tr td.product_title {
   max-width: 15em;
   text-overflow: ellipsis;
@@ -133,8 +137,8 @@
 }
 
 .modal_container .wishlist img {
-  width: 4em;
-  padding: 1em;
+  width: 8em;
+  /* padding: 1em; */
   display: block;
   margin-left: auto;
   margin-right: auto;

@@ -17,8 +17,8 @@ import {
 
 const vendors = {
   Amazon: "/assets/imgs/amazon.png",
-  Noon: "",
-  Jumia: "",
+  Noon: "/assets/imgs/noon.svg",
+  Jumia: "/assets/imgs/jumia.png",
 };
 
 const ProductData = ({ product }) => {
@@ -157,13 +157,13 @@ const ProductData = ({ product }) => {
         <div className={styles.box}>
           <h4 className={styles.headline}>Product Overview</h4>
           <div className={styles.product_img_container}>
-            {product.images && product.images.length > 0 ? (
+            {product.images.length > 0 ? (
               <Image
-                imgSrc={`https://m.media-amazon.com/images/I/${product.images[0].image_url}.jpg`}
+                imgSrc={`${product.images[0].image_url}`}
                 imgAlt={product.title}
               />
             ) : (
-              <div>No image</div>
+              <div></div>
             )}
           </div>
           <div className={styles.header}>

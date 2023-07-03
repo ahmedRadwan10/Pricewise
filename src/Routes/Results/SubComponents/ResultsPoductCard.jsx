@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from '../Results.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -8,8 +8,8 @@ import { setAlarmDetails, showAlarm } from '../../../redux/slices/alarmSlice';
 
 const vendors = {
   Amazon: "/assets/imgs/amazon.png",
-  Noon: "",
-  Jumia: "",
+  Noon: "/assets/imgs/noon.svg",
+  Jumia: "/assets/imgs/jumia.png",
 };
 
 const ResultsProductCard = ({ product, products }) => {
@@ -82,6 +82,10 @@ const ResultsProductCard = ({ product, products }) => {
     dispatch(setAlarmDetails({ title: alarmTitle, description: alarmDesc }));
     dispatch(showAlarm());
   }
+  
+  // useEffect(() => {
+  //   console.log(product.images[0].image_url);
+  // }, [product])
     
   if (product) {
       return <div
@@ -99,7 +103,7 @@ const ResultsProductCard = ({ product, products }) => {
               <img src={vendors[`${product.vendor}`]} alt={product.vendor} />
             </div>
             <div className={styles.product_img_container}>
-                <Image imgSrc={`https://m.media-amazon.com/images/I/${product.images[0].image_url}.jpg`} imgAlt={product.title} />
+                { product.images.length !== 0 ? <Image imgSrc={`${product.images[0].image_url}`} imgAlt={product.title} /> : "" }
             </div>
             <p title={product.title}>{product.title}</p>
             <div className={styles.price_container}>

@@ -9,7 +9,7 @@ const Sidebar = ({ category }) => {
     if (subCategories)
       return subCategories.map((sub) => (
         <li key={sub.slug}>
-          <a>{sub.name}s</a>
+          <a>{sub.name}</a>
         </li>
       ));
   };

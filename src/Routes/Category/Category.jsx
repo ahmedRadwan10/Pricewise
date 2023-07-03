@@ -24,7 +24,7 @@ const Category = () => {
       return subCategories.map((sub) => {
         return <ProductsOverview
           key={sub.slug}
-          title={`${sub.name}s`}
+          title={`${sub.name}`}
           products = {products[sub.slug]}
           maxProducts = {3}
         />

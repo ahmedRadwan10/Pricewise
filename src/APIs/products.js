@@ -39,7 +39,7 @@ export async function getDealProducts(dispatch, categories) {
         );
         const data = await response.json();
         dispatch(
-          fetchDealProducts({ title: sub.name + "s", products: data.results })
+          fetchDealProducts({ title: sub.name, products: data.results })
         );
       });
     });
@@ -53,6 +53,7 @@ export async function getPopularProducts(dispatch) {
 }
 
 export async function getSearchProducts(dispatch, query, offset) {
+  // setTimeout(async () => {
   try {
     const response = await fetch(
       `http://127.0.0.1:8000/search/products/${query}/?limit=50&offset=${offset}`,
@@ -69,6 +70,7 @@ export async function getSearchProducts(dispatch, query, offset) {
   } catch (err) {
     throw new Error(err.message);
   }
+  //  }, 0)
 }
 
 export async function getFilteredSearchProducts(

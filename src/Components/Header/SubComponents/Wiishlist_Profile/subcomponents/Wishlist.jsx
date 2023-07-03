@@ -54,7 +54,7 @@ const Wishlist = () => {
               <th>Image</th>
               <th>Product name</th>
               <th>Price</th>
-              <th>Desired price</th>
+              <th>Desired</th>
               <th>Options</th>
             </tr> */}
           </thead>
@@ -63,7 +63,7 @@ const Wishlist = () => {
               <tr key={el.id}>
                 <td className={styles.product_img}>
                   <img
-                    src={`https://m.media-amazon.com/images/I/${el.product.images[0].image_url}.jpg`}
+                    src={`${el.product.images[0].image_url}`}
                     alt={el.product.title}
                   />
                 </td>

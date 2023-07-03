@@ -66,7 +66,7 @@
 }
 
 .main_container .products_container {
-  height: 20em;
+  height: 25em;
   display: flex;
   overflow-x: scroll;
   scroll-behavior: smooth;
@@ -78,6 +78,7 @@
 .main_container .product_container {
   position: relative;
   width: calc((100% - 4em) / 4);
+  height: 25em;
   padding: 0 1em 0em;
   margin-right: 1em;
   background-color: #dddddd36;
@@ -88,11 +89,16 @@
 
 .main_container .product_container .vendor {
   position: absolute;
-  left: 1em;
+  top: 1.3em;
+  left: 1.3em;
 }
 
-.main_container .product_container .vendor img{
+.main_container .product_container .vendor img {
   width: 4em;
+}
+
+.main_container .product_container .vendor img[alt="Amazon"] {
+  transform: translateY(-22px);
 }
 
 .main_container .product_container_hidden {
@@ -107,7 +113,7 @@
 
 .main_container .product_container .product_img_container {
   width: 100%;
-  height: 50%;
+  height: 60%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,8 +121,9 @@
 
 .product_img_container img {
   margin-top: 3em;
+  padding: 1em;
   width: 100%;
-  height: 60%;
+  height: 100%;
   object-fit: contain;
   mix-blend-mode: darken;
 }

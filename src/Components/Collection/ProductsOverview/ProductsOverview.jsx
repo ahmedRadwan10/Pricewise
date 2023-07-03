@@ -10,7 +10,7 @@ import {
 import ProductCard from "./SubComponents/ProductCard";
 import { useTranslation } from "react-i18next";
 
-const ProductsOverview = ({ title, products, maxProducts }) => {
+const ProductsOverview = ({ title, products, maxProducts, ctaIsDisabled, navIsDisabled }) => {
   const lang = useSelector(({ langState }) => langState.lang);
   const { t } = useTranslation();
   const productsContainer = useRef();
@@ -66,15 +66,15 @@ const ProductsOverview = ({ title, products, maxProducts }) => {
   if (products)
     return (
       <div className={styles.main_container}>
-        <button className={styles.scroll_btn} onClick={scrollProductsToLeft}>
+        { !navIsDisabled ? <><button className={styles.scroll_btn} onClick={scrollProductsToLeft}>
           <i className="fa-solid fa-chevron-left"></i>
         </button>
         <button className={styles.scroll_btn} onClick={scrollProductsToRight}>
           <i className="fa-solid fa-chevron-right"></i>
-        </button>
+        </button></> : "" }
         <div className={styles.header}>
           <h2>{title}</h2>
-          <button lang={lang}>{t("shop-now")}</button>
+          { !ctaIsDisabled ? <button lang={lang}>{t("shop-now")}</button> : "" }
         </div>
         <div ref={productsContainer} className={styles.products_container}>
           {renderProducts()}

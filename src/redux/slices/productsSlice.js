@@ -11,7 +11,6 @@ const initialState = {
     },
   },
   wishlist: {
-    products: []
   },
   products: {},
   getWishlistDataSuccess: false,
@@ -59,7 +58,7 @@ export const productsSlice = createSlice({
       state.selectedProduct = action.payload;
     },
     addProductToWishlist: (state, action) => {
-      state.wishlist.products = action.payload;
+      state.wishlist = action.payload;
     },
     startRemoveFromWishlist: (state) => {
       state.removeSuccess = false;
